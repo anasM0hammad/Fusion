@@ -1,3 +1,18 @@
+a:hover{
+    text-decoration: none;
+}
+
+
+.dec_link{
+    text-decoration: none;
+    font-style: italic;
+    color: #46B3CE;
+}
+
+.dec_link:hover{
+    color: #46B3CE;
+    text-decoration: underline;
+}
 
 .list li{
     font-style: italic;
@@ -18,4 +33,58 @@
 
 .header p{
     font-style: italic;
+}
+
+.row{
+    margin-top: 70px;
+}
+
+.name{
+    font-style: italic;
+}
+
+.button {
+  display: inline-block;
+  background-color: #46B3CE;
+  border: none;
+  color: #FFFFFF;
+  text-align: center;
+  font-size: 13px;
+  padding: 10px;
+  width: 110px;
+  transition: all 0.5s;
+  cursor: pointer;
+  margin: 3px;
+}
+
+.button span {
+  cursor: pointer;
+  display: inline-block;
+  position: relative;
+  transition: 0.5s;
+}
+
+.button span:after {
+  content: '\00bb';
+  position: absolute;
+  opacity: 0;
+  top: 0;
+  right: -10px;
+  transition: 0.5s;
+}
+
+.button:hover span {
+  padding-right: 15px;
+}
+
+.button:hover span:after {
+  opacity: 1;
+  right: 0;
+}
+
+.likes{
+    margin-left: 8px;
+    margin-top: 3px;
+    height: 25px;
+    width: 25px;
 }

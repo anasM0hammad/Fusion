@@ -20,6 +20,13 @@
       
     <link rel="stylesheet" type="text/css" href="css/home.css">  
       
+    <style>
+      
+        .space{
+            height: 300px;
+        }  
+    </style>  
+      
     <title>Fusion</title>
   </head>
   <body>
@@ -48,15 +55,59 @@
       
       <!-- NAVBAR ENDS HERE -->
       
+      
+      
+      
+      
       <!--MAIN PAGE HEADER-->
       
       <div class="header">
       
         <img src="img/icon2.png" class="rounded mx-auto d-block">
         <h2>Welcome to Fusion</h2>
-          <p>Fusion is a combination of a blog and a social platform <br><span class = "d-none d-sm-block"> for Developers, Technology enthusiast, students and anyone who loves technology and Science.</span></p>  
+        <p>Fusion is a combination of a blog and a social platform <br><span class = "d-none d-sm-block"> for Developers, Technology enthusiast, students and anyone who loves technology and Science.</span></p>  
       
       
+      </div>
+      <!--HEADER ENDS HERE -->
+      
+      
+      
+      
+      
+      <!--PAGE CONTENT STARTS -->
+      
+      <div class="container">
+        <div class="row">
+         <div class="col-md-8">
+         
+             <!--FIRST POST -->
+             <div>
+             
+                 <h2><a class="dec_link" href="">BLOG TITLE</a></h2>
+                 <h5 class="text-muted"> by    <img class="d-inline-block align-top" height="30" width="30" src="img/icon.png"><a href=""><span class="name text-muted">BLOGGER NAME</span></a></h5>
+                 
+                 <p class="text-muted"><i class="far fa-clock"></i> Posted on 10 september 2018</p>
+                 <hr>
+                 <img src="img/post.svg" class="img-fluid" alt="Responsive image">
+                 <hr>
+                 
+                 <p class="text-muted">The emergence and growth of blogs in the late 1990s coincided with the advent of web publishing tools that facilitated the posting of content by non-technical users who did not have much experience with HTML </p>
+                 
+                 <button class="button" style="vertical-align:middle"><span>Read More </span></button>
+                 <img src="img/confused.png" class="rounded float-right likes">
+                 <img src="img/like.png" class="rounded float-right likes">
+                 <img src="img/heart.png" class="rounded float-right likes">
+                
+                 
+             </div>
+                
+            
+             
+             <div class="space"></div>
+            
+         </div> 
+        </div>
       </div>
       
    
