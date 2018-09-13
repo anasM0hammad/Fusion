@@ -39,6 +39,7 @@ a:hover{
     margin-top: 70px;
 }
 
+
 .name{
     font-style: italic;
 }
@@ -83,8 +84,15 @@ a:hover{
 }
 
 .likes{
-    margin-left: 8px;
-    margin-top: 3px;
+    margin-right:10px;
+    margin-top: 5px;
     height: 25px;
     width: 25px;
+    transition: 0.2s;
+    cursor: pointer;
+}
+
+.likes:hover{
+    height: 30px;
+    width: 30px;
 }
