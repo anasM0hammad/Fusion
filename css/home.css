@@ -96,3 +96,25 @@ a:hover{
     height: 30px;
     width: 30px;
 }
+
+.page-link{
+     border-top-right-radius: 20px;
+     border-bottom-right-radius: 20px;
+      border-top-left-radius: 20px;
+     border-bottom-left-radius: 20px;
+}
+
+.search_icon{
+    border-radius: 0;
+}
+
+.side_box{
+    margin-bottom: 20px;
+}
+
+.footer{
+    background-color: #46B3CE;
+    color: white;
+     padding:40px;
+}
+

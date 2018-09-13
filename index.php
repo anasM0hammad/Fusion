@@ -130,16 +130,70 @@
                  
                  <img src="img/heart.png" class="rounded float-right likes" data-toggle="tooltip" data-placement="bottom" title="Love">
                  
-                 <hr>
+                 <hr><br><br>
                  
              </div>
-                
-            
              
-             <div class="space"></div>
+             
+             <!-- PAGINATION -->
             
-         </div> 
+                <button type="button" class="btn btn-outline-info page-link float-left" tabindex="-1">&laquo Previous</button>
+                  
+                <button type="button" class="btn btn-outline-info page-link float-right">Next &raquo</button>  
+                
+                <br><br><br><br>
+                
+                  
+            
+            
+         </div>
+            
+            
+            
+        <!-- SIDE BOXES OF PAGES -->    
+         <div class="col-md-4">
+             <!-- BLOG SEARCH BOX -->
+            <div class="card bg-light side_box">
+              <div class="card-body">
+                <h5 class="text-muted">BLOG SEARCH</h5>
+                 <div class="input-group">
+                  <input type="text" class="form-control">
+                    <span class="input-group-btn">
+                       <button class="btn btn-default search_icon" type="button">
+                            <i class="fas fa-search"></i>
+                        </button>
+                    </span>
+                  </div>  
+              </div>
+            </div>
+             
+            <!-- CATEGORY BOX -->
+              <div class="card bg-light side_box">
+              <div class="card-body">
+                <h5 class="text-muted">WHAT'S NEW</h5>
+                <a href="">Category</a> <a href="" class="float-right">Category</a><br>
+                <a href="">Category</a> <a href="" class="float-right">Category</a><br>
+                <a href="">Category</a> <a href="" class="float-right">Category</a><br>
+                <a href="">Category</a> <a href="" class="float-right">Category</a><br>      
+                  
+              </div>
+            </div>
+            
+         </div>    
+            
+            
+            
+            
         </div>
+      </div>
+      
+      
+      <!-- FOOTER GOES HERE -->
+      <div class="footer">
+       <div class = "container">
+          <h4><img src="img/icon2.png" height="50" width="50"> Fusion</h4>
+          <p>All Rights Reserved <i class="far fa-copyright"></i> 2018</p>   
+       </div>     
       </div>
       
    
