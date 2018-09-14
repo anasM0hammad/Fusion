@@ -1,0 +1,93 @@
+.space{
+    margin-top: 100px;
+}
+
+a{
+    color:inherit;
+}
+
+a:hover{
+    text-decoration: none;
+    color: inherit;
+}
+
+.title{
+    color:#46B3CE;
+    margin-top: 50px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+.name{
+    font-style: italic;
+}
+
+.likes{
+    margin-right:10px;
+    margin-top: 10px;
+    height: 25px;
+    width: 25px;
+    transition: 0.2s;
+    cursor: pointer;
+}
+
+.likes:hover{
+    height: 30px;
+    width: 30px;
+}
+
+
+.comment_box{
+    margin-top: 50px;
+}
+
+.mybutton{
+    border-radius: 0;
+}
+
+.comment_profile{
+    height: 120px;
+    width: 120px;
+    margin-right: 10px;
+}
+
+.comment_profile img{
+    height: 80px;
+    width: 80px;
+}
+
+
+.comment h5{
+    font-style: italic;
+}
+
+.comment_like{
+     margin-right:10px;
+    margin-top: 5px;
+    height: 25px;
+    width: 25px;
+    transition: 0.2s;
+    cursor: pointer;
+}
+
+.comment_like:hover{
+    height: 30px;
+    width: 30px;
+}
+
+
+.button:hover span:after {
+  opacity: 1;
+  right: 0;
+}
+
+
+
+
+.footer{
+    background-color: #46B3CE;
+    color: white;
+     padding:40px;
+    margin-top: 50px;
+}
+
