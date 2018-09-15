@@ -46,8 +46,8 @@ a:hover{
 }
 
 .comment_profile{
-    height: 120px;
-    width: 120px;
+    height: 100px;
+    width: 100px;
     margin-right: 10px;
 }
 
@@ -62,8 +62,9 @@ a:hover{
 }
 
 .comment_like{
-     margin-right:10px;
+     margin-right:5px;
     margin-top: 5px;
+    margin-left: 100px;
     height: 25px;
     width: 25px;
     transition: 0.2s;
@@ -74,14 +75,6 @@ a:hover{
     height: 30px;
     width: 30px;
 }
-
-
-.button:hover span:after {
-  opacity: 1;
-  right: 0;
-}
-
-
 
 
 .footer{

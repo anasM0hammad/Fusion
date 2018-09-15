@@ -88,24 +88,54 @@
           
           <!-- COMMENTS -->
           
-          
-          <div class="comment text-muted">
+          <!-- FIRST COMMENT -->
+           <div class="comment text-muted">
           <img src="img/comment.svg" class=" float-left comment_profile">
-              <h5><a href="" >NAME </a><small class="text-muted"> October 19, 2018</small></h5>    
-          <p>The emergence and growth of blogs in the late 1990s coincided with the advent of web publishing tools that facilitated the posting of content by non-technical users who did not have much experience with HTML
-               
+           <h5><a href="" >NAME </a><small class="text-muted"> October 19, 2018</small></h5>    
+           <p>The emergence and growth of blogs in the late 1990s coincided with the advent of web publishing tools that facilitated the posting of content by non-technical users who did not have much experience with HTML      
+              
+           </p>
+     
+              
              <img src="img/like.png" class="rounded comment_like float-right" data-toggle="tooltip" data-placement="bottom" title="Like">
 
              <img src="img/heart.png" class="rounded comment_like  float-right" data-toggle="tooltip" data-placement="bottom" title="Love">
 
-             <img src="img/confused.png" class="rounded comment_like  float-right" data-toggle="tooltip" data-placement="bottom" title="Not Good">     
-              
-              
-           </p> 
-              
-             
-              
+             <img src="img/confused.png" class="rounded comment_like  float-right" data-toggle="tooltip" data-placement="bottom" title="Not Good">  
+               
+            <h6 class="r float-right" style="margin-right: 20px; color:#C03A2B; margin-top:5px;"><a href="">Reply</a></h6>
+            
+            <br>   
+               
           </div>
+          
+          <hr><br>
+          
+          <!-- SECOND COMMENT -->
+           <div class="comment text-muted">
+          <img src="img/comment.svg" class=" float-left comment_profile">
+           <h5><a href="" >NAME </a><small class="text-muted"> October 19, 2018</small></h5>    
+           <p>The emergence and growth of blogs in the late 1990s coincided with the advent of web publishing tools that facilitated the posting of content by non-technical users who did not have much experience with HTML      
+              
+           </p>
+     
+              
+             <img src="img/like.png" class="rounded comment_like float-right" data-toggle="tooltip" data-placement="bottom" title="Like">
+
+             <img src="img/heart.png" class="rounded comment_like  float-right" data-toggle="tooltip" data-placement="bottom" title="Love">
+
+             <img src="img/confused.png" class="rounded comment_like  float-right" data-toggle="tooltip" data-placement="bottom" title="Not Good">  
+               
+            <h6 class="r float-right" style="margin-right: 20px; color:#C03A2B; margin-top:5px;"><a href="">Reply</a></h6>
+                   
+            <br>   
+               
+          </div>
+          
+          <hr><br>
+          
+          
+          
           
       </div>   
      </div>    
