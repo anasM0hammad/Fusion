@@ -18,6 +18,10 @@ a:hover{
     text-align: center;
 }
 
+.dec_link{
+    font-style: italic;
+}
+
 .name{
     font-style: italic;
 }
@@ -64,7 +68,7 @@ a:hover{
 .comment_like{
      margin-right:5px;
     margin-top: 5px;
-    margin-left: 100px;
+    margin-left: 10px;
     height: 25px;
     width: 25px;
     transition: 0.2s;

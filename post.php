@@ -4,6 +4,9 @@
     <!-- Required meta tags -->
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+      
+    <!-- External CSS File -->
+     <link rel="stylesheet" type="text/css" href="css/post.css">    
 
     <!-- Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
@@ -13,9 +16,14 @@
       
     <link href="img/icon.png" rel="icon" type ="image/gif" sizes="any"> 
       
-     <link rel="stylesheet" type="text/css" href="css/post.css">  
+    
 
     <title>Fusion | Blog Name</title>
+      
+      <style>
+          
+         
+      </style>
       
   </head>
     
@@ -32,15 +40,15 @@
       </button>
 
       <div class="collapse navbar-collapse" id="navbarSupportedContent">
-        <ul class="navbar-nav container justify-content-end list">
+        <ul class="navbar-nav container justify-content-end list ">
           <li class="nav-item ">
-              <a class="nav-link" href="index.php"><i class ="fas fa-home"></i> Home</a>
+              <a class="dec_link nav-link " href="index.php"><i class ="fas fa-home"></i> Home</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="#"><i class="fas fa-globe"></i> About</a>
+            <a class="dec_link nav-link" href="#"><i class="fas fa-globe"></i> About</a>
           </li>
            <li class="nav-item">
-            <a class="nav-link" href="#"><i class="fas fa-phone"></i> Contact</a>
+            <a class="dec_link nav-link" href="#"><i class="fas fa-phone"></i> Contact</a>
           </li>    
         </ul>
       </div>
