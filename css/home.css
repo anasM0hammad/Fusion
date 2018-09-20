@@ -44,6 +44,10 @@ a:hover{
     font-style: italic;
 }
 
+.auth_img{
+    border-radius: 50%;
+}
+
 .button {
   display: inline-block;
   background-color: #46B3CE;

@@ -66,8 +66,64 @@
       <div class="container">
         <div class="row">
          <div class="col-md-8">
+             
+             <!-- PHP QUERY -->
+             
+             <?php 
+             
+             $query = "SELECT * FROM posts" ;
+             $post_result = mysqli_query($connect , $query) ;
+             
+             while($row = mysqli_fetch_assoc($post_result)){
+                 
+                 $post_title = $row['post_title'];
+                 $post_author = $row['post_author'] ;
+                 $post_date = $row['post_date'] ;
+                 $post_image = $row['post_image'] ;
+                 $post_content = $row['post_content'];
+                 $post_author_image = $row['post_author_image'];
+                 
+                 
+            ?>     
+             
+             
+              <div class="blog">
+             
+                 <h2><a class="dec_link" href=""><?php echo $post_title ; ?></a></h2>
+                 <h5 class="text-muted"> by    <img class="d-inline-block align-top auth_img" height="30" width="30" src="img/<?php echo $post_author_image ; ?>" ><a href=""><span class="name text-muted"><?php echo $post_author ; ?></span></a></h5>
+                 
+                 <p class="text-muted"><i class="far fa-clock"></i> Posted on <?php echo $post_date ; ?></p>
+                 <hr>
+                 <img src="img/<?php echo $post_image; ?>" class="img-fluid" alt="Responsive image">
+                 <hr>
+                 
+                 <p class="text-muted"><?php echo $post_content ; ?> </p>
+                 
+                 <button class="button" style="vertical-align:middle"><span>Read More </span></button>
+                 
+                 <img src="img/confused.png" class="rounded float-right likes" data-toggle="tooltip" data-placement="bottom" title="Not Good">
+                 
+                 <img src="img/like.png" class="rounded float-right likes" data-toggle="tooltip" data-placement="bottom" title="Like">
+                 
+                 <img src="img/heart.png" class="rounded float-right likes" data-toggle="tooltip" data-placement="bottom" title="Love">
+                 
+                 <hr><br><br><br>
+                 
+             </div>
+               
+             
+             
+                 
+            <?php } ?>    <!-- END OF WHILE LOOP -->
+             
+             
+             
+             
+             
+             
          
              <!--FIRST POST -->
+<!--
              <div class="blog">
              
                  <h2><a class="dec_link" href="">BLOG TITLE</a></h2>
@@ -91,8 +147,10 @@
                  <hr><br><br><br>
                  
              </div>
+-->
              
              <!-- SECOND BLOG -->
+<!--
               <div class="blog">
              
                  <h2><a class="dec_link" href="">BLOG TITLE</a></h2>
@@ -116,6 +174,7 @@
                  <hr><br><br>
                  
              </div>
+-->
              
              
              <!-- PAGINATION -->
