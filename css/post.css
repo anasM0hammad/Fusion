@@ -1,6 +1,4 @@
-.space{
-    margin-top: 100px;
-}
+
 
 a{
     color:inherit;
@@ -79,6 +77,24 @@ a:hover{
     height: 30px;
     width: 30px;
 }
+
+.search_icon{
+    border-radius: 0;
+}
+
+.side_box{
+    margin-bottom: 20px;
+}
+
+.cat_link{
+    color: #46B3CE;
+}
+
+.cat_link:hover{
+    color: blue;
+    text-decoration: underline;
+}
+
 
 
 .footer{

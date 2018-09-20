@@ -6,6 +6,9 @@
   <head>
     
     <?php include "includes/links.php" ; ?>  
+    
+    <!-- EXTERNAL CSS FILE -->
+     <link rel="stylesheet" type="text/css" href="css/home.css">    
       
     <title>Fusion</title>
   </head>

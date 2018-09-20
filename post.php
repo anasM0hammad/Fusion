@@ -8,6 +8,10 @@ include "includes/connection.php" ;
 <html lang="en">
   <head>
     <?php include "includes/links.php" ; ?>
+    
+    <!-- EXTERNAL CSS FILE -->
+    <link rel="stylesheet" href="css/post.css" type="text/css">  
+      
       
     <title>Fusion | Blog Name</title>
   </head>
@@ -90,11 +94,11 @@ include "includes/connection.php" ;
            </p>
      
               
-             <img src="img/like.png" class="rounded comment_like float-right" data-toggle="tooltip" data-placement="bottom" title="Like">
+             <img src="img/like.png" class="comment_like rounded float-right" data-toggle="tooltip" data-placement="bottom" title="Like">
 
-             <img src="img/heart.png" class="rounded comment_like  float-right" data-toggle="tooltip" data-placement="bottom" title="Love">
+             <img src="img/heart.png" class="comment_like rounded float-right" data-toggle="tooltip" data-placement="bottom" title="Love">
 
-             <img src="img/confused.png" class="rounded comment_like  float-right" data-toggle="tooltip" data-placement="bottom" title="Not Good">  
+             <img src="img/confused.png" class="comment_like rounded float-right" data-toggle="tooltip" data-placement="bottom" title="Not Good">  
                
             <h6 class="r float-right" style="margin-right: 20px; color:#C03A2B; margin-top:5px;"><a href="">Reply</a></h6>
             
@@ -130,9 +134,17 @@ include "includes/connection.php" ;
           
           
           
-      </div>   
-     </div>    
-    </div>
+      </div>
+         <!-- MAIN CONTENTS END -->
+         
+         
+         <!-- SIDE BOXES -->
+     <?php include "includes/sidebox.php" ; ?>
+         
+         
+         
+     </div>  <!-- ROW ENDS -->    
+    </div>   <!-- CONTAINER ENDS -->
       
    <!-- FOOTER GOES HERE -->
       <?php include "includes/footer.php" ; ?>

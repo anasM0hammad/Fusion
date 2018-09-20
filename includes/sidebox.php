@@ -30,13 +30,20 @@ $cat_result = mysqli_query($connect , $query);
                 <h5 class="text-muted">WHAT'S NEW</h5>
                   
                  <?php 
-                  
-                  while($row = mysqli_fetch_assoc($cat_result)){
-                      
+                 
+                  $i = 0;
+                  while($i<4){
+                       $row = mysqli_fetch_assoc($cat_result);
                       $cat_title = $row['cat_title'];
-                      echo "<a href=''>{$cat_title}</a> <br>" ;
-                     
-                  }
+                      echo "<a href='' class='cat_link'>{$cat_title}</a>" ;
+                      
+                      $row = mysqli_fetch_assoc($cat_result);
+                      $cat_title = $row['cat_title'];
+                      echo "<a href ='' class ='cat_link float-right'> {$cat_title} </a><br> ";
+                      
+                      $i++ ;
+                   }
+                  
                   
                   ?>
                   

@@ -10,4 +10,4 @@
 
     <link href="img/icon.png" rel="icon" type ="image/gif" sizes="any"> 
       
-    <link rel="stylesheet" type="text/css" href="css/home.css">  
+   
