@@ -10,19 +10,26 @@ $cat_result = mysqli_query($connect , $query);
 
           <div class="col-md-4">
              <!-- BLOG SEARCH BOX -->
+              
+              
             <div class="card bg-light side_box">
               <div class="card-body">
                 <h5 class="text-muted">BLOG SEARCH</h5>
+                <form action="search.php" method ="post">  
                  <div class="input-group">
-                  <input type="text" class="form-control">
+                    
+                  <input type="text" name="search" class="form-control">
                     <span class="input-group-btn">
-                       <button class="btn btn-default search_icon" type="button">
+                       <button class="btn btn-default search_icon" type="submit" name="submit">
                             <i class="fas fa-search"></i>
                         </button>
                     </span>
-                  </div>  
+                  </div>   
+                </form>    
               </div>
             </div>
+              
+              
              
             <!-- CATEGORY BOX -->
               <div class="card bg-light side_box">

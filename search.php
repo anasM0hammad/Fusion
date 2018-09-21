@@ -71,10 +71,27 @@
              
              <?php 
              
-             $query = "SELECT * FROM posts" ;
-             $post_result = mysqli_query($connect , $query) ;
-             
-             while($row = mysqli_fetch_assoc($post_result)){
+             if(isset($_POST['submit'])){
+                 
+                  $search = $_POST['search'] ;
+                  $query = "SELECT * FROM posts WHERE post_tags LIKE '%$search%'" ;
+                 
+                  $search_result = mysqli_query($connect , $query);
+                 
+                  if(!$search_result){
+                      die("QUERY FAIL").mysqli_error($connect) ;
+                  }
+                 
+                 
+                  $count = mysqli_num_rows($search_result) ;
+                 
+                  if($count == 0){
+                    echo "<div class='alert alert-danger' role='alert'>NO RESULT FOUND...!</div>" ;
+                  }
+                 
+                 else{
+                 
+                   while($row = mysqli_fetch_assoc($search_result)){
                  
                  $post_title = $row['post_title'];
                  $post_author = $row['post_author'] ;
@@ -114,7 +131,19 @@
              
              
                  
-            <?php } ?>    <!-- END OF WHILE LOOP -->
+            <?php } ?>
+             
+                   <!-- PAGINATION -->
+                <button type="button" class="btn btn-outline-info page-link float-left" tabindex="-1">&larr; Previous</button>
+                  
+                <button type="button" class="btn btn-outline-info page-link float-right">Next &rarr;</button> 
+                 
+            <?php } 
+             
+    }?>
+             
+             
+              <!-- END OF WHILE LOOP -->
              
              
              
@@ -177,11 +206,6 @@
 -->
              
              
-             <!-- PAGINATION -->
-            
-                <button type="button" class="btn btn-outline-info page-link float-left" tabindex="-1">&larr; Previous</button>
-                  
-                <button type="button" class="btn btn-outline-info page-link float-right">Next &rarr;</button>  
                 
                 <br><br><br><br>
                 
