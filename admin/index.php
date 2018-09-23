@@ -16,7 +16,8 @@
     <!-- EXTERNAL CSS FILE -->  
    <link href="admin.css" type="text/css" rel="stylesheet">      
       
-   <title>Fusion | Admin</title>  
+   <title>Fusion | Admin</title> 
+      
       
   </head>
   <body>
@@ -28,12 +29,12 @@
           </button>
 
           <div class="collapse navbar-collapse" id="navbarSupportedContent">
-            <ul class="navbar-nav container justify-content-end ">
+              <ul class="navbar-nav container justify-content-end nav-links">
                
                 <!--NOTIFICATION DROPDOWN-->
-               <li class="nav-item dropdown">
+             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"><i class="far fa-bell"></i></a>
-                <div class="dropdown-menu">
+                <div class="dropdown-menu drop-link">
                   <a class="dropdown-item" href="#">Action</a>
                   <div class="dropdown-divider"></div>
                   <a class="dropdown-item" href="#">Separated link</a>
@@ -41,9 +42,9 @@
               </li>
                 
                 <!-- MESSAGE DROPDOWN -->
-               <li class="nav-item dropdown">
+             <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"><i class="far fa-envelope"></i></a>
-                <div class="dropdown-menu">
+                <div class="dropdown-menu drop-link">
                   <a class="dropdown-item" href="#">Message 1</a>
                   <div class="dropdown-divider"></div>
                   <a class="dropdown-item" href="#">Read More</a>
@@ -53,7 +54,7 @@
                 <!-- USER DROPDOWN -->
                <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"><i class="far fa-user"></i> NAME</a>
-                <div class="dropdown-menu">
+                <div class="dropdown-menu drop-link">
                   <a class="dropdown-item" href="#"><i class="far fa-user"></i> Profile</a>
                   <a class="dropdown-item" href="#"><i class="fas fa-cog"></i> Settings</a>
                   <div class="dropdown-divider"></div>
@@ -65,7 +66,42 @@
         </nav>
       
         <!--PAGE CONTENT -->
-       
+        <div class="row">
+         <div class="col-md-2 side-bar">
+            <nav class="navbar navbar-expand-lg navbar-dark bg-dark down-nav">
+            
+             <ul class="navbar-nav flex-column navbar-dark bg-dark">
+                      
+              <li class="nav-item">
+                   <!-- PROFILE IMAGE --> 
+                <img src="img/icon.png" class="rounded mx-auto d-none  d-sm-none d-md-block" >
+                 <div class="img-space  d-none  d-sm-none d-md-block "></div>  
+              </li>
+                 
+              <li class="nav-item">
+                <a class="nav-link" href="#"><i class="fas fa-tachometer-alt"></i> Dashboard</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#"><i class="fas fa-chart-pie"></i> Charts</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="#"><i class="fas fa-table"></i> Tables</a>
+              </li>
+            </ul>
+                
+            <div class="space d-none  d-sm-none d-md-block"></div>    
+            </nav>        
+          
+         </div>
+            
+        <!-- MAIN CONTENT -->
+         <div class="col-md-10">
+            
+            
+        </div>    
+            
+            
+        </div>
       
       
       
