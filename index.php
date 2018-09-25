@@ -30,7 +30,7 @@
           <a class="nav-link" href="index.php"><i class ="fas fa-home"></i> Home<span class="sr-only">(current)</span></a>
       </li>
       <li class="nav-item">
-        <a class="nav-link" href="#"><i class="fas fa-globe"></i> About</a>
+        <a class="nav-link" href="admin/index.php"><i class="fas fa-globe"></i> Admin</a>
       </li>
        <li class="nav-item">
         <a class="nav-link" href="#"><i class="fas fa-phone"></i> Contact</a>
