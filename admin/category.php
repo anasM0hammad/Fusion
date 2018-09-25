@@ -75,6 +75,15 @@
              
              <div class="col-md-6" style="margin-top: 40px;">
              
+            <?php 
+            
+                 $query = "SELECT * FROM category" ;
+                 $cat_result = mysqli_query($connect , $query);
+                 
+                 
+            ?>     
+                 
+                 
              <table class="table table-striped table-hover table-bordered">
               <thead>
                 <tr>
@@ -83,18 +92,24 @@
                 </tr>
               </thead>
               <tbody>
-                <tr>
-                  <th scope="row">1</th>
-                  <td>Javascript</td>
-                </tr>
-                <tr>
-                  <th scope="row">2</th>
-                  <td>Python</td>
-                </tr>
-                <tr>
-                  <th scope="row">3</th>
-                  <td>Ruby</td>
-                </tr>
+                
+                <?php   
+                  
+            while($row = mysqli_fetch_assoc($cat_result)){      
+                
+            $cat_title = $row['cat_title'] ;
+            $cat_id = $row['cat_id'];    
+                
+            echo "<tr>" ;
+            echo  "<th scope='row'>{$cat_id}</th>" ;
+            echo  "<td>{$cat_title}</td>" ;
+            echo "</tr>" ;
+                
+            }
+                    
+                ?>
+                  
+                  
               </tbody>
             </table>
              
