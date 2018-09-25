@@ -61,11 +61,45 @@
              
              <!-- CATEGORY BOX -->
             <div class="col-md-6">
+                
+                <?php 
+                
+                if(isset($_POST['add'])){
+                    
+                    $cat_title = $_POST['cat_title'] ;
+                    
+                    if($cat_title == "" || empty($cat_title)){
+                        
+                        echo "<div class='alert alert-danger' style='margin-bootom:20px; border-radius:0;' role='alert'><b>Enter the Category..!<b></div>";
+                    }
+                    
+                    else{
+                        
+                     $cat_send_query = "INSERT INTO category(cat_title) VALUES ('{$cat_title}')" ;
+                     $cat_query_result = mysqli_query($connect, $cat_send_query) ;
+                        
+                        if(!$cat_query_result){
+                            die("QUERY FAILED").mysqli_error($connect);
+                        }
+                        
+                        else{
+                         echo "<div class='alert alert-success' style='margin-bootom:20px; border-radius:0;' role='alert'><b>Category Added<b></div>";
+                           
+                        }
+                        
+                    }
+                    
+                }
+    
+                
+                ?>
+    
+                
                 <h5 class="mb-2"><b>Add Category</b></h5>
                 
-                <form action="" method="" class="form-inline">
+                <form action="category.php" method="post" class="form-inline">
                   <div class="form-group ">
-                    <input type="text" class="form-control" placeholder="Category" name="cat-title">
+                    <input type="text" class="form-control" placeholder="Category" name="cat_title">
                   </div>
                   <button type="submit" class="btn btn-primary" style="margin-left:5px; border-radius:0;" name="add">Add</button>
                 </form>
@@ -73,7 +107,7 @@
              
              <!-- TABLE -->
              
-             <div class="col-md-6" style="margin-top: 40px;">
+             <div class="col-md-8" style="margin-top: 40px;">
              
             <?php 
             
