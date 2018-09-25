@@ -1,4 +1,4 @@
-  <!-- HEADER -->
+ <!-- HEADER -->
    <?php include "includes/header.php" ; ?>
       
       
@@ -23,7 +23,7 @@
               <li class="nav-item">
                 <a class="nav-link" href="#"><i class="fas fa-tachometer-alt"></i> Dashboard</a>
               </li>
-              <li class="nav-item">
+              <li class="nav-item active">
                 <a class="nav-link" href="category.php"><i class="fas fa-chart-pie"></i> Categories</a>
               </li>
               <li class="nav-item dropdown">
@@ -55,12 +55,53 @@
             
         <!-- MAIN CONTENT -->
          <div class="col-md-10">
-           <h2 class="heading">Welcome to Admin Page</h2>
-            
+             
+             <h2 class="heading"><b>Welcome to Admin Page</b></h2><hr><br>
+             
+             
+             <!-- CATEGORY BOX -->
+            <div class="col-md-6">
+                <h5 class="mb-2"><b>Add Category</b></h5>
+                
+                <form action="" method="" class="form-inline">
+                  <div class="form-group ">
+                    <input type="text" class="form-control" placeholder="Category" name="cat-title">
+                  </div>
+                  <button type="submit" class="btn btn-primary" style="margin-left:5px; border-radius:0;" name="add">Add</button>
+                </form>
+            </div>
+             
+             <!-- TABLE -->
+             
+             <div class="col-md-6" style="margin-top: 40px;">
+             
+             <table class="table table-striped table-hover table-bordered">
+              <thead>
+                <tr>
+                  <th scope="col">ID</th>
+                  <th scope="col">Category Title</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr>
+                  <th scope="row">1</th>
+                  <td>Javascript</td>
+                </tr>
+                <tr>
+                  <th scope="row">2</th>
+                  <td>Python</td>
+                </tr>
+                <tr>
+                  <th scope="row">3</th>
+                  <td>Ruby</td>
+                </tr>
+              </tbody>
+            </table>
+             
+             </div> 
+                 
         </div>    
-            
-            
-        </div>
+        </div> <!-- ROW DIV -->
       
       
       <!-- FOOTER -->

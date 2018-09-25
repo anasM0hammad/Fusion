@@ -1,5 +1,5 @@
   
-         .space{
+       .space{
           height: 560px;     
         }
         
@@ -13,4 +13,10 @@
         border-radius: 50%; 
        }        
         
-  
+        .heading {
+
+          text-align: center;
+          margin-top: 30px;
+            margin-bottom: 20px;
+
+        }
