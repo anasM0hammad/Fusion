@@ -83,7 +83,7 @@
                         }
                         
                         else{
-                         echo "<div class='alert alert-success' style='margin-bootom:20px; border-radius:0;' role='alert'><b>Category Added<b></div>";
+                         echo "<div class='alert alert-success' style='margin-bootom:20px; border-radius:0;' role='alert'><b>Category Added</b></div>";
                            
                         }
                         
@@ -111,10 +111,6 @@
              
             <?php 
             
-                 $query = "SELECT * FROM category" ;
-                 $cat_result = mysqli_query($connect , $query);
-                 
-                 
             ?>     
                  
                  
@@ -127,22 +123,41 @@
               </thead>
               <tbody>
                 
-                <?php   
+                <?php  
+                // SHOW CATEGORIES
                   
-            while($row = mysqli_fetch_assoc($cat_result)){      
-                
-            $cat_title = $row['cat_title'] ;
-            $cat_id = $row['cat_id'];    
-                
-            echo "<tr>" ;
-            echo  "<th scope='row'>{$cat_id}</th>" ;
-            echo  "<td>{$cat_title}</td>" ;
-            echo "</tr>" ;
-                
-            }
+                 $query = "SELECT * FROM category" ;
+                 $cat_result = mysqli_query($connect , $query);
+                 
+                while($row = mysqli_fetch_assoc($cat_result)){      
+
+                $cat_title = $row['cat_title'] ;
+                $cat_id = $row['cat_id'];    
+
+                echo "<tr>" ;
+                echo  "<th scope='row'>{$cat_id}</th>" ;
+                echo  "<td>{$cat_title}<span class='float-right'><a href='category.php?delete={$cat_id}'><i class='far fa-times-circle'></i></a></span></td>" ;
+                echo "</tr>" ;
+
+                }
                     
-                ?>
+                ?>      
                   
+                  
+                <?php 
+                // TO DELETE CATEGORIES
+                  
+                  if(isset($_GET['delete'])){
+                      
+                  $del_cat_id = $_GET['delete'] ;
+                  $query_delete = "DELETE FROM category WHERE cat_id = {$del_cat_id}" ;
+                  $del_query_result = mysqli_query($connect , $query_delete) ;
+                  header("Location: category.php") ;
+                      
+                  }
+                  
+                  
+                 ?>  
                   
               </tbody>
             </table>

@@ -1,3 +1,5 @@
+<?php ob_start(); ?>
+
 <?php include "../includes/connection.php"; ?>
 
 <!doctype html>

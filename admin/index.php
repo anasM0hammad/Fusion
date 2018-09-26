@@ -55,7 +55,7 @@
             
         <!-- MAIN CONTENT -->
          <div class="col-md-10">
-           <h2 class="heading">Welcome to Admin Page</h2>
+             <h2 class="heading"><b>Welcome to Admin Page</b></h2><hr><br>   
             
         </div>    
             
