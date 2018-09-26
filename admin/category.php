@@ -1,7 +1,12 @@
  <!-- HEADER -->
    <?php include "includes/header.php" ; ?>
       
-      
+ <style>
+     .margin_link{
+         margin-right: 10px;
+     }
+ 
+ </style>      
 
 
   <!-- NAVBAR -->
@@ -59,10 +64,14 @@
              <h2 class="heading"><b>Welcome to Admin Page</b></h2><hr><br>
              
              
-             <!-- CATEGORY BOX -->
-            <div class="col-md-6">
+            <div class="row container">
+            
+            <!-- ADD CATEGORY BOX -->    
+            <div class="col-md-6" style="margin-top: 10px;">
                 
                 <?php 
+                
+                // TO INSERT THE CATEGORY
                 
                 if(isset($_POST['add'])){
                     
@@ -104,6 +113,44 @@
                   <button type="submit" class="btn btn-primary" style="margin-left:5px; border-radius:0;" name="add">Add</button>
                 </form>
             </div>
+            
+            <!-- EDIT CATEGORY BOX -->    
+            <div class="col-md-6" style="margin-top: 10px;">
+                 
+                <h5 class="mb-2"><b>Edit Category</b></h5>
+                
+                <form action="category.php" method="post" class="form-inline">
+                  <div class="form-group ">
+                      
+                      <?php 
+                      
+                       if(isset($_GET['edit'])){
+                           
+                           $upd_cat = $_GET['edit'];
+                           $upd_query = "SELECT * FROM category WHERE cat_id = {$upd_cat}" ;
+                           $upd_query_result = mysqli_query($connect , $upd_query) ;
+                           
+                           while($row = mysqli_fetch_assoc($upd_query_result)){
+                            $cat_title = $row['cat_title'];
+                            $cat_id = $row['cat_id'];   
+                               
+                        ?>
+                      <input type="text" class="form-control" placeholder="Category" name="cat_title" value="<?php echo $cat_title ; ?>">
+                        
+                               
+                          <?php } //while ?>
+                     <?php } // if ?>
+                      
+                  </div>
+                  <button type="submit" class="btn btn-primary" style="margin-left:5px; border-radius:0;" name="edit">Update</button>
+                </form>
+                
+            </div>
+                
+                
+                
+                
+        </div>        
              
              <!-- TABLE -->
              
@@ -136,7 +183,8 @@
 
                 echo "<tr>" ;
                 echo  "<th scope='row'>{$cat_id}</th>" ;
-                echo  "<td>{$cat_title}<span class='float-right'><a href='category.php?delete={$cat_id}'><i class='far fa-times-circle'></i></a></span></td>" ;
+                echo  "<td>{$cat_title}<span class='float-right'><a href='category.php?edit={$cat_id}' class='margin_link'><i class='fas fa-pencil-alt'></i></a>
+                <a href='category.php?delete={$cat_id}'><i class='far fa-times-circle'></i></a></span></td>" ;
                 echo "</tr>" ;
 
                 }
