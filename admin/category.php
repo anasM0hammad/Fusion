@@ -79,7 +79,7 @@
                     
                     if($cat_title == "" || empty($cat_title)){
                         
-                        echo "<div class='alert alert-danger' style='margin-bootom:20px; border-radius:0;' role='alert'><b>Enter the Category..!<b></div>";
+                        echo "<div class='alert alert-danger' style='margin-bootom:20px; border-radius:0;' role='alert'><b>Enter the Category..!</b></div>";
                     }
                     
                     else{
@@ -116,51 +116,34 @@
             
             <!-- EDIT CATEGORY BOX -->    
             <div class="col-md-6" style="margin-top: 10px;">
-                 
-                <h5 class="mb-2"><b>Edit Category</b></h5>
+               
+                <?php // EDIT AND UPDATING
+                if(isset($_GET['edit'])){
+                    
+                    $upd_cat_id = $_GET['edit'] ;
+                    
+                    include "includes/edit_cat.php";
+                    
+                }
+                
+                else{
+                    ?>
+                    <h5 class="mb-2"><b>Edit Category</b></h5>
                 
                 <form action="category.php" method="post" class="form-inline">
                   <div class="form-group ">
-                      
-                      <?php 
-                      
-                       if(isset($_GET['edit'])){
-                           
-                           $upd_cat = $_GET['edit'];
-                           $upd_query = "SELECT * FROM category WHERE cat_id = {$upd_cat}" ;
-                           $upd_query_result = mysqli_query($connect , $upd_query) ;
-                           
-                           while($row = mysqli_fetch_assoc($upd_query_result)){
-                            $cat_title = $row['cat_title'];
-                            $cat_id = $row['cat_id'];   
-                               
-                        ?>
-                      <input type="text" class="form-control" placeholder="Category" name="cat_title" value="<?php echo $cat_title ; ?>">
-                        
-                               
-                          <?php } //while ?>
-                     <?php } // if ?>
-                      
+                   <input type="text" class="form-control" placeholder="Category" name="cat_title" value="">
                   </div>
-                  <button type="submit" class="btn btn-primary" style="margin-left:5px; border-radius:0;" name="edit">Update</button>
+                  <button type="submit" class="btn btn-primary" style="margin-left:5px; border-radius:0;" name="update">Update</button>
                 </form>
-                
-            </div>
-                
-                
-                
-                
+             <?php }// if ?>
+            </div>  
         </div>        
              
              <!-- TABLE -->
              
              <div class="col-md-8" style="margin-top: 40px;">
              
-            <?php 
-            
-            ?>     
-                 
-                 
              <table class="table table-striped table-hover table-bordered">
               <thead>
                 <tr>
