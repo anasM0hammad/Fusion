@@ -34,7 +34,7 @@ include "includes/connection.php" ;
               <a class="dec_link nav-link " href="index.php"><i class ="fas fa-home"></i> Home</a>
           </li>
           <li class="nav-item">
-            <a class="dec_link nav-link" href="#"><i class="fas fa-globe"></i> About</a>
+            <a class="dec_link nav-link" href="admin/index.php"><i class="fas fa-globe"></i> Admin</a>
           </li>
            <li class="nav-item">
             <a class="dec_link nav-link" href="#"><i class="fas fa-phone"></i> Contact</a>
@@ -139,8 +139,8 @@ include "includes/connection.php" ;
          
          
          <!-- SIDE BOXES -->
+       
      <?php include "includes/sidebox.php" ; ?>
-         
          
          
      </div>  <!-- ROW ENDS -->    

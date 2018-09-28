@@ -29,7 +29,7 @@
               <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="far fa-clipboard"></i> Posts</a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                  <a class="dropdown-item" href="#">Add Post</a>
+                  <a class="dropdown-item" href="add_post.php">Add Post</a>
                   <a class="dropdown-item" href="all_post.php">All Post</a>
                 </div>
               </li>
@@ -39,8 +39,8 @@
               <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-users"></i> Users</a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                  <a class="dropdown-item" href="#">Add Post</a>
-                  <a class="dropdown-item" href="#">All Post</a>
+                  <a class="dropdown-item" href="#">user Post</a>
+                  <a class="dropdown-item" href="#">user Post</a>
                 </div>
               </li>
               <li class="nav-item">

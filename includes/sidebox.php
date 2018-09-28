@@ -8,7 +8,7 @@ $cat_result = mysqli_query($connect , $query);
 
 
 
-          <div class="col-md-4">
+          <div class="col-md-4" style="margin-top:60px;">
              <!-- BLOG SEARCH BOX -->
               
               
