@@ -1,6 +1,7 @@
 <?php ob_start(); ?>
 
 <?php include "../includes/connection.php"; ?>
+<?php include "functions.php" ?>
 
 <!doctype html>
 <html lang="en">
