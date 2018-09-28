@@ -71,17 +71,39 @@
                  </tr>
               </thead>
               <tbody>
-                 <tr>
-                   <td>1</td>
-                   <td>Mohammad Anas</td>
-                   <td>How to start Web Development</td>
-                   <td>Web Development</td>
-                   <td>Yes</td>
-                   <td>image</td> 
-                   <td>Tags,tags</td>
-                   <td>comment</td>
-                   <td>12/3/4/2018</td>      
-                 </tr>
+                  <?php // SHOW ALL DATA 
+                  
+                   $show_query = "SELECT * FROM posts" ;
+                   $show_result = mysqli_query($connect , $show_query) ;
+                   
+                   while($row = mysqli_fetch_assoc($show_result)){
+                       
+                       $post_id = $row['post_id'];
+                       $post_cat_id = $row['post_category_id'];
+                       $post_title = $row['post_title'];
+                       $post_author = $row['post_author'];
+                       $post_date = $row['post_date'];
+                       $post_image = $row['post_image'];
+                       $post_comment = $row['post_comment_count'];
+                       $post_status = $row['post_status'];
+                       $post_tags = $row['post_tags'];
+                       
+                       
+                        echo "<tr>" ;
+                        echo "<td>$post_id</td>" ;
+                        echo "<td>$post_author</td>" ;
+                        echo "<td>$post_title</td>" ;
+                        echo "<td>$post_cat_id</td>" ;
+                        echo "<td>$post_status</td>" ;
+                        echo "<td><img src='../img/$post_image' height ='50' width='100'></td>" ; 
+                        echo "<td>$post_tags</td>" ;
+                        echo "<td>$post_comment</td>" ;
+                        echo "<td>$post_date</td>"   ;   
+                         echo"</tr>";
+                   }
+                  
+                  ?>
+                
              </tbody>     
              </table>
             
