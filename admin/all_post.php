@@ -86,6 +86,7 @@
               <thead>
                  <tr>
                    <th>Id</th>
+                   <th>Profile</th>     
                    <th>Author</th>
                    <th>Title</th>
                    <th>Category</th>
@@ -112,10 +113,12 @@
                        $post_image = $row['post_image'];
                        $post_status = $row['post_status'];
                        $post_tags = $row['post_tags'];
+                       $post_author_image= $row['post_author_image'];
                        
                        
                         echo "<tr>" ;
                         echo "<td>$post_id</td>" ;
+                        echo "<td><img src='../img/$post_author_image' height ='60' width='60' style='border-radius:50%;'></td>" ;   
                         echo "<td>$post_author</td>" ;
                         echo "<td>$post_title</td>" ;
                         echo "<td>$post_cat_id</td>" ;
