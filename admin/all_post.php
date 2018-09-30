@@ -53,7 +53,33 @@
             
         <!-- MAIN CONTENT -->
          <div class="col-md-10">
-             <h2 class="heading"><b><i class="far fa-arrow-alt-circle-down"></i> Post Table</b></h2><hr><br>   
+             <h2 class="heading"><b><i class="far fa-arrow-alt-circle-down"></i> Post Table</b></h2><hr><br> 
+             
+             <!-- TO DELETE A POST -->
+             
+             <?php 
+              
+            if(isset($_GET['delete'])){
+                
+                $del_post_id = $_GET['delete'];
+                $del_query = "DELETE FROM posts WHERE post_id = {$del_post_id}" ;
+                $del_result = mysqli_query($connect, $del_query);
+                
+                if(!$del_result){
+                    die("QUERY FAILED..!!  ").mysqli_error($connect) ;
+                }
+                
+                else{
+                  echo "<div class='alert alert-success' style='margin-bootom:20px; border-radius:0;' role='alert'><b>Post Deleted Succesfully.</b></div>";   
+                }
+                
+                header("Location: all_post.php");
+            }
+            
+            
+            ?>
+             
+             
              
              <!-- TABLE -->
              <table class="table table-striped table-hover table-bordered">
@@ -66,8 +92,8 @@
                    <th>Status</th> 
                    <th>Image</th>
                    <th>Tags</th>
-                   <th>Comment</th>
-                   <th>Date</th>     
+                   <th>Date</th>
+                   <th>Edit</th>     
                  </tr>
               </thead>
               <tbody>
@@ -84,7 +110,6 @@
                        $post_author = $row['post_author'];
                        $post_date = $row['post_date'];
                        $post_image = $row['post_image'];
-                       $post_comment = $row['post_comment_count'];
                        $post_status = $row['post_status'];
                        $post_tags = $row['post_tags'];
                        
@@ -97,9 +122,9 @@
                         echo "<td>$post_status</td>" ;
                         echo "<td><img src='../img/$post_image' height ='50' width='100'></td>" ; 
                         echo "<td>$post_tags</td>" ;
-                        echo "<td>$post_comment</td>" ;
-                        echo "<td>$post_date</td>"   ;   
-                         echo"</tr>";
+                        echo "<td>$post_date</td>"   ;  
+                        echo "<td><a href='all_post.php?delete={$post_id}'><i class='far fa-times-circle'></i></a> <a class='float-right' href='update.php?update={$post_id}'><i class='fas fa-pen'></i></a></td>"   ;  
+                        echo"</tr>";
                    }
                   
                   ?>
@@ -108,7 +133,6 @@
              </table>
             
         </div>    
-            
             
         </div> <!-- ROW END -->
       
