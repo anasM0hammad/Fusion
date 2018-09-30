@@ -74,8 +74,12 @@
                    $post_author = $row['post_author'];
                    $post_status = $row['post_status'];
                    $post_tags = $row['post_tags'];   
-                   $post_content = $row['post_content'];     
+                   $post_content = $row['post_content'];   
+                   $post_image = $row['post_image'];     
                  }
+                 
+                 $cat_query = "SELECT * FROM category";
+                 $cat_result = mysqli_query($connect, $cat_query);
              }
              
              else{
@@ -110,16 +114,32 @@
               <input type="text" class="form-control" placeholder="status" name="status" value="<?php echo $post_status ;?>">
             </div>
           </div>
-              
-             <div class="form-group ">
+            
+            <div class="row"> 
+            <div class="form-group col-md-6">
                 <label for="category"><b>Category</b></label>
+                <select class="form-control">
+                <?php
+                 while($row = mysqli_fetch_assoc($cat_result)){
+                     $cat_title = $row['cat_title'];
+                     
+                     echo " <option>{$cat_title}</option>" ;
+                 }    
+                  ?>
+                    
+                </select>
+              </div>
+             <div class="form-group col-md-6">
+                <label for="category"><b>Category Id</b></label>
               <input type="text" class="form-control" name="category" value="<?php echo $post_cat_id ;?>">
-            </div>
+            </div>    
+                
+          </div>        
                  
           <div class="form-row">
             <div class="form-group">
                   <label for="image"><b>Author Image</b></label>
-                <input type="file" class="form-control-file" name="auth_image" >
+                <input type="file" class="form-control-file" name="auth_image">
               </div>
             <div class="form-group col-md-6">
               <div class="form-group">
