@@ -61,19 +61,24 @@
               
             if(isset($_GET['delete'])){
                 
-                $del_post_id = $_GET['delete'];
-                $del_query = "DELETE FROM posts WHERE post_id = {$del_post_id}" ;
-                $del_result = mysqli_query($connect, $del_query);
+                if($_GET['delete']=='success'){
+                 echo "<div class='alert alert-success' style='margin-bootom:20px; border-radius:0;' role='alert'><b>Post Deleted Succesfully.</b></div>"; 
+                }
+                
+                else{
+                   $del_post_id = $_GET['delete'];
+                    $del_query = "DELETE FROM posts WHERE post_id = {$del_post_id}" ;
+                    $del_result = mysqli_query($connect, $del_query);
                 
                 if(!$del_result){
                     die("QUERY FAILED..!!  ").mysqli_error($connect) ;
                 }
+                 else{
+                        header("Location: all_post.php?delete=success");
+                    }
+             }
                 
-                else{
-                  echo "<div class='alert alert-success' style='margin-bootom:20px; border-radius:0;' role='alert'><b>Post Deleted Succesfully.</b></div>";   
-                }
                 
-                header("Location: all_post.php");
             }
             
             
