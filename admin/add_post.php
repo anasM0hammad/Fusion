@@ -62,7 +62,7 @@
                   $post_author = $_POST['author'];
                   $post_tags = $_POST['tags'];
                   $post_status = $_POST['status'] ;
-                  $post_cat = $_POST['category'];
+                  $post_cat = $_POST['post_category'];
                   $post_content = $_POST['content'];
                   $post_image = $_FILES['image']['name'];
                   $post_image_tmp = $_FILES['image']['tmp_name'] ;
@@ -74,7 +74,7 @@
                   move_uploaded_file($post_image_tmp , "../img/$post_image") ;
                   move_uploaded_file($post_author_image_tmp , "../img/$post_author_image") ;
                   
-                  if($post_title=="" || $post_author=="" || $post_content=="" || empty($post_title) || empty($post_author) || empty($post_content)){
+                  if(empty($post_title) || empty($post_author) || empty($post_content) || empty($post_cat)){
                   echo "<div class='alert alert-danger' style='margin-bootom:20px; border-radius:0;' role='alert'><b>Enter Required Fields..!</b></div>";
                                  
                   }
@@ -106,10 +106,26 @@
           </div>
                  
           <div class="form-row">
+              
             <div class="form-group col-md-6">
-                <label for="tag"><b>Post Tags</b></label>
-              <input type="text" class="form-control" placeholder="Tags" name="tags">
-            </div>
+                <label for="category"><b>Category</b></label>
+                <select class="form-control" name="post_category">
+                <?php
+                    
+                 $cat_query = "SELECT * FROM category";
+                 $cat_result = mysqli_query($connect, $cat_query);
+                    
+                 while($row = mysqli_fetch_assoc($cat_result)){
+                     $cat_id = $row['cat_id'];
+                     $cat_title = $row['cat_title'];
+                     
+                     echo " <option value='{$cat_id}'>{$cat_title}</option>" ;
+                 }    
+                  ?>
+                    
+                </select>
+            </div> 
+              
             <div class="form-group col-md-6">
                 <label for="status"><b>Post Status</b></label>
               <input type="text" class="form-control" placeholder="status" name="status">
@@ -117,8 +133,8 @@
           </div>
               
              <div class="form-group ">
-                <label for="category"><b>Category</b></label>
-              <input type="text" class="form-control" name="category">
+                <label for="category"><b>Tags</b></label>
+              <input type="text" class="form-control" name="tags">
             </div>
                  
           <div class="form-row">

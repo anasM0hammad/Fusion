@@ -126,7 +126,16 @@
                         echo "<td><img src='../img/$post_author_image' height ='60' width='60' style='border-radius:50%;'></td>" ;   
                         echo "<td>$post_author</td>" ;
                         echo "<td>$post_title</td>" ;
-                        echo "<td>$post_cat_id</td>" ;
+                       
+                        //GETTING CAT_TITLE USING CAT_ID
+                       
+                        $cat_query = "SELECT * FROM category WHERE cat_id = {$post_cat_id}" ;
+                        $cat_result = mysqli_query($connect, $cat_query);
+                        while($row = mysqli_fetch_assoc($cat_result)){
+                            $cat_title = $row['cat_title'];
+
+                        echo "<td>$cat_title</td>" ;
+                        }
                         echo "<td>$post_status</td>" ;
                         echo "<td><img src='../img/$post_image' height ='50' width='100'></td>" ; 
                         echo "<td>$post_tags</td>" ;

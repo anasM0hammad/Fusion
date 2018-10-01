@@ -87,6 +87,7 @@
                    $post_author_image = $row['post_author_image'];     
                  }
                  
+                 //QUERY TO FETCH DATA FROM CATEGORY
                  $cat_query = "SELECT * FROM category";
                  $cat_result = mysqli_query($connect, $cat_query);
                  
@@ -98,7 +99,7 @@
                      $post_upd_author = $_POST['author'] ;
                      $post_upd_tags = $_POST['tags'] ;
                      $post_upd_status = $_POST['status'] ;
-                     $post_upd_cat_id = $_POST['category_id'] ;
+                     $post_upd_cat_id = $_POST['post_category'] ;
                      $post_upd_content = $_POST['content'] ;
                      $post_upd_image = $_FILES['image']['name'] ;
                      $post_upd_tmp_image = $_FILES['image']['tmp_name'];
@@ -179,21 +180,18 @@
             <div class="row"> 
             <div class="form-group col-md-6">
                 <label for="category"><b>Category</b></label>
-                <select class="form-control">
+                <select class="form-control" name="post_category">
                 <?php
                  while($row = mysqli_fetch_assoc($cat_result)){
+                     $cat_id = $row['cat_id'];
                      $cat_title = $row['cat_title'];
                      
-                     echo " <option>{$cat_title}</option>" ;
+                     echo " <option value='{$cat_id}'>{$cat_title}</option>" ;
                  }    
                   ?>
                     
                 </select>
-              </div>
-             <div class="form-group col-md-6">
-                <label for="category"><b>Category Id</b></label>
-              <input type="text" class="form-control" name="category_id" value="<?php echo $post_cat_id ;?>">
-            </div>    
+            </div>   
                 
           </div>        
                  
