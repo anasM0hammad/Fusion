@@ -1,7 +1,5 @@
 <?php  
 include "includes/connection.php" ;
-
-
 ?>
 
 <!doctype html>
@@ -44,20 +42,51 @@ include "includes/connection.php" ;
     </nav>
   <!-- NAVBAR ENDS HERE -->
       
+      <?php 
+      
+        if(isset($_GET['p_id'])){
+            
+            $post_id = $_GET['p_id'];
+            
+            $post_query = "SELECT * FROM posts WHERE post_id = {$post_id}" ;
+            $post_result = mysqli_query($connect , $post_query) ;
+            
+            while($row = mysqli_fetch_assoc($post_result)){
+                
+                $post_title = $row['post_title'];
+                $post_author = $row['post_author'];
+                $post_image = $row['post_image'];
+                $post_author_image = $row['post_author_image'];
+                $post_date = $row['post_date'];
+                $post_content = $row['post_content'];
+           
+                
+            }
+            
+        }
+      
+      else{
+          header("Location: index.php");
+      }
+      
+      
+      ?>
+      
+    
       
       
 <!-- BLOG CONTENT -->      
     <div class="container">
      <div class="row">
       <div class="col-md-8">    
-        <h1 class="title">BLOG TITLE</h1>
-        <h5 class="text-muted"> by    <img class="d-inline-block align-top" height="30" width="30" src="img/icon.png"><a href=""><span class="name text-muted">BLOGGER NAME</span></a></h5>
+        <h1 class="title"><?php echo $post_title ; ?></h1>
+        <h4 class="text-muted"><img class="d-inline-block align-top" height="40" width="40" style="border-radius:50%;" src="img/<?php echo $post_author_image;?>"><a href=""><span class="name text-muted"><?php echo "  ".$post_author ?></span></a></h4>
         <hr> 
-        <img src="img/post.svg" class="img-fluid" alt="Responsive image">
+        <img src="img/<?php echo $post_image;?>" class="img-fluid" alt="Responsive image">
         <hr><br>  
-        <p class="text-muted"><i class="far fa-clock"></i> Posted on 10 september 2018</p>    
+        <p class="text-muted"><i class="far fa-clock"></i> <?php echo " ".$post_date; ?></p>    
        
-        <p class="text-muted">The emergence and growth of blogs in the late 1990s coincided with the advent of web publishing tools that facilitated the posting of content by non-technical users who did not have much experience with HTML The emergence and growth of blogs in the late 1990s coincided with the advent of web publishing tools that facilitated the posting of content by non-technical users who did not have much experience with HTML The emergence and growth of blogs in the late 1990s coincided with the advent of web publishing tools that facilitated the posting of content by non-technical users who did not have much experience with HTML </p>
+        <p class="text-muted"><?php echo $post_content; ?></p>
         
                  
          <img src="img/like.png" class="rounded likes" data-toggle="tooltip" data-placement="bottom" title="Like">

@@ -76,6 +76,7 @@
              
              while($row = mysqli_fetch_assoc($post_result)){
                  
+                 $post_id = $row['post_id'];
                  $post_title = $row['post_title'];
                  $post_author = $row['post_author'] ;
                  $post_date = $row['post_date'] ;
@@ -89,7 +90,7 @@
              
               <div class="blog">
              
-                 <h2><a class="dec_link" href=""><?php echo $post_title ; ?></a></h2>
+                 <h2><a class="dec_link" href="<?php echo "post.php?p_id={$post_id}"; ?>"><?php echo $post_title ; ?></a></h2>
                  <h5 class="text-muted">  <img class="d-inline-block align-top auth_img" height="30" width="30" style="border-radius: 50%;" src="img/<?php echo $post_author_image ; ?>" ><a href=""><span class="name text-muted"><?php echo "  ".$post_author ; ?></span></a></h5>
                  
                  <p class="text-muted"><i class="far fa-clock"></i> Posted on <?php echo $post_date ; ?></p>
@@ -99,7 +100,7 @@
                  
                  <p class="text-muted"><?php echo $post_content ; ?> </p>
                  
-                 <button class="button" style="vertical-align:middle"><span>Read More </span></button>
+                  <a href="<?php echo "post.php?p_id={$post_id}"; ?>"><button class="button" style="vertical-align:middle"><span>Read More </span></button></a>
                  
                  <img src="img/confused.png" class="rounded float-right likes" data-toggle="tooltip" data-placement="bottom" title="Not Good">
                  
