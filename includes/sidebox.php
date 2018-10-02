@@ -1,12 +1,4 @@
 
-<?php
-
-$query = "SELECT * FROM category" ;
-$cat_result = mysqli_query($connect , $query);
-        
-?>
-
-
 
           <div class="col-md-4" style="margin-top:60px;">
              <!-- BLOG SEARCH BOX -->
@@ -38,23 +30,28 @@ $cat_result = mysqli_query($connect , $query);
                   
                  <?php 
                  
-                  $i = 0;
-                  while($i<4){
+                    $query = "SELECT * FROM category" ;
+                    $cat_result = mysqli_query($connect , $query);
+                  
+                      $i = 0;
+                      while($i<4){
                        $row = mysqli_fetch_assoc($cat_result);
                       $cat_title = $row['cat_title'];
-                      echo "<a href='' class='cat_link'>{$cat_title}</a>" ;
+                      $cat_id = $row['cat_id'];
+                      echo "<a href='category_link.php?cat_id=$cat_id' class='cat_link'>{$cat_title}</a>" ;
                       
                       $row = mysqli_fetch_assoc($cat_result);
                       $cat_title = $row['cat_title'];
-                      echo "<a href ='' class ='cat_link float-right'> {$cat_title} </a><br> ";
+                      $cat_id = $row['cat_id'];      
+                      echo "<a href ='category_link.php?cat_id=$cat_id' class ='cat_link float-right'> {$cat_title} </a><br> ";
                       
                       $i++ ;
                    }
                   
                   
                   ?>
-                  
-                  
+                
+                  <a href="../category_link.php"></a>
 <!--
                 <a href="">Category</a> <a href="" class="float-right">Category</a><br>
                 <a href="">Category</a> <a href="" class="float-right">Category</a><br>
