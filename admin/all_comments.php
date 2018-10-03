@@ -88,6 +88,12 @@
                        $content = $row['comment_content'];
                        $comment_status = $row['comment_status'];
                        
+                       // QUERY TO SELECT POST FROM POST COMMENT ID
+                       
+                       $post_query = "SELECT * FROM posts WHERE post_id = $comment_post_id";
+                       $post_result = mysqli_query($connect, $post_query);
+                       $post_row = mysqli_fetch_assoc($post_result);
+                       $post_title = $post_row['post_title'];
                        
                        
                         echo "<tr>" ;
@@ -96,7 +102,7 @@
                         echo "<td>$content</td>" ;
                         echo "<td>$comment_email</td>" ;
                         echo "<td>$comment_status</td>" ;
-                        echo "<td>post</td>" ;
+                        echo "<td>$post_title</td>" ;
                         echo "<td>$comment_date</td>"   ;  
                         echo "<td><a href=''>Yes  </a>/<a href=''> No</a></td>"   ;  
                         echo "<td style='text-align:center;'><a href=''><i class='far fa-times-circle'></i></a>"   ;  
