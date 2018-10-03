@@ -55,6 +55,33 @@
          <div class="col-md-10">
              <h2 class="heading"><b><i class="far fa-comments"></i> Comments</b></h2><hr><br> 
              
+             <?php
+             
+             //QUERY TO DELETE COMMENTS
+             
+             if(isset($_GET['delete'])){
+                 
+                 
+                if($_GET['delete']=='success'){
+                      echo "<div class='alert alert-success' style='margin-top:10px;' role='alert'><b>Comment Deleted.</b></div>" ;
+                 }
+                 
+                 else{
+                 
+                 $comment_id = $_GET['delete'];
+                 $del_query = "DELETE FROM comments WHERE comment_id = $comment_id";
+                 $del_result = mysqli_query($connect, $del_query);
+                 
+                 if(!$del_query){
+                     die("QUERY FAILED..").mysqli_error($connect);
+                 }
+                 
+                else{
+                     header("Location: all_comments.php?delete=success");
+                 }
+             }        
+        }
+             ?>
              
              
              <!-- TABLE -->
@@ -102,10 +129,10 @@
                         echo "<td>$content</td>" ;
                         echo "<td>$comment_email</td>" ;
                         echo "<td>$comment_status</td>" ;
-                        echo "<td>$post_title</td>" ;
+                        echo "<td><a href='../post.php?p_id={$comment_post_id}'>$post_title</a></td>" ;
                         echo "<td>$comment_date</td>"   ;  
                         echo "<td><a href=''>Yes  </a>/<a href=''> No</a></td>"   ;  
-                        echo "<td style='text-align:center;'><a href=''><i class='far fa-times-circle'></i></a>"   ;  
+                        echo "<td style='text-align:center;'><a href='all_comments.php?delete={$comment_id}'><i class='far fa-times-circle'></i></a>"   ;  
                         echo"</tr>";
                    }
                   
@@ -113,10 +140,12 @@
                 
              </tbody>     
              </table>
+             
             
         </div>    
             
         </div> <!-- ROW END -->
+            
       
       
       <!-- FOOTER -->
