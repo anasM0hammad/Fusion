@@ -100,13 +100,29 @@ include "includes/connection.php" ;
           <?php 
           
             if(isset($_POST['submit'])){
-               
+               $comment_post_id = $_GET['p_id'];
                $comment_author = $_POST['comment_author'];
                $comment_email = $_POST['comment_email'];
                $comment = $_POST['comment'];
                 
                 if(empty($comment) || empty($comment_author) || empty($comment_email)){
-                    echo "<div class='alert alert-danger' style='margin-top:20px;' role='alert'><b>Please Enter Required Fields.</b></div>" ;
+                    echo "<div class='alert alert-danger' style='margin-top:30px;' role='alert'><b>Please Enter Required Fields.</b></div>" ;
+                }
+                
+                else{
+                    
+                    $comment_query = "INSERT INTO comments(comment_post_id, comment_author, comment_email, comment_content, comment_status, comment_date) VALUES($comment_post_id, '{$comment_author}', '{$comment_email}', '{$comment}', 'Unapproved', now())";
+                    
+                    $comment_result = mysqli_query($connect, $comment_query) ;
+                    
+                    if(!$comment_result){
+                        die("QUERY FAILED..! ".mysqli_error($connect));
+                    }
+                    
+                    else{
+                        echo "<div class='alert alert-success' style='margin-top:30px;' role='alert'><b>Your Comment is posted.</b></div>" ;
+                    }
+                    
                 }
             }
 
