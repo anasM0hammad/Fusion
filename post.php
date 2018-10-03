@@ -96,17 +96,44 @@ include "includes/connection.php" ;
          <img src="img/confused.png" class="rounded likes" data-toggle="tooltip" data-placement="bottom" title="Not Good">  
           
          <!--COMMENT BOX -->
+          
+          <?php 
+          
+            if(isset($_POST['submit'])){
+               
+               $comment_author = $_POST['comment_author'];
+               $comment_email = $_POST['comment_email'];
+               $comment = $_POST['comment'];
+                
+                if(empty($comment) || empty($comment_author) || empty($comment_email)){
+                    echo "<div class='alert alert-danger' style='margin-top:20px;' role='alert'><b>Please Enter Required Fields.</b></div>" ;
+                }
+            }
+
+          
+          ?>
+          
+          
+          
           <div class="card bg-light comment_box">
            <div class="card-body">
-             <h5 class="text-muted"> Leave a Comment</h5>
-             <form>
+            <form action="" method="post" >   
                <div class="form-group">
-                <textarea class="form-control" id="exampleFormControlTextarea1" rows="3"></textarea>
+                <label for="name" class="text-muted"><b>Name</b></label>
+                <input type="text" class="form-control" aria-describedby="emailHelp" placeholder="Name" name="comment_author">
+              </div>
+              <div class="form-group">
+                  <label for="Email" class="text-muted"><b>Email</b></label>
+                <input type="email" class="form-control" aria-describedby="emailHelp" placeholder="Enter email" name="comment_email">
               </div>   
-             </form>  
+               <h5 class="text-muted"> Leave a Comment</h5>
+               <div class="form-group">
+                <textarea class="form-control" name="comment" rows="3"></textarea>
+              </div>   
+             
                
-            <button type="button" class="btn btn-primary mybutton">Submit</button>
-               
+            <button type="submit" class="btn btn-primary mybutton" name="submit" >Submit</button>
+        </form>  
            </div>
          </div>
           

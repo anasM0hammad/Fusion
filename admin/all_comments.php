@@ -69,7 +69,7 @@
                    <th>Post</th> 
                    <th>Date</th>
                    <th>Approve?</th>
-                   <th>Edit</th>     
+                   <th>Delete</th>     
                  </tr>
               </thead>
               <tbody>
@@ -98,8 +98,8 @@
                         echo "<td>$comment_status</td>" ;
                         echo "<td>post</td>" ;
                         echo "<td>$comment_date</td>"   ;  
-                        echo "<td><a href=''>Yes / </a><a href=''> No</a></td>"   ;  
-                        echo "<td><a href=''><i class='far fa-times-circle'></i></a> <a class='float-right' href=''><i class='fas fa-pen'></i></a></td>"   ;  
+                        echo "<td><a href=''>Yes  </a>/<a href=''> No</a></td>"   ;  
+                        echo "<td style='text-align:center;'><a href=''><i class='far fa-times-circle'></i></a>"   ;  
                         echo"</tr>";
                    }
                   
