@@ -81,6 +81,24 @@
                  }
              }        
         }
+             
+             
+             //CATCHING THE STATUS CHANGED REQUEST
+             if(isset($_GET['status'])){
+                 
+                 $status = $_GET['status'];
+                 if($status=='changed'){
+                      echo "<div class='alert alert-success' style='margin-top:10px;' role='alert'><b>Status Updated.</b></div>" ;
+                 }
+                 
+                 else{
+                     header("Location: all_comments.php");
+                 }
+             }
+              
+             
+             
+             
              ?>
              
              
@@ -131,7 +149,7 @@
                         echo "<td>$comment_status</td>" ;
                         echo "<td><a href='../post.php?p_id={$comment_post_id}'>$post_title</a></td>" ;
                         echo "<td>$comment_date</td>"   ;  
-                        echo "<td><a href=''>Yes  </a>/<a href=''> No</a></td>"   ;  
+                        echo "<td><a href='all_comments.php?approve={$comment_id}'>Yes  </a>/<a href='all_comments.php?unapprove={$comment_id}'> No</a></td>"   ;  
                         echo "<td style='text-align:center;'><a href='all_comments.php?delete={$comment_id}'><i class='far fa-times-circle'></i></a>"   ;  
                         echo"</tr>";
                    }
@@ -140,6 +158,49 @@
                 
              </tbody>     
              </table>
+             
+             
+             <?php
+             
+             // CHANGING THE STATUS OF COMMENT
+             
+             //APPROVING QUERY
+             if(isset($_GET['approve'])){
+                 
+                 $comment_id = $_GET['approve'];
+                 $upd_query = "UPDATE comments SET comment_status = 'Approved' WHERE comment_id = $comment_id";
+                 $upd_result = mysqli_query($connect, $upd_query);
+                 
+                 if(!$upd_result){
+                     die("QUERY FAILED...... ").mysqli_error($connect);
+                 }
+                 
+                 else{
+                     header("Location: all_comments.php?status=changed");
+                 }
+                 
+             }
+             
+             //UNAPPROVING QUERY
+              if(isset($_GET['unapprove'])){
+                 
+                 $comment_id = $_GET['unapprove'];
+                 $upd_query = "UPDATE comments SET comment_status = 'Unapproved' WHERE comment_id = $comment_id";
+                 $upd_result = mysqli_query($connect, $upd_query);
+                 
+                 if(!$upd_result){
+                     die("QUERY FAILED...... ").mysqli_error($connect);
+                 }
+                 
+                 else{
+                     header("Location: all_comments.php?status=changed");
+                 }
+                 
+             }
+             
+             
+             
+             ?>
              
             
         </div>    
