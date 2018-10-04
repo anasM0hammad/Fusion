@@ -175,12 +175,15 @@ include "includes/connection.php" ;
                     $author = $show_row['comment_author'];
                     $comment = $show_row['comment_content'];
                     $date = $show_row['comment_date'];
+                    $status = $show_row['comment_status'];
           
-          
-         echo "<div class='comment text-muted'>";
-        echo " <img src='img/comment.svg' class=' float-left comment_profile'>
-               <h5><a href='' >{$author} </a><small class='text-muted'> {$date}</small></h5>    
-               <p>{$comment}</p>
+                
+                    if($status=='Approved'){
+
+                 echo "<div class='comment text-muted'>";
+                 echo " <img src='img/comment.svg' class=' float-left comment_profile'>
+                        <h5><a href='' >{$author} </a><small class='text-muted'> {$date}</small></h5>    
+                        <p>{$comment}</p>
      
               
              <img src='img/like.png' class='comment_like rounded float-right' data-toggle='tooltip' data-placement='bottom' title='Like'>
@@ -197,7 +200,7 @@ include "includes/connection.php" ;
           
           <hr><br>";
                
-                       
+                    }//if
                 }//while end
             
                
