@@ -109,6 +109,7 @@ include "includes/connection.php" ;
                     echo "<div class='alert alert-danger' style='margin-top:30px;' role='alert'><b>Please Enter Required Fields.</b></div>" ;
                 }
                 
+                //QUERY TO INSERT COMMENT
                 else{
                     
                     $comment_query = "INSERT INTO comments(comment_post_id, comment_author, comment_email, comment_content, comment_status, comment_date) VALUES($comment_post_id, '{$comment_author}', '{$comment_email}', '{$comment}', 'Unapproved', now())";
@@ -125,7 +126,7 @@ include "includes/connection.php" ;
                     
                 }
             }
-
+                
           
           ?>
           
@@ -157,51 +158,50 @@ include "includes/connection.php" ;
           
           <!-- COMMENTS -->
           
-          <!-- FIRST COMMENT -->
-           <div class="comment text-muted">
-          <img src="img/comment.svg" class=" float-left comment_profile">
-           <h5><a href="" >NAME </a><small class="text-muted"> October 19, 2018</small></h5>    
-           <p>The emergence and growth of blogs in the late 1990s coincided with the advent of web publishing tools that facilitated the posting of content by non-technical users who did not have much experience with HTML      
-              
-           </p>
+          
+          
+          <?php
+                
+                 //QUERY TO SHOW COMMENT      
+          
+                $post_id = $_GET['p_id'];
+          
+                $show_query = "SELECT * FROM comments WHERE comment_post_id = {$post_id}";
+                $show_result = mysqli_query($connect, $show_query);
+
+                
+                while($show_row = mysqli_fetch_assoc($show_result)){
+                    
+                    $author = $show_row['comment_author'];
+                    $comment = $show_row['comment_content'];
+                    $date = $show_row['comment_date'];
+          
+          
+         echo "<div class='comment text-muted'>";
+        echo " <img src='img/comment.svg' class=' float-left comment_profile'>
+               <h5><a href='' >{$author} </a><small class='text-muted'> {$date}</small></h5>    
+               <p>{$comment}</p>
      
               
-             <img src="img/like.png" class="comment_like rounded float-right" data-toggle="tooltip" data-placement="bottom" title="Like">
+             <img src='img/like.png' class='comment_like rounded float-right' data-toggle='tooltip' data-placement='bottom' title='Like'>
 
-             <img src="img/heart.png" class="comment_like rounded float-right" data-toggle="tooltip" data-placement="bottom" title="Love">
+             <img src='img/heart.png' class='comment_like rounded float-right' data-toggle='tooltip' data-placement='bottom' title='Love'>
 
-             <img src="img/confused.png" class="comment_like rounded float-right" data-toggle="tooltip" data-placement="bottom" title="Not Good">  
+             <img src='img/confused.png' class='comment_like rounded float-right' data-toggle='tooltip' data-placement='bottom' title='Not Good'>  
                
-            <h6 class="r float-right" style="margin-right: 20px; color:#C03A2B; margin-top:5px;"><a href="">Reply</a></h6>
+            <h6 class='float-right' style='margin-right: 20px; color:#C03A2B; margin-top:5px;'><a href=''>Reply</a></h6>
             
             <br>   
                
           </div>
           
-          <hr><br>
-          
-          <!-- SECOND COMMENT -->
-           <div class="comment text-muted">
-          <img src="img/comment.svg" class=" float-left comment_profile">
-           <h5><a href="" >NAME </a><small class="text-muted"> October 19, 2018</small></h5>    
-           <p>The emergence and growth of blogs in the late 1990s coincided with the advent of web publishing tools that facilitated the posting of content by non-technical users who did not have much experience with HTML      
-              
-           </p>
-     
-              
-             <img src="img/like.png" class="rounded comment_like float-right" data-toggle="tooltip" data-placement="bottom" title="Like">
-
-             <img src="img/heart.png" class="rounded comment_like  float-right" data-toggle="tooltip" data-placement="bottom" title="Love">
-
-             <img src="img/confused.png" class="rounded comment_like  float-right" data-toggle="tooltip" data-placement="bottom" title="Not Good">  
+          <hr><br>";
                
-            <h6 class="r float-right" style="margin-right: 20px; color:#C03A2B; margin-top:5px;"><a href="">Reply</a></h6>
-                   
-            <br>   
+                       
+                }//while end
+            
                
-          </div>
-          
-          <hr><br>
+          ?>           
           
           
           
