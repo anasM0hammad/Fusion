@@ -98,12 +98,15 @@
                    <th>Status</th> 
                    <th>Image</th>
                    <th>Tags</th>
+                   <th>Comments</th>     
                    <th>Date</th>
                    <th>Edit</th>     
                  </tr>
               </thead>
               <tbody>
-                  <?php // SHOW ALL DATA 
+                  <?php
+                 
+                  // SHOW ALL DATA 
                   
                    $show_query = "SELECT * FROM posts" ;
                    $show_result = mysqli_query($connect , $show_query) ;
@@ -119,6 +122,12 @@
                        $post_status = $row['post_status'];
                        $post_tags = $row['post_tags'];
                        $post_author_image= $row['post_author_image'];
+                       $post_comment_count = $row['post_comment_count'];
+                       
+//                       // QUERY TO SHOW NUMBER OF COMMENTS
+//                       $count_query = "SELECT * FROM comments WHERE comment_post_id=$post_id";
+//                       $count_result = mysqli_query($connect, $count_query);
+//                       $count = mysqli_num_rows($count_result);
                        
                        
                         echo "<tr>" ;
@@ -139,6 +148,7 @@
                         echo "<td>$post_status</td>" ;
                         echo "<td><img src='../img/$post_image' height ='50' width='100'></td>" ; 
                         echo "<td>$post_tags</td>" ;
+                        echo "<td>$post_comment_count</td>"   ; 
                         echo "<td>$post_date</td>"   ;  
                         echo "<td><a href='all_post.php?delete={$post_id}'><i class='far fa-times-circle'></i></a> <a class='float-right' href='update.php?update={$post_id}'><i class='fas fa-pen'></i></a></td>"   ;  
                         echo"</tr>";

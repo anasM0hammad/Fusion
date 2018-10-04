@@ -121,6 +121,11 @@ include "includes/connection.php" ;
                     }
                     
                     else{
+                        
+                        //QUERY TO INCREASE COMMENT COUNT
+                        $count_query = "UPDATE posts SET post_comment_count = post_comment_count + 1 WHERE post_id = {$comment_post_id}";
+                        $count_result = mysqli_query($connect, $count_query);
+
                         echo "<div class='alert alert-success' style='margin-top:30px;' role='alert'><b>Your Comment is posted.</b></div>" ;
                     }
                     
