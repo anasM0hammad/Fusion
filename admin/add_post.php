@@ -126,10 +126,19 @@
                 </select>
             </div> 
               
+             <div class="form-group col-md-6">
+                <label for="category"><b>Status</b></label>
+                <select class="form-control" name="status">
+                 <option selected>Draft</option>
+                 <option>Published</option>   
+                </select>
+            </div>   
+<!--
             <div class="form-group col-md-6">
                 <label for="status"><b>Post Status</b></label>
               <input type="text" class="form-control" placeholder="status" name="status">
             </div>
+-->
           </div>
               
              <div class="form-group ">

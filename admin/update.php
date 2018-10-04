@@ -167,18 +167,8 @@
           </div>
                  
           <div class="form-row">
-            <div class="form-group col-md-6">
-                <label for="tag"><b>Post Tags</b></label>
-              <input type="text" class="form-control" placeholder="Tags" name="tags" value="<?php echo $post_tags ;?>">
-            </div>
-            <div class="form-group col-md-6">
-                <label for="status"><b>Post Status</b></label>
-              <input type="text" class="form-control" placeholder="status" name="status" value="<?php echo $post_status ;?>">
-            </div>
-          </div>
-            
-            <div class="row"> 
-            <div class="form-group col-md-6">
+           
+               <div class="form-group col-md-6">
                 <label for="category"><b>Category</b></label>
                 <select class="form-control" name="post_category">
                 <?php
@@ -191,9 +181,23 @@
                   ?>
                     
                 </select>
-            </div>   
-                
-          </div>        
+            </div> 
+              
+             <div class="form-group col-md-6">
+                <label for="status"><b>Status</b></label>
+                 <select class="form-control" name="status">
+                     <option>Published</option>
+                     <option>Draft</option>
+                </select>     
+            </div>    
+ 
+          </div>
+            
+              <div class="form-group ">
+                <label for="tag"><b>Tags</b></label>
+              <input type="text" class="form-control" placeholder="Tags" name="tags" value="<?php echo $post_tags ;?>">
+            </div>
+    
                  
           <div class="form-row">
             <div class="form-group">
