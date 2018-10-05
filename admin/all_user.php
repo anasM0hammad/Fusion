@@ -63,21 +63,21 @@
                  
                  
                 if($_GET['delete']=='success'){
-                      echo "<div class='alert alert-success' style='margin-top:10px;' role='alert'><b>Comment Deleted.</b></div>" ;
+                      echo "<div class='alert alert-success' style='margin-top:10px;' role='alert'><b>User Deleted.</b></div>" ;
                  }
                  
                  else{
                  
-                 $comment_id = $_GET['delete'];
-                 $del_query = "DELETE FROM comments WHERE comment_id = $comment_id";
+                 $user_id = $_GET['delete'];
+                 $del_query = "DELETE FROM users WHERE user_id = $user_id";
                  $del_result = mysqli_query($connect, $del_query);
                  
                  if(!$del_query){
-                     die("QUERY FAILED..").mysqli_error($connect);
+                     die("QUERY FAILED..".mysqli_error($connect));
                  }
                  
                 else{
-                     header("Location: all_comments.php?delete=success");
+                     header("Location: all_user.php?delete=success");
                  }
              }        
         }
@@ -118,6 +118,8 @@
                  </tr>
               </thead>
               <tbody>
+                  
+                  
                   <?php // SHOW ALL DATA 
                   
                    $show_query = "SELECT * FROM users" ;
@@ -143,7 +145,7 @@
                         echo "<td>$last_name</td>" ;
                         echo "<td>$role</td>"   ;  
                         echo "<td><a href='all_user.php?approve='>Yes  </a>/<a href='all_user.php?unapprove='> No</a></td>"   ;  
-                        echo "<td style='text-align:center;'><a href='all_user.php?delete='><i class='far fa-times-circle'></i></a>"   ;  
+                        echo "<td style='text-align:center;'><a href='all_user.php?delete=$user_id'><i class='far fa-times-circle'></i></a>"   ;  
                         echo"</tr>";
                    }
                   
