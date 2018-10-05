@@ -24,7 +24,7 @@
               <li class="nav-item">
                 <a class="nav-link" href="category.php"><i class="fas fa-chart-pie"></i> Categories</a>
               </li>
-              <li class="nav-item dropdown active">
+              <li class="nav-item dropdown ">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="far fa-clipboard"></i> Posts</a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                   <a class="dropdown-item" href="add_post.php">Add Post</a>
@@ -34,7 +34,7 @@
               <li class="nav-item">
                 <a class="nav-link" href="all_comments.php"><i class="far fa-comments"></i> Comments</a>
               </li>
-              <li class="nav-item dropdown">
+              <li class="nav-item dropdown active">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-users"></i> Users</a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                   <a class="dropdown-item" href="add_user.php">All Users</a>
@@ -53,7 +53,7 @@
             
         <!-- MAIN CONTENT -->
          <div class="col-md-10">
-             <h2 class="heading"><b><i class="fas fa-database"></i> Enter Post Details</b></h2><hr><br>   
+             <h2 class="heading"><b><i class="fas fa-user-plus"></i> Enter User's Details</b></h2><hr><br>   
             
              <?php 
               if(isset($_POST['publish'])){
@@ -96,41 +96,28 @@
          <form class="container" action="" method="post" enctype="multipart/form-data">
           <div class="form-row">
             <div class="form-group col-md-6">
-                <label for="title"><b>Title</b></label>
-              <input type="text" class="form-control" placeholder="Title" name="title">
+                <label for="firstname"><b>First Name</b></label>
+              <input type="text" class="form-control" placeholder="First Name" name="firstname">
             </div>
             <div class="form-group col-md-6">
-                <label for="author"><b>Author Name</b></label>
-              <input type="text" class="form-control" placeholder="Author" name="author">
+                <label for="lastname"><b>Last Name</b></label>
+              <input type="text" class="form-control" placeholder="Last Name" name="lastname">
             </div>
           </div>
                  
           <div class="form-row">
               
             <div class="form-group col-md-6">
-                <label for="category"><b>Category</b></label>
-                <select class="form-control" name="post_category">
-                <?php
-                    
-                 $cat_query = "SELECT * FROM category";
-                 $cat_result = mysqli_query($connect, $cat_query);
-                    
-                 while($row = mysqli_fetch_assoc($cat_result)){
-                     $cat_id = $row['cat_id'];
-                     $cat_title = $row['cat_title'];
-                     
-                     echo " <option value='{$cat_id}'>{$cat_title}</option>" ;
-                 }    
-                  ?>
-                    
-                </select>
-            </div> 
+                <label for="username"><b>Username</b></label>
+              <input type="text" class="form-control" name="username">
+            </div>
               
              <div class="form-group col-md-6">
-                <label for="category"><b>Status</b></label>
-                <select class="form-control" name="status">
-                 <option selected>Draft</option>
-                 <option>Published</option>   
+                <label for="role"><b>Role</b></label>
+                <select class="form-control" name="role">
+                <option value="Subscriber">Select Option</option>    
+                 <option>Subscriber</option>
+                 <option>Admin</option>   
                 </select>
             </div>   
 <!--
@@ -140,33 +127,34 @@
             </div>
 -->
           </div>
-              
-             <div class="form-group ">
-                <label for="category"><b>Tags</b></label>
-              <input type="text" class="form-control" name="tags">
-            </div>
+                
+           <div class="form-group">
+            <label for="image"><b>Image</b></label>
+            <input type="file" class="form-control-file" name="image" >
+          </div>     
+         <br>     
                  
           <div class="form-row">
-            <div class="form-group col-md-6">
-                  <label for="image"><b>Author Image</b></label>
-                <input type="file" class="form-control-file" name="auth_image" >
-              </div>
-            <div class="form-group col-md-6">
-              <div class="form-group">
-                  <label for="image"><b>Image</b></label>
-                <input type="file" class="form-control-file" name="image" >
-              </div>
+             <div class="form-group col-md-6">
+              <label for="Email"><b>Email</b></label>
+              <input type="email" class="form-control" name="email">
             </div>
+              
+            <div class="form-group col-md-6">
+              <label for="password"><b>Password</b></label>
+              <input type="password" class="form-control" name="password">
+            </div>
+              
           </div>
-          <div class="form-group">
-            <label for="content"><b>Content</b></label>
-            <textarea class="form-control" rows="4" name="content"></textarea>
-          </div>         
-          <button type="publish" class="btn btn-primary d-block mx-auto btn-block" style="border-radius:0;" name="publish">Publish</button>
+             
+         <br>
+             
+          <button type="add" class="btn btn-primary d-block mx-auto btn-block" style="border-radius:0;" name="add_user">Add User</button>
         </form>
            
         </div>    
          
+            
         </div> <!-- ROW END -->
       
       

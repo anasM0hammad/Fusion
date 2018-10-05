@@ -200,7 +200,7 @@
     
                  
           <div class="form-row">
-            <div class="form-group">
+            <div class="form-group col-md-6">
                   <label for="image"><b>Author Image</b></label>
                   <img src="../img/<?php echo $post_author_image ; ?>" width="50" height="50" style="border-radius:50%; margin-left:20px;">
                 <input type="file" class="form-control-file" name="auth_image">
