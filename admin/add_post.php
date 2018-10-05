@@ -37,8 +37,8 @@
               <li class="nav-item dropdown">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-users"></i> Users</a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                  <a class="dropdown-item" href="#">user Post</a>
-                  <a class="dropdown-item" href="#">user Post</a>
+                  <a class="dropdown-item" href="add_user.php">All Users</a>
+                  <a class="dropdown-item" href="all_user.php">Add Users</a>
                 </div>
               </li>
               <li class="nav-item">

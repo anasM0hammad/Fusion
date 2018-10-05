@@ -31,10 +31,10 @@
                   <a class="dropdown-item" href="all_post.php">All Post</a>
                 </div>
               </li>
-              <li class="nav-item active">
+              <li class="nav-item ">
                 <a class="nav-link" href="all_comments.php"><i class="far fa-comments"></i> Comments</a>
               </li>
-              <li class="nav-item dropdown">
+              <li class="nav-item dropdown active">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-users"></i> Users</a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                   <a class="dropdown-item" href="add_user.php">Add Users</a>
@@ -53,7 +53,7 @@
             
         <!-- MAIN CONTENT -->
          <div class="col-md-10">
-             <h2 class="heading"><b><i class="far fa-comments"></i> Comments</b></h2><hr><br> 
+             <h2 class="heading"><b><i class="fas fa-users"></i> All Users</b></h2><hr><br> 
              
              <?php
              
@@ -107,12 +107,11 @@
               <thead>
                  <tr>
                    <th>Id</th>
-                   <th>Author</th>     
-                   <th>Comment</th>
+                   <th>Username</th>     
                    <th>Email</th>
-                   <th>Status</th>
-                   <th>Post</th> 
-                   <th>Date</th>
+                   <th>First Name</th>
+                   <th>Last Name</th>
+                   <th>Role</th> 
                    <th>Approve?</th>
                    <th>Delete</th>     
                  </tr>
@@ -120,37 +119,29 @@
               <tbody>
                   <?php // SHOW ALL DATA 
                   
-                   $show_query = "SELECT * FROM comments" ;
+                   $show_query = "SELECT * FROM users" ;
                    $show_result = mysqli_query($connect , $show_query) ;
                    
                    while($row = mysqli_fetch_assoc($show_result)){
                        
-                       $comment_id = $row['comment_id'];
-                       $comment_post_id = $row['comment_post_id'];
-                       $comment_email = $row['comment_email'];
-                       $comment_author = $row['comment_author'];
-                       $comment_date = $row['comment_date'];
-                       $content = $row['comment_content'];
-                       $comment_status = $row['comment_status'];
-                       
-                       // QUERY TO SELECT POST FROM POST COMMENT ID
-                       
-                       $post_query = "SELECT * FROM posts WHERE post_id = $comment_post_id";
-                       $post_result = mysqli_query($connect, $post_query);
-                       $post_row = mysqli_fetch_assoc($post_result);
-                       $post_title = $post_row['post_title'];
+                       $user_id = $row['user_id'];
+                       $username = $row['username'];
+                       $user_email = $row['user_email'];
+                       $first_name = $row['user_firstname'];
+                       $last_name = $row['user_lastname'];
+                       $role = $row['user_role'];
+                       $user_image = $row['user_image'];
                        
                        
                         echo "<tr>" ;
-                        echo "<td>$comment_id</td>" ;
-                        echo "<td>$comment_author</td>" ;
-                        echo "<td>$content</td>" ;
-                        echo "<td>$comment_email</td>" ;
-                        echo "<td>$comment_status</td>" ;
-                        echo "<td><a href='../post.php?p_id={$comment_post_id}'>$post_title</a></td>" ;
-                        echo "<td>$comment_date</td>"   ;  
-                        echo "<td><a href='all_comments.php?approve={$comment_id}'>Yes  </a>/<a href='all_comments.php?unapprove={$comment_id}'> No</a></td>"   ;  
-                        echo "<td style='text-align:center;'><a href='all_comments.php?delete={$comment_id}'><i class='far fa-times-circle'></i></a>"   ;  
+                        echo "<td>$user_id</td>" ;
+                        echo "<td>$username</td>" ;
+                        echo "<td>$user_email</td>" ;
+                        echo "<td>$first_name</td>" ;
+                        echo "<td>$last_name</td>" ;
+                        echo "<td>$role</td>"   ;  
+                        echo "<td><a href='all_user.php?approve='>Yes  </a>/<a href='all_user.php?unapprove='> No</a></td>"   ;  
+                        echo "<td style='text-align:center;'><a href='all_user.php?delete='><i class='far fa-times-circle'></i></a>"   ;  
                         echo"</tr>";
                    }
                   
