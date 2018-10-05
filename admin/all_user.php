@@ -107,6 +107,7 @@
               <thead>
                  <tr>
                    <th>Id</th>
+                   <th>Image</th>      
                    <th>Username</th>     
                    <th>Email</th>
                    <th>First Name</th>
@@ -135,6 +136,7 @@
                        
                         echo "<tr>" ;
                         echo "<td>$user_id</td>" ;
+                        echo "<td><img src='../img/$user_image' height ='50' width='50' style='border-radius:50%;'></td>" ;
                         echo "<td>$username</td>" ;
                         echo "<td>$user_email</td>" ;
                         echo "<td>$first_name</td>" ;

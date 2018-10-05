@@ -37,8 +37,8 @@
               <li class="nav-item dropdown active">
                 <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="fas fa-users"></i> Users</a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
-                  <a class="dropdown-item" href="add_user.php">All Users</a>
-                  <a class="dropdown-item" href="all_user.php">Add Users</a>
+                  <a class="dropdown-item" href="add_user.php">Add Users</a>
+                  <a class="dropdown-item" href="all_user.php">All Users</a>
                 </div>
               </li>
               <li class="nav-item">
@@ -56,37 +56,38 @@
              <h2 class="heading"><b><i class="fas fa-user-plus"></i> Enter User's Details</b></h2><hr><br>   
             
              <?php 
-              if(isset($_POST['publish'])){
+              if(isset($_POST['add_user'])){
                   
-                  $post_title = $_POST['title'];
-                  $post_author = $_POST['author'];
-                  $post_tags = $_POST['tags'];
-                  $post_status = $_POST['status'] ;
-                  $post_cat = $_POST['post_category'];
-                  $post_content = $_POST['content'];
-                  $post_image = $_FILES['image']['name'];
-                  $post_image_tmp = $_FILES['image']['tmp_name'] ;
-                  $post_author_image = $_FILES['auth_image']['name'];
-                  $post_author_image_tmp = $_FILES['auth_image']['tmp_name'];
-                  $post_date = date('d-m-y');
-                  $post_comment_count = 0 ;
+                  $firstname = $_POST['firstname'];
+                  $lastname = $_POST['lastname'];
+                  $username = $_POST['username'];
+                  $email = $_POST['email'] ;
+                  $password = $_POST['password'];
+                  $role = $_POST['role'];
+                  $user_image = $_FILES['image']['name'];
+                  $user_image_tmp = $_FILES['image']['tmp_name'] ;
+                 
                   
-                  move_uploaded_file($post_image_tmp , "../img/$post_image") ;
-                  move_uploaded_file($post_author_image_tmp , "../img/$post_author_image") ;
+                  move_uploaded_file($user_image_tmp , "../img/$user_image") ;
                   
-                  if(empty($post_title) || empty($post_author) || empty($post_content) || empty($post_cat)){
+                  if(empty($firstname) || empty($lastname) || empty($email) || empty($password) || empty($username)){
                   echo "<div class='alert alert-danger' style='margin-bootom:20px; border-radius:0;' role='alert'><b>Enter Required Fields..!</b></div>";
                                  
                   }
                   
                   else{
                   
-                  $publish_query = "INSERT INTO posts(post_category_id, post_title, post_author, post_date, post_image, post_comment_count, post_content,     post_tags, post_status, post_author_image) VALUES ({$post_cat}, '{$post_title}', '{$post_author}', now(), '{$post_image}', {$post_comment_count}, '{$post_content}', '{$post_tags}', '{$post_status}', '{$post_author_image}') ";
+                  $add_query = "INSERT INTO users(username, user_password, user_firstname, user_lastname, user_email, user_role, user_image) VALUES ('{$username}', '{$password}', '{$firstname}', '{$lastname}', '{$email}', '{$role}', '{$user_image}') ";
                   
-                  $publish_result = mysqli_query($connect, $publish_query) ;
-                  
-                  echo "<div class='alert alert-success' style='margin-bootom:20px; border-radius:0;' role='alert'><b>Post Published</b></div>";
+                  $add_result = mysqli_query($connect, $add_query) ;
                       
+                   if(!$add_result){
+                       die("QUERY FAILED...!!".mysqli_error($connect));
+                   }      
+                  
+                else{
+                  echo "<div class='alert alert-success' style='margin-bootom:20px; border-radius:0;' role='alert'><b>User Added Successfully</b></div>";
+                      }
                   }
               }
              
