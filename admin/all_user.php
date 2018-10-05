@@ -84,15 +84,15 @@
              
              
              //CATCHING THE STATUS CHANGED REQUEST
-             if(isset($_GET['status'])){
+             if(isset($_GET['role'])){
                  
-                 $status = $_GET['status'];
-                 if($status=='changed'){
-                      echo "<div class='alert alert-success' style='margin-top:10px;' role='alert'><b>Status Updated.</b></div>" ;
+                 $role = $_GET['role'];
+                 if($role=='changed'){
+                      echo "<div class='alert alert-success' style='margin-top:10px;' role='alert'><b>Role Updated.</b></div>" ;
                  }
                  
                  else{
-                     header("Location: all_comments.php");
+                     header("Location: all_user.php");
                  }
              }
               
@@ -113,7 +113,7 @@
                    <th>First Name</th>
                    <th>Last Name</th>
                    <th>Role</th> 
-                   <th>Approve?</th>
+                   <th>Edit Role</th>
                    <th>Delete</th>     
                  </tr>
               </thead>
@@ -143,8 +143,14 @@
                         echo "<td>$user_email</td>" ;
                         echo "<td>$first_name</td>" ;
                         echo "<td>$last_name</td>" ;
-                        echo "<td>$role</td>"   ;  
-                        echo "<td><a href='all_user.php?approve='>Yes  </a>/<a href='all_user.php?unapprove='> No</a></td>"   ;  
+                        echo "<td>$role</td>"   ;
+                       
+                        if($role!=='Admin')
+                        echo "<td><a href='all_user.php?r_admin=$user_id'>Make Admin</td>"   ; 
+                       
+                        else
+                        echo "<td><a href='all_user.php?r_subs=$user_id'>Remove admin</td>"   ; 
+                       
                         echo "<td style='text-align:center;'><a href='all_user.php?delete=$user_id'><i class='far fa-times-circle'></i></a>"   ;  
                         echo"</tr>";
                    }
@@ -160,35 +166,35 @@
              // CHANGING THE STATUS OF COMMENT
              
              //APPROVING QUERY
-             if(isset($_GET['approve'])){
+             if(isset($_GET['r_admin'])){
                  
-                 $comment_id = $_GET['approve'];
-                 $upd_query = "UPDATE comments SET comment_status = 'Approved' WHERE comment_id = $comment_id";
+                 $user_id = $_GET['r_admin'];
+                 $upd_query = "UPDATE users SET user_role = 'Admin' WHERE user_id = $user_id";
                  $upd_result = mysqli_query($connect, $upd_query);
                  
                  if(!$upd_result){
-                     die("QUERY FAILED...... ").mysqli_error($connect);
+                     die("QUERY FAILED...... ".mysqli_error($connect));
                  }
                  
                  else{
-                     header("Location: all_comments.php?status=changed");
+                     header("Location: all_user.php?role=changed");
                  }
                  
              }
              
              //UNAPPROVING QUERY
-              if(isset($_GET['unapprove'])){
+              if(isset($_GET['r_subs'])){
                  
-                 $comment_id = $_GET['unapprove'];
-                 $upd_query = "UPDATE comments SET comment_status = 'Unapproved' WHERE comment_id = $comment_id";
+                 $user_id = $_GET['r_subs'];
+                 $upd_query = "UPDATE users SET user_role = 'Subscriber' WHERE user_id = $user_id";
                  $upd_result = mysqli_query($connect, $upd_query);
                  
                  if(!$upd_result){
-                     die("QUERY FAILED...... ").mysqli_error($connect);
+                     die("QUERY FAILED...... ".mysqli_error($connect));
                  }
                  
                  else{
-                     header("Location: all_comments.php?status=changed");
+                     header("Location: all_user.php?role=changed");
                  }
                  
              }
