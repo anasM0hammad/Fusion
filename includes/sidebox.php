@@ -33,6 +33,15 @@
               }
               
               
+              //LOGINN FAILED MESSAGE
+               if(isset($_GET['login'])){
+                  
+                  if($_GET['login']=='fail'){
+                   echo "<div class='alert alert-danger' style='margin-bottom:10px; margin-top:10px; border-radius:0;' role='alert'><b>Invalid Credentials</b></div>"; 
+                  }
+              }
+              
+              
               
               
               ?>
