@@ -21,12 +21,28 @@
               </div>
             </div>
               
+              
+              <?php 
+              //VALIDATION OF LOGIN FORM
+              
+              if(isset($_GET['empty_login'])){
+                  
+                  if($_GET['empty_login']=='yes'){
+                   echo "<div class='alert alert-danger' style='margin-bottom:10px; margin-top:10px; border-radius:0;' role='alert'><b>Enter Fields.</b></div>"; 
+                  }
+              }
+              
+              
+              
+              
+              ?>
+              
             
             <!-- LOGIN BOXX -->
               <div class="card bg-light side_box">
               <div class="card-body">
                 <h5 class="text-muted">LOGIN</h5>
-                <form action="login.php" method ="post">  
+                <form action="includes/login.php" method ="post">  
                  <div class="input-group mb-3">
                   <div class="input-group-prepend">
                     <span class="input-group-text" id="basic-addon1"><i class="fas fa-user"></i></span>
@@ -41,7 +57,7 @@
                   <input type="password" class="form-control" placeholder="Password" name="password">
                 </div> 
                 
-                <button type="button" class="btn btn-primary btn-lg btn-block" style="border-radius: 0">Login</button>    
+                <button type="submit" class="btn btn-primary btn-md btn-block" style="border-radius: 0" name="login">Login</button>    
                 </form>    
               </div>
             </div>
@@ -76,7 +92,6 @@
                   
                   ?>
                 
-                  <a href="../category_link.php"></a>
 <!--
                 <a href="">Category</a> <a href="" class="float-right">Category</a><br>
                 <a href="">Category</a> <a href="" class="float-right">Category</a><br>

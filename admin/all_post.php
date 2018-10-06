@@ -62,7 +62,7 @@
             if(isset($_GET['delete'])){
                 
                 if($_GET['delete']=='success'){
-                 echo "<div class='alert alert-success' style='margin-bootom:20px; border-radius:0;' role='alert'><b>Post Deleted Succesfully.</b></div>"; 
+                 echo "<div class='alert alert-success' style='margin-bottom:20px; border-radius:0;' role='alert'><b>Post Deleted Succesfully.</b></div>"; 
                 }
                 
                 else{
