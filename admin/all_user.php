@@ -114,7 +114,7 @@
                    <th>Last Name</th>
                    <th>Role</th> 
                    <th>Edit Role</th>
-                   <th>Delete</th>     
+                   <th>Edit</th>     
                  </tr>
               </thead>
               <tbody>
@@ -151,7 +151,8 @@
                         else
                         echo "<td><a href='all_user.php?r_subs=$user_id'>Remove admin</td>"   ; 
                        
-                        echo "<td style='text-align:center;'><a href='all_user.php?delete=$user_id'><i class='far fa-times-circle'></i></a>"   ;  
+                        echo "<td><a href='all_user.php?delete=$user_id'><i class='far fa-times-circle'></i></a>
+                        <a href='update_user.php?update=$user_id' class='float-right'><i class='fas fa-pen'></i></a></td>"   ;  
                         echo"</tr>";
                    }
                   
