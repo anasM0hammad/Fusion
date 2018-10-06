@@ -21,6 +21,31 @@
               </div>
             </div>
               
+            
+            <!-- LOGIN BOXX -->
+              <div class="card bg-light side_box">
+              <div class="card-body">
+                <h5 class="text-muted">LOGIN</h5>
+                <form action="login.php" method ="post">  
+                 <div class="input-group mb-3">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text" id="basic-addon1"><i class="fas fa-user"></i></span>
+                  </div>
+                  <input type="text" class="form-control" placeholder="Username" name="username">
+                </div> 
+                
+                <div class="input-group mb-3">
+                  <div class="input-group-prepend">
+                    <span class="input-group-text" id="basic-addon1"><i class="fas fa-unlock-alt"></i></span>
+                  </div>
+                  <input type="password" class="form-control" placeholder="Password" name="password">
+                </div> 
+                
+                <button type="button" class="btn btn-primary btn-lg btn-block" style="border-radius: 0">Login</button>    
+                </form>    
+              </div>
+            </div>
+              
               
              
             <!-- CATEGORY BOX -->
