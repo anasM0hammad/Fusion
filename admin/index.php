@@ -6,6 +6,15 @@
 
   <!-- NAVBAR -->
   <?php include "includes/nav.php" ;?>
+
+   <style>
+
+       .user_image{
+           border-radius: 50%;
+           margin-right: 15px;
+       }
+
+   </style>
       
         <!--PAGE CONTENT -->
         <div class="row">
@@ -55,7 +64,8 @@
             
         <!-- MAIN CONTENT -->
          <div class="col-md-10">
-             <h2 class="heading"><b>Welcome to Admin Page</b></h2><hr><br>   
+              <h2 class="heading"><img src="../img/<?php echo $_SESSION['user_image']; ?>" class=" user_image" height="70" width="70"><b> <?php echo $_SESSION['firstname']." ".$_SESSION['lastname'] ; ?></b></h2>
+             <hr><br>   
             
         </div>    
             

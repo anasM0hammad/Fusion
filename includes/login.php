@@ -1,4 +1,5 @@
 <?php include "connection.php" ;?>
+<?php session_start(); ?>
 
 
 <?php 
@@ -33,6 +34,8 @@ if(isset($_POST['login'])){
             $db_role = $row['user_role'];
             $db_password = $row['user_password'];
             $db_username = $row['username'];
+            $db_email = $row['user_email'];
+            $db_image = $row['user_image'];
             
         }
         
@@ -42,6 +45,15 @@ if(isset($_POST['login'])){
         }
         
         else if($username == $db_username && $password == $db_password){
+            // USER LOGIN SUCCESSFULLY
+            
+             $_SESSION['username'] = $db_username ;
+             $_SESSION['firstname'] = $db_firstname ;
+             $_SESSION['lastname'] = $db_lastname ;
+             $_SESSION['role'] = $db_role ;
+             $_SESSION['username'] = $db_username ;
+             $_SESSION['email'] = $db_email ;
+             $_SESSION['user_image'] = $db_image ;
             
             header("Location: ../admin");
         }

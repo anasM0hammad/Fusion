@@ -1,6 +1,7 @@
 <?php ob_start(); ?>
 
 <?php include "../includes/connection.php"; ?>
+<?php session_start(); ?>
 <?php include "functions.php" ?>
 
 <!doctype html>
