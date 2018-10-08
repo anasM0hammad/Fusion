@@ -51,7 +51,6 @@ if(isset($_POST['login'])){
              $_SESSION['firstname'] = $db_firstname ;
              $_SESSION['lastname'] = $db_lastname ;
              $_SESSION['role'] = $db_role ;
-             $_SESSION['username'] = $db_username ;
              $_SESSION['email'] = $db_email ;
              $_SESSION['user_image'] = $db_image ;
             

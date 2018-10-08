@@ -38,7 +38,7 @@
                   <a class="dropdown-item" href="#"><i class="far fa-user"></i> Profile</a>
                   <a class="dropdown-item" href="#"><i class="fas fa-cog"></i> Settings</a>
                   <div class="dropdown-divider"></div>
-                  <a class="dropdown-item" href="#"><i class="fas fa-power-off"></i> Log Out</a>
+                  <a class="dropdown-item" href="../includes/logout.php"><i class="fas fa-power-off"></i> Log Out</a>
                 </div>
               </li>    
             </ul>
