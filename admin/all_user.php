@@ -14,7 +14,7 @@
                       
               <li class="nav-item">
                    <!-- PROFILE IMAGE --> 
-                <img src="img/icon.png" class="rounded mx-auto d-none  d-sm-none d-md-block" >
+                <img src="../img/<?php echo $_SESSION['user_image'];?>" class=" mx-auto d-none  d-sm-none d-md-block" height="70" width="70" style="border-radius:50%;">
                  <div class="img-space  d-none  d-sm-none d-md-block "></div>  
               </li>
                  

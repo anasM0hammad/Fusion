@@ -12,6 +12,14 @@
        .user_image{
            border-radius: 50%;
        }
+       
+       .card{
+           margin: 5px;
+       }
+       
+       .card a {
+           color: inherit;
+       }
 
    </style>
       
@@ -66,10 +74,94 @@
               <h2 class="heading"><img src="../img/<?php echo $_SESSION['user_image']; ?>" class=" d-sm-none user_image" height="70" width="70"><b> <?php echo $_SESSION['firstname']." ".$_SESSION['lastname'] ; ?></b></h2>
              <hr><br>   
             
-        </div>    
+             
+             <div class="row">
+                 
+             <!-- POST CARD -->     
+              <div class="col-md-3 ">
+                <div class="card text-white bg-primary">
+                  <div class="card-body">
+                   <div class="row">
+                       <div class="col-sm-4">
+                           <h1 class="display-3"><i class="fas fa-file-alt"></i></h1>
+                       </div>
+                       <div class="col-sm-8">
+                           <div><h1 class="text-right">20</h1></div>
+                           <div><h5 class="text-right">Post</h5></div>
+                       </div>
+                    </div>  
+                  </div>
+                <div class="card-header bg-light text-primary">
+                    <h6>View Details <a href="" class="float-right"><i class="fas fa-arrow-circle-right"></i></a></h6>
+                </div>     
+                </div>
+              </div>
+                 
+             <!-- COMMENTS CARD -->     
+              <div class="col-md-3">
+                <div class="card text-white bg-success">
+                  <div class="card-body">     
+                 <div class="row">
+                       <div class="col-sm-4">
+                           <h1 class="display-3"><i class="fas fa-comments"></i></h1>
+                       </div>
+                       <div class="col-sm-8">
+                           <div><h1 class="text-right">3</h1></div>
+                           <div><h5 class="text-right">Comments</h5></div>
+                       </div>
+                    </div>  
+                  </div>
+                <div class="card-header bg-light text-success">
+                    <h6>View Details <a href="" class="float-right"><i class="fas fa-arrow-circle-right"></i></a></h6>
+                </div>     
+                </div>
+              </div>
+                 
+             <!-- USER CARD -->     
+               <div class="col-md-3 ">
+                <div class="card text-white bg-warning">
+                  <div class="card-body">
+                <div class="row">
+                       <div class="col-sm-4">
+                           <h1 class="display-3"><i class="fas fa-user"></i></h1>
+                       </div>
+                       <div class="col-sm-8">
+                           <div><h1 class="text-right">5</h1></div>
+                           <div><h5 class="text-right">Users</h5></div>
+                       </div>
+                    </div>  
+                  </div>
+                <div class="card-header bg-light text-warning">
+                    <h6>View Details <a href="" class="float-right"><i class="fas fa-arrow-circle-right"></i></a></h6>
+                </div>     
+                </div>
+              </div>
+                 
+             <!-- CATEGORY CARDS -->     
+              <div class="col-md-3 ">
+                <div class="card text-white bg-danger">
+                  <div class="card-body">
+                <div class="row">
+                       <div class="col-sm-4">
+                           <h1 class="display-3"><i class="fas fa-chart-pie"></i></h1>
+                       </div>
+                       <div class="col-sm-8">
+                           <div><h1 class="text-right">10</h1></div>
+                           <div><h5 class="text-right">Category</h5></div>
+                       </div>
+                    </div>  
+                  </div>
+                <div class="card-header bg-light text-danger">
+                    <h6>View Details <a href="" class="float-right"><i class="fas fa-arrow-circle-right"></i></a></h6>
+                </div>     
+                </div>
+              </div>
+                 
+            </div>  <!-- CARD ROW ENDS -->
             
-            
-        </div>
+             
+            </div>    
+        </div> <!-- MAIN ROW ENDS -->
       
       
       <!-- FOOTER -->
