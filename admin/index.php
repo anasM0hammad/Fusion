@@ -22,6 +22,34 @@
        }
 
    </style>
+
+
+   <?php 
+    // CALCULATING NUMBER OF POSTS
+     $post_query = "SELECT * FROM posts";
+     $post_result = mysqli_query($connect, $post_query) ;
+     $post_count = mysqli_num_rows($post_result);
+
+    // CALCULATING COMMENTS
+     $com_query = "SELECT * FROM comments";
+     $com_result = mysqli_query($connect, $com_query) ;
+     $com_count = mysqli_num_rows($com_result);
+
+
+    // CALCULATING USERS
+     $user_query = "SELECT * FROM users";
+     $user_result = mysqli_query($connect, $user_query) ;
+     $user_count = mysqli_num_rows($user_result);
+
+
+    // CALCULATING CATEGORIES
+     $cat_query = "SELECT * FROM category";
+     $cat_result = mysqli_query($connect, $cat_query) ;
+     $cat_count = mysqli_num_rows($cat_result);
+
+    ?>
+ 
+  
       
         <!--PAGE CONTENT -->
         <div class="row">
@@ -36,8 +64,8 @@
                  <div class="img-space  d-none  d-sm-none d-md-block "></div>  
               </li>
                  
-              <li class="nav-item">
-                <a class="nav-link" href="#"><i class="fas fa-tachometer-alt"></i> Dashboard</a>
+              <li class="nav-item active">
+                <a class="nav-link" href="index.php"><i class="fas fa-tachometer-alt"></i> Dashboard</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="category.php"><i class="fas fa-chart-pie"></i> Categories</a>
@@ -86,7 +114,7 @@
                            <h1 class="display-3"><i class="fas fa-file-alt"></i></h1>
                        </div>
                        <div class="col-sm-8">
-                           <div><h1 class="text-right">20</h1></div>
+                           <div><h1 class="text-right"><?php echo $post_count ; ?></h1></div>
                            <div><h5 class="text-right">Post</h5></div>
                        </div>
                     </div>  
@@ -106,7 +134,7 @@
                            <h1 class="display-3"><i class="fas fa-comments"></i></h1>
                        </div>
                        <div class="col-sm-8">
-                           <div><h1 class="text-right">3</h1></div>
+                           <div><h1 class="text-right"><?php echo $com_count; ?></h1></div>
                            <div><h5 class="text-right">Comments</h5></div>
                        </div>
                     </div>  
@@ -126,7 +154,7 @@
                            <h1 class="display-3"><i class="fas fa-user"></i></h1>
                        </div>
                        <div class="col-sm-8">
-                           <div><h1 class="text-right">5</h1></div>
+                           <div><h1 class="text-right"><?php echo $user_count; ?></h1></div>
                            <div><h5 class="text-right">Users</h5></div>
                        </div>
                     </div>  
@@ -146,7 +174,7 @@
                            <h1 class="display-3"><i class="fas fa-chart-pie"></i></h1>
                        </div>
                        <div class="col-sm-8">
-                           <div><h1 class="text-right">10</h1></div>
+                           <div><h1 class="text-right"><?php echo $cat_count ; ?></h1></div>
                            <div><h5 class="text-right">Category</h5></div>
                        </div>
                     </div>  
