@@ -4,6 +4,19 @@
 <?php session_start(); ?>
 <?php include "functions.php" ?>
 
+<?php 
+
+if(isset($_SESSION['role'])){
+    
+    if($_SESSION['role']!=='Admin'){
+        header("Location: ../index.php");
+    }
+    
+}
+
+
+?>
+
 <!doctype html>
 <html lang="en">
   <head>

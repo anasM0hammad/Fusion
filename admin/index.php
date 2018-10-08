@@ -11,7 +11,6 @@
 
        .user_image{
            border-radius: 50%;
-           margin-right: 15px;
        }
 
    </style>
@@ -25,7 +24,7 @@
                       
               <li class="nav-item">
                    <!-- PROFILE IMAGE --> 
-                <img src="img/icon.png" class="rounded mx-auto d-none  d-sm-none d-md-block" >
+                <img src="../img/<?php echo $_SESSION['user_image'] ?>" class=" mx-auto d-none  d-sm-none d-md-block" height="70" width="70" style="border-radius:50%;" >
                  <div class="img-space  d-none  d-sm-none d-md-block "></div>  
               </li>
                  
@@ -64,7 +63,7 @@
             
         <!-- MAIN CONTENT -->
          <div class="col-md-10">
-              <h2 class="heading"><img src="../img/<?php echo $_SESSION['user_image']; ?>" class=" user_image" height="70" width="70"><b> <?php echo $_SESSION['firstname']." ".$_SESSION['lastname'] ; ?></b></h2>
+              <h2 class="heading"><img src="../img/<?php echo $_SESSION['user_image']; ?>" class=" d-sm-none user_image" height="70" width="70"><b> <?php echo $_SESSION['firstname']." ".$_SESSION['lastname'] ; ?></b></h2>
              <hr><br>   
             
         </div>    
