@@ -265,7 +265,7 @@
             </script>
              
              
-             <div id="columnchart_material" style="width: 80%; height: 500px; margin-top: 50px;" class="container"></div>
+             <div id="columnchart_material" style="width: 80%; height: 350px; margin-top: 50px;" class="container"></div>
              
              
             </div>    

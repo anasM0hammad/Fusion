@@ -40,5 +40,8 @@ if(!isset($_SESSION['role'])){
     <!-- GOOGLE CHARTS -->
       <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
       
+    <!-- CKEDITOR -->
+     <script src="https://cdn.ckeditor.com/4.10.1/standard/ckeditor.js"></script>
+    
   </head>
   <body>

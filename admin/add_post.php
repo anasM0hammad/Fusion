@@ -160,7 +160,7 @@
           </div>
           <div class="form-group">
             <label for="content"><b>Content</b></label>
-            <textarea class="form-control" rows="4" name="content"></textarea>
+            <textarea class="form-control"  rows="4" name="content"></textarea>
           </div>         
           <button type="publish" class="btn btn-primary d-block mx-auto btn-block" style="border-radius:0;" name="publish">Publish</button>
         </form>
@@ -168,6 +168,9 @@
         </div>    
          
         </div> <!-- ROW END -->
+
+
+  <script>CKEDITOR.replace( 'content' ); </script>
       
       
       <!-- FOOTER -->
