@@ -19,13 +19,13 @@
               </li>
                  
               <li class="nav-item">
-                <a class="nav-link" href="#"><i class="fas fa-tachometer-alt"></i> Dashboard</a>
+                <a class="nav-link" href="index.php"><i class="fas fa-tachometer-alt"></i> Dashboard</a>
               </li>
               <li class="nav-item">
                 <a class="nav-link" href="category.php"><i class="fas fa-chart-pie"></i> Categories</a>
               </li>
               <li class="nav-item dropdown active">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="far fa-clipboard"></i> Posts</a>
+                <a class="nav-link dropdown-toggle" href="all_post.php" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><i class="far fa-clipboard"></i> Posts</a>
                 <div class="dropdown-menu" aria-labelledby="navbarDropdown">
                   <a class="dropdown-item" href="add_post.php">Add Post</a>
                   <a class="dropdown-item" href="all_post.php">All Post</a>

@@ -120,7 +120,7 @@
                     </div>  
                   </div>
                 <div class="card-header bg-light text-primary">
-                    <h6>View Details <a href="" class="float-right"><i class="fas fa-arrow-circle-right"></i></a></h6>
+                    <h6>View Details <a href="all_post.php" class="float-right"><i class="fas fa-arrow-circle-right"></i></a></h6>
                 </div>     
                 </div>
               </div>
@@ -140,7 +140,7 @@
                     </div>  
                   </div>
                 <div class="card-header bg-light text-success">
-                    <h6>View Details <a href="" class="float-right"><i class="fas fa-arrow-circle-right"></i></a></h6>
+                    <h6>View Details <a href="all_comments.php" class="float-right"><i class="fas fa-arrow-circle-right"></i></a></h6>
                 </div>     
                 </div>
               </div>
@@ -160,7 +160,7 @@
                     </div>  
                   </div>
                 <div class="card-header bg-light text-warning">
-                    <h6>View Details <a href="" class="float-right"><i class="fas fa-arrow-circle-right"></i></a></h6>
+                    <h6>View Details <a href="all_user.php" class="float-right"><i class="fas fa-arrow-circle-right"></i></a></h6>
                 </div>     
                 </div>
               </div>
@@ -180,13 +180,44 @@
                     </div>  
                   </div>
                 <div class="card-header bg-light text-danger">
-                    <h6>View Details <a href="" class="float-right"><i class="fas fa-arrow-circle-right"></i></a></h6>
+                    <h6>View Details <a href="category.php" class="float-right"><i class="fas fa-arrow-circle-right"></i></a></h6>
                 </div>     
                 </div>
               </div>
                  
-            </div>  <!-- CARD ROW ENDS -->
+            </div> <hr><br> <!-- CARD ROW ENDS -->
             
+             
+             <!-- GOOGLE CHARTS -->
+             <script type="text/javascript">
+              google.charts.load('current', {'packages':['bar']});
+              google.charts.setOnLoadCallback(drawChart);
+
+              function drawChart() {
+                var data = google.visualization.arrayToDataTable([
+                  ['Year', 'Sales', 'Expenses', 'Profit'],
+                  ['2014', 1000, 400, 200],
+                  ['2015', 1170, 460, 250],
+                  ['2016', 660, 1120, 300],
+                  ['2017', 1030, 540, 350]
+                ]);
+
+                var options = {
+                  chart: {
+                    title: '',
+                    subtitle: '',
+                  }
+                };
+
+                var chart = new google.charts.Bar(document.getElementById('columnchart_material'));
+
+                chart.draw(data, google.charts.Bar.convertOptions(options));
+              }
+            </script>
+             
+             
+             <div id="columnchart_material" style="width: 80%; height: 500px; margin-top: 50px;" class="container"></div>
+             
              
             </div>    
         </div> <!-- MAIN ROW ENDS -->

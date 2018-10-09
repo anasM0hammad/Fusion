@@ -37,6 +37,8 @@ if(!isset($_SESSION['role'])){
       
    <title>Fusion | Admin</title> 
       
+    <!-- GOOGLE CHARTS -->
+      <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
       
   </head>
   <body>
