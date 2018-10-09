@@ -20,6 +20,8 @@
        .card a {
            color: inherit;
        }
+       
+       
 
    </style>
 
@@ -47,6 +49,29 @@
      $cat_result = mysqli_query($connect, $cat_query) ;
      $cat_count = mysqli_num_rows($cat_result);
 
+
+     //CALCULATING DRAFT POST
+     $draft_query = "SELECT * FROM posts WHERE post_status = 'Draft' ";
+     $draft_result = mysqli_query($connect, $draft_query) ;
+     $draft_count = mysqli_num_rows($draft_result);
+
+     $pub_post_count = $post_count - $draft_count ;
+
+
+    //CALCULATING APPROVED COMMENT
+     $ap_com_query = "SELECT * FROM comments WHERE comment_status = 'Approved' ";
+     $ap_com_result = mysqli_query($connect, $ap_com_query) ;
+     $ap_com_count = mysqli_num_rows($ap_com_result);
+     
+     $unap_com_count = $com_count - $ap_com_count ;
+
+     //CALCULATING NUMBER OF ADMINS
+     $admin_query = "SELECT * FROM users WHERE user_role = 'Admin' ";
+     $admin_result = mysqli_query($connect, $admin_query) ;
+     $admin_count = mysqli_num_rows($admin_result);
+     
+     $subs_count = $user_count - $admin_count ;
+
     ?>
  
   
@@ -56,7 +81,7 @@
          <div class="col-md-2 side-bar">
             <nav class="navbar navbar-expand-lg navbar-dark bg-dark down-nav">
             
-             <ul class="navbar-nav flex-column navbar-dark bg-dark">
+             <ul class="navbar-nav flex-column justify-content-start  navbar-dark bg-dark">
                       
               <li class="nav-item">
                    <!-- PROFILE IMAGE --> 
@@ -195,11 +220,35 @@
 
               function drawChart() {
                 var data = google.visualization.arrayToDataTable([
-                  ['Year', 'Sales', 'Expenses', 'Profit'],
-                  ['2014', 1000, 400, 200],
-                  ['2015', 1170, 460, 250],
-                  ['2016', 660, 1120, 300],
-                  ['2017', 1030, 540, 350]
+                  ['Data', 'All', 'Approved', 'Unapproved', 'Admin', 'Subscriber'],
+                    
+                    <?php 
+                    
+//                    $element_post = ['Total Post', 'Draft ', 'Published'];
+//                    $value_post = [$post_count , $draft_count, $pub_post_count] ;
+//                    
+//                    for($i = 0 ; $i < 3 ; $i++){
+//                        
+//                        echo "['{$element_post[$i]}'" . ",". "{$value_post[$i]}]," ;
+//                        
+//                    }
+//                    
+                    
+                      echo "['Post', {$post_count}, {$pub_post_count}, {$draft_count}, 0, 0]," ;
+                      echo "['Comments', {$com_count}, {$ap_com_count}, {$unap_com_count}, 0 , 0]," ;
+                      echo "['Users', {$user_count},  0 , 0 , {$admin_count} , {$subs_count}]," ;
+                    //  echo "['Categories', {$cat_count} , 0 , 0 , 0 , 0]" ;
+                    
+                    ?>
+                    
+                    
+                    
+//          ['Year', 'Sales', 'Expenses', 'Profit'],
+//          ['2014', 1000, 400, 200],
+//          ['2015', 1170, 460, 250],
+//          ['2016', 660, 1120, 300],
+//          ['2017', 1030, 540, 350]
+                 
                 ]);
 
                 var options = {
