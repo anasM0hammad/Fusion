@@ -224,6 +224,8 @@
          
         </div> <!-- ROW END -->
       
+
+   <script>CKEDITOR.replace( 'content' ); </script>
       
       <!-- FOOTER -->
     <?php include "includes/footer.php" ; ?>

@@ -7,6 +7,7 @@
   <!-- NAVBAR -->
   <?php include "includes/nav.php" ;?>
 
+
    <style>
 
        .user_image{

@@ -4,6 +4,8 @@
 
   <!-- NAVBAR -->
   <?php include "includes/nav.php" ;?>
+
+
       
         <!--PAGE CONTENT -->
         <div class="row">

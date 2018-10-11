@@ -84,12 +84,31 @@
             
             ?>
              
+             <!-- BULK FORM -->
+             <form class="form-inline col-md-6">
+              <div class="form-group ">
+                <select class="form-control" name="status">
+                 <option>Select Option</option>
+                 <option>Publish selected Post</option> 
+                 <option>Draft selected Post</option> 
+                 <option>Delete Selected Post</option> 
+                </select>
+            <button type="submit" class="btn btn-primary " style="margin-left:7px;">Apply</button>
+            <button type="submit" class="btn btn-success " style="margin-left:7px;">Add Post</button>          
+            </div>     
+            </form>
+             
+             
+             
+             
+             
              
              
              <!-- TABLE -->
-             <table class="table table-striped table-hover table-bordered">
+             <table class="table table-striped table-hover table-bordered" style="margin-top:20px;">
               <thead>
                  <tr>
+                   <th><div class="form-check"><input class="form-check-input" type="checkbox" value="" selected><label></label></div></th>    
                    <th>Id</th>
                    <th>Profile</th>     
                    <th>Author</th>
@@ -131,6 +150,7 @@
                        
                        
                         echo "<tr>" ;
+                        echo "<td><div class='form-check'><input class='form-check-input' type='checkbox' value=''><label></label></div></td>" ;
                         echo "<td>$post_id</td>" ;
                         echo "<td><img src='../img/$post_author_image' height ='60' width='60' style='border-radius:50%;'></td>" ;   
                         echo "<td>$post_author</td>" ;
