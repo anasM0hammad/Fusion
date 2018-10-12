@@ -45,8 +45,11 @@
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     <ul class="navbar-nav container justify-content-end list">
+      <li class="nav-item ">
+          <a class="nav-link" href="index.php"><i class ="fas fa-home"></i> Home</a>
+      </li>
       <li class="nav-item active">
-          <a class="nav-link" href="index.php"><i class ="fas fa-home"></i> Home<span class="sr-only">(current)</span></a>
+        <a class="nav-link" href="registration.php"><i class="fas fa-user-plus"></i> Register</a>
       </li>
        <li class="nav-item">
         <a class="nav-link" href="#"><i class="fas fa-phone"></i> Contact</a>
@@ -80,28 +83,91 @@
       <h4 class="text-muted" style="text-align:center;"><i>It is free for everyone</i></h4>
       
     
+        <?php 
+          // QUERY FOR REGISTER A NEW MEMBER
+          
+          if(isset($_POST['register'])){
+              
+              $firstname = $_POST['firstname'];
+              $lastname = $_POST['lastname'] ;
+              $username = $_POST['username'] ;
+              $email = $_POST['email'] ;
+              $password = $_POST['password'] ;
+              $image = $_FILES['image']['name'];
+              $tmp_image = $_FILES['image']['tmp_name'];
+              
+              move_uploaded_file($tmp_image , "img/$image");
+              
+              
+              if(empty($firstname) || empty($lastname) || empty($username) || empty($email) || empty($password)){
+                 echo "<div class='alert alert-danger container' style='margin-top: 40px; border-radius:0; text-align:center;' role='alert'><b>Enter Required Fields.</b></div>"; 
+              }
+              
+              //ALL FIELDS ARE FILLED
+              else{
+                  // CHECKING FOR UNIQUE USERNAME AND EMAIL
+                  $check_query = "SELECT * FROM users" ;
+                  $check_result = mysqli_query($connect , $check_query);
+                  
+                  while($row = mysqli_fetch_assoc($check_result)){
+                      
+                      $db_username = $row['username'];
+                      $db_email = $row['user_email'] ;
+                      
+                      if($db_username === $username || $db_email === $email){
+                         echo "<div class='alert alert-danger container' style='margin-top: 40px; border-radius:0; text-align:center;' role='alert'><b>Username or Email is already Taken.</b></div>"; 
+                      }
+                      
+                      // NOW ALL DATA IS UNIQUE AND FILLED
+                      else{
+                          
+                          $firstname = mysqli_real_escape_string($connect , $firstname);
+                          $lastname = mysqli_real_escape_string($connect , $lastname);
+                          $username = mysqli_real_escape_string($connect , $username);
+                          $email = mysqli_real_escape_string($connect , $email);
+                          $password = mysqli_real_escape_string($connect , $password);
+                          
+                          
+                      }
+                      
+                  }
+                  
+                  
+              }
+              
+              
+              
+              
+              
+          } //  ./isset
+          
+          
+          ?>    
+                
      
       
      
-      <div class="row" style="margin-top:10px;">
+      <div class="row" style="margin-top:4px;">
       <div class="col-sm-2"></div>
       <div class="col-sm-8">
           
             <!-- FORM SELECTION OPTION -->
             <div class="row" >
+                
             
              <!-- SUBSCRIBER OPTION -->    
              <div class="col-sm-6" >
-                <p class="reg_option" id="subs_option" style="color:blue; text-decoration:underline;"><b>Subscriber</b></p>              
+                <p class="reg_option" id="subs_option" style="color:blue; text-decoration:underline;"><b>Subscriber Form</b></p>              
              </div>
                 
               <!-- ADMIN OPTION --> 
-             <div class="col-md-6" >
-                 <p class="reg_option" id="admin_option"><b>Admin</b></p>
+             <div class="col-sm-6" >
+                 <p class="reg_option" id="admin_option"><b>Admin Request</b></p>
              </div>    
                 
           
             </div>
+          
           
           
         <!-- SUBSCRIBER REGISTRATION FORM -->
@@ -145,6 +211,8 @@
             </form>
           </div>
         </div>
+          
+          
           
           <!-- ADMIN REQUEST FORM -->
           <div class="card bg-light fadeIn animated" id="admin_form" style="display:none;">
