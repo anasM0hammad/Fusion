@@ -41,9 +41,7 @@
                   <a class="dropdown-item" href="all_user.php">All Users</a>
                 </div>
               </li>
-              <li class="nav-item">
-                <a class="nav-link" href="#"><i class="far fa-user-circle"></i> Profile</a>
-              </li>     
+               
             </ul>
                 
             <div class="space d-none  d-sm-none d-md-block"></div>    

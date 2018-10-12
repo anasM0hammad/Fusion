@@ -50,11 +50,11 @@
     
     <!-- PROFILE BAR -->  
     <?php if(isset($_SESSION['username'])){ ?>  
-    <ul  class="navbar-nav container justify-content-end list" >
+    <ul  class="navbar-nav container justify-content-end " >
      <li class="nav-item dropdown active">
         <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"><i class="far fa-user"></i> <?php echo $firstname . " " . $lastname . " "; ?></a>
         <div class="dropdown-menu drop-link">
-          <a class="dropdown-item" href="#"><i class="far fa-user"></i> Profile</a>
+          <a class="dropdown-item" href="profile.php"><i class="far fa-user"></i> Profile</a>
           <a class="dropdown-item" href="#"><i class="fas fa-cog"></i> Settings</a>
           <div class="dropdown-divider"></div>
           <a class="dropdown-item" href="includes/logout.php"><i class="fas fa-power-off"></i> Log Out</a>
