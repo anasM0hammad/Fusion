@@ -105,6 +105,9 @@
               
               //ALL FIELDS ARE FILLED
               else{
+                  
+                  $unique = true ;  // FLAG FOR CHECKING THE FIELDS ARE UNIQUE OR NOT
+                  
                   // CHECKING FOR UNIQUE USERNAME AND EMAIL
                   $check_query = "SELECT * FROM users" ;
                   $check_result = mysqli_query($connect , $check_query);
@@ -116,10 +119,13 @@
                       
                       if($db_username === $username || $db_email === $email){
                          echo "<div class='alert alert-danger container' style='margin-top: 40px; border-radius:0; text-align:center;' role='alert'><b>Username or Email is already Taken.</b></div>"; 
-                      }
+                          
+                          $unique = false ;
+                      }   
+                  }
                       
                       // NOW ALL DATA IS UNIQUE AND FILLED
-                      else{
+                      if($unique){
                           
                           $firstname = mysqli_real_escape_string($connect , $firstname);
                           $lastname = mysqli_real_escape_string($connect , $lastname);
@@ -127,11 +133,22 @@
                           $email = mysqli_real_escape_string($connect , $email);
                           $password = mysqli_real_escape_string($connect , $password);
                           
+                          //QUERY TO SEND THE DATA IN DATABSE
+                          $reg_query = "INSERT INTO users(username , user_password, user_firstname, user_lastname, user_email, user_role , user_image) VALUES ('{$username}' , '{$password}' , '{$firstname}' , '{$lastname}' , '$email' , 'Subscriber', '$image')";
+                          
+                          $reg_result = mysqli_query($connect , $reg_query) ;
+                          
+                          //CHECKING QUERY ID SEND OR NOT
+                          if(!$reg_result){
+                              die("QUERY FAILED  " . mysqli_error($connect));
+                          }
+                          
+                          //QUERY SEND SUCCESSFULLY
+                          else{
+                              echo "<div class='alert alert-success container' style='margin-top: 40px; border-radius:0; text-align:center;' role='alert'><b>Registration Successful.</b></div>";
+                          }
                           
                       }
-                      
-                  }
-                  
                   
               }
               
