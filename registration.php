@@ -95,12 +95,12 @@
             
              <!-- SUBSCRIBER OPTION -->    
              <div class="col-sm-6" >
-                <p class="reg_option"><b>Subscriber</b></p>              
+                <p class="reg_option" id="subs_option" style="color:blue; text-decoration:underline;"><b>Subscriber</b></p>              
              </div>
                 
               <!-- ADMIN OPTION --> 
              <div class="col-md-6" >
-                 <p class="reg_option"><b>Admin</b></p>
+                 <p class="reg_option" id="admin_option"><b>Admin</b></p>
              </div>    
                 
           
@@ -108,7 +108,7 @@
           
           
         <!-- SUBSCRIBER REGISTRATION FORM -->
-        <div class="card bg-light slideInLeft animated">
+        <div class="card bg-light slideInLeft animated" id="subs_form">
           <div class="card-body">
            <form method="post" action="" enctype="multipart/form-data">
               
@@ -150,7 +150,7 @@
         </div>
           
           <!-- ADMIN REQUEST FORM -->
-          <div class="card bg-light slideInLeft animated" style="display:none;">
+          <div class="card bg-light slideInLeft animated" id="admin_form" style="display:none;">
           <div class="card-body">
            <form method="post" action="" enctype="multipart/form-data">
     
