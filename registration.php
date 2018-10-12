@@ -5,7 +5,9 @@
 <!doctype html>
 <html lang="en">
   <head>
-    
+      
+    <link rel="stylesheet" href =" https://cdnjs.cloudflare.com/ajax/libs/animate.css/3.5.2/animate.min.css">
+      
     <?php include "includes/links.php" ; ?>  
     
     <!-- EXTERNAL CSS FILE -->
@@ -13,7 +15,19 @@
       <style>
           .head{
               text-align: center;
-              margin-top: 30px;
+              margin-top: 20px;
+          }
+          
+          .reg_option{
+              text-align:center;
+              cursor: pointer;
+          }
+          
+          .reg_option:hover{
+              color: blue;
+          }
+          .reg_option:active{
+              text-decoration: underline;
           }
       
       </style>
@@ -68,11 +82,33 @@
       <h1 class="head"> Membership Form </h1>
       <h4 class="text-muted" style="text-align:center;"><i>It is free for everyone</i></h4>
       
-      <!-- REGISTRATION FORM -->
-      <div class="row">
+    
+     
+      
+     
+      <div class="row" style="margin-top:10px;">
       <div class="col-sm-2"></div>
       <div class="col-sm-8">
-        <div class="card bg-light">
+          
+            <!-- FORM SELECTION OPTION -->
+            <div class="row" >
+            
+             <!-- SUBSCRIBER OPTION -->    
+             <div class="col-sm-6" >
+                <p class="reg_option"><b>Subscriber</b></p>              
+             </div>
+                
+              <!-- ADMIN OPTION --> 
+             <div class="col-md-6" >
+                 <p class="reg_option"><b>Admin</b></p>
+             </div>    
+                
+          
+            </div>
+          
+          
+        <!-- SUBSCRIBER REGISTRATION FORM -->
+        <div class="card bg-light slideInLeft animated">
           <div class="card-body">
            <form method="post" action="" enctype="multipart/form-data">
               
@@ -112,6 +148,63 @@
             </form>
           </div>
         </div>
+          
+          <!-- ADMIN REQUEST FORM -->
+          <div class="card bg-light slideInLeft animated" style="display:none;">
+          <div class="card-body">
+           <form method="post" action="" enctype="multipart/form-data">
+    
+               
+              <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="email"><b>Registered Email</b></label>
+                  <input type="email" class="form-control" placeholder="NoOne@example.com" name="admin_email">
+                </div>
+                <div class="form-group col-md-6">
+                  <label><b>Password</b></label>
+                  <input type="password" class="form-control" name="admin_password">
+                </div>
+              </div>
+               
+                <div class="form-row">
+                <div class="form-group col-md-6">
+                    <label for="username"><b>Registered Username</b></label>
+                  <input type="text" class="form-control" name="admin_username">
+                </div>
+                 <div class="form-group col-md-6">
+                    <label for="username"><b>Mobile Number</b></label>
+                  <input type="tel" class="form-control" name="admin_username">
+                </div>
+                    
+               </div>
+                <div class="form-row">
+                <div class="form-group col-md-6">
+                  <label><b>City</b></label>
+                  <input type="text" class="form-control" name=city>
+                </div>
+                <div class="form-group col-md-4">
+                  <label><b>State</b></label>
+                    <input type="text" class="form-control" name="state">
+                </div>
+                <div class="form-group col-md-2">
+                  <label ><b>Country</b></label>
+                  <input type="text" class="form-control" name="country" >
+                </div>
+              </div>
+               
+                <div class="form-group">
+                <label ><b>Why do you want to be an Admin ?</b></label>
+                <textarea class="form-control" name="reason" rows="3"></textarea>
+              </div>
+               
+               <br> 
+              
+              <button type="submit" class="btn btn-primary btn-sm btn-block" name="request">Send Request</button>
+            </form>
+          </div>
+        </div>
+          
+          
       </div>
      <div class="col-sm-2"></div>      
     </div>
@@ -137,6 +230,9 @@
         </div>  <!-- ROW END -->
       </div>    <!-- CONTAINER END -->
       
+      
+      <!-- EXTERNAL JS FILE -->
+      <script src="js/registration.js" type="text/javascript"></script>
       
       <!-- FOOTER GOES HERE -->
       <?php include "includes/footer.php" ?>
