@@ -32,6 +32,9 @@
       <li class="nav-item">
         <a class="nav-link" href="admin/index.php"><i class="fas fa-globe"></i> Admin</a>
       </li>
+      <li class="nav-item">
+        <a class="nav-link" href="registration.php"><i class="fas fa-user-plus"></i> Register</a>
+      </li>    
        <li class="nav-item">
         <a class="nav-link" href="#"><i class="fas fa-phone"></i> Contact</a>
       </li>    
