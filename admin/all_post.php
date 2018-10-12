@@ -5,7 +5,7 @@
   <!-- NAVBAR -->
   <?php include "includes/nav.php" ;?>
 
-
+   
       
         <!--PAGE CONTENT -->
         <div class="row">
@@ -248,9 +248,10 @@
         </div>    
             
         </div> <!-- ROW END -->
+   
 
-
-      
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+      <script type="text/javascript" src="js/all_post.js"></script>
       
       <!-- FOOTER -->
     <?php include "includes/footer.php" ; ?>
