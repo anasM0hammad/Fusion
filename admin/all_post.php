@@ -4,6 +4,8 @@
 
   <!-- NAVBAR -->
   <?php include "includes/nav.php" ;?>
+
+
       
         <!--PAGE CONTENT -->
         <div class="row">
@@ -84,19 +86,78 @@
             
             ?>
              
+             
+             
+             <?php
+             //CATCHING THE DATA OF CHECK BOX
+             
+             if(isset($_POST['checkArr'])){
+                 
+                $checkArr =  $_POST['checkArr'] ;
+                $operation = $_POST['operation'] ;
+                 
+                $flag = 1; 
+                 
+            foreach($checkArr as $check){     
+                 
+                if($operation === 'Publish selected Post' ) {
+                    // MAKE SELECTED POST PUBLISHED
+                    $query = "UPDATE posts SET post_status = 'Published' WHERE post_id = $check " ;
+                    $result = mysqli_query($connect , $query);
+                    
+                }
+                 
+                else if($operation === 'Draft selected Post') {
+                     // MAKE SELECTED POST DRAFT
+                    $query = "UPDATE posts SET post_status = 'Draft' WHERE post_id = $check " ;
+                    $result = mysqli_query($connect , $query);
+                     
+                    
+                }
+                 
+                 else if($operation === 'Delete Selected Post'){
+                     // DELETE THE SELECTED POST
+                     
+                     $query = "DELETE FROM posts WHERE post_id = $check " ;
+                     $result = mysqli_query($connect, $query);
+                 }
+                
+                else{
+                 echo "<div class='alert alert-danger' style='margin-bottom:20px; border-radius:0;' role='alert'><b>Please Select an Option.</b></div>"; 
+                 $flag =0 ;       
+                 break ;
+                }
+                
+             }
+                 
+            if($flag){
+                 echo "<div class='alert alert-success' style='margin-bottom:20px; border-radius:0;' role='alert'><b>Selected Post Updated.</b></div>";
+            }         
+                 
+         }
+               
+               
+            
+             
+             
+             
+             
+             ?>
+             
+             
+             
              <!-- BULK FORM -->
-             <form class="form-inline col-md-6">
+             <form class="form-inline col-md-6" method="post">
               <div class="form-group ">
-                <select class="form-control" name="status">
+                <select class="form-control" name="operation">
                  <option>Select Option</option>
                  <option>Publish selected Post</option> 
                  <option>Draft selected Post</option> 
                  <option>Delete Selected Post</option> 
                 </select>
-            <button type="submit" class="btn btn-primary " style="margin-left:7px;">Apply</button>
-            <button type="submit" class="btn btn-success " style="margin-left:7px;">Add Post</button>          
+            <button type="submit" class="btn btn-primary " style="margin-left:7px;" name="apply">Apply</button>
             </div>     
-            </form>
+           
              
              
              
@@ -108,7 +169,7 @@
              <table class="table table-striped table-hover table-bordered" style="margin-top:20px;">
               <thead>
                  <tr>
-                   <th><div class="form-check"><input class="form-check-input" type="checkbox" value="" selected><label></label></div></th>    
+                   <th><div class="form-check"><input class="form-check-input" type="checkbox" value="" id="checkbox"><label></label></div></th>    
                    <th>Id</th>
                    <th>Profile</th>     
                    <th>Author</th>
@@ -129,6 +190,7 @@
                   
                    $show_query = "SELECT * FROM posts" ;
                    $show_result = mysqli_query($connect , $show_query) ;
+                  
                    
                    while($row = mysqli_fetch_assoc($show_result)){
                        
@@ -150,7 +212,7 @@
                        
                        
                         echo "<tr>" ;
-                        echo "<td><div class='form-check'><input class='form-check-input' type='checkbox' value=''><label></label></div></td>" ;
+                        echo "<td><div class='form-check'><input class='form-check-input check' type='checkbox' name='checkArr[]' value='$post_id'><label></label></div></td>" ;
                         echo "<td>$post_id</td>" ;
                         echo "<td><img src='../img/$post_author_image' height ='60' width='60' style='border-radius:50%;'></td>" ;   
                         echo "<td>$post_author</td>" ;
@@ -172,16 +234,22 @@
                         echo "<td>$post_date</td>"   ;  
                         echo "<td><a href='all_post.php?delete={$post_id}'><i class='far fa-times-circle'></i></a> <a class='float-right' href='update.php?update={$post_id}'><i class='fas fa-pen'></i></a></td>"   ;  
                         echo"</tr>";
+                       
+                      
                    }
+                  
                   
                   ?>
                 
              </tbody>     
              </table>
+             </form>
             
         </div>    
             
         </div> <!-- ROW END -->
+
+
       
       
       <!-- FOOTER -->
