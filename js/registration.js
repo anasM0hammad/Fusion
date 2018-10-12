@@ -10,6 +10,12 @@ subs_option.onclick = function(){
      admin_option.style.color = "inherit";
      admin_option.style.textDecoration = "none";
      
+    var subs_form = document.querySelector("#subs_form");
+    var admin_form = document.querySelector("#admin_form"); 
+     
+    subs_form.style.display = "inherit"; 
+    admin_form.style.display = "none";  
+     
      
  }   
        
@@ -25,7 +31,21 @@ admin_option.onclick = function(){
      subs_option.style.color = "inherit";
      subs_option.style.textDecoration = "none";
      
+    var subs_form = document.querySelector("#subs_form");
+    var admin_form = document.querySelector("#admin_form"); 
+     
+    subs_form.style.display = "none"; 
+    admin_form.style.display = "inherit";  
+     
+     
      
  }   
        
 }
+
+
+
+
+
+
+

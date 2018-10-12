@@ -26,9 +26,6 @@
           .reg_option:hover{
               color: blue;
           }
-          .reg_option:active{
-              text-decoration: underline;
-          }
       
       </style>
       
@@ -108,7 +105,7 @@
           
           
         <!-- SUBSCRIBER REGISTRATION FORM -->
-        <div class="card bg-light slideInLeft animated" id="subs_form">
+        <div class="card bg-light fadeIn animated" id="subs_form">
           <div class="card-body">
            <form method="post" action="" enctype="multipart/form-data">
               
@@ -150,7 +147,7 @@
         </div>
           
           <!-- ADMIN REQUEST FORM -->
-          <div class="card bg-light slideInLeft animated" id="admin_form" style="display:none;">
+          <div class="card bg-light fadeIn animated" id="admin_form" style="display:none;">
           <div class="card-body">
            <form method="post" action="" enctype="multipart/form-data">
     
