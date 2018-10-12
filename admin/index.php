@@ -190,7 +190,7 @@
               </div>
                  
              <!-- CATEGORY CARDS -->     
-              <div class="col-md-3 ">
+              <div class="col-md-3 "> 
                 <div class="card text-white bg-danger">
                   <div class="card-body">
                 <div class="row">

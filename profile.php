@@ -16,6 +16,7 @@
             text-align: center;
         }
         
+        
     </style>  
       
     <title>Fusion</title>
@@ -32,6 +33,7 @@
           $prof_result = mysqli_query($connect, $prof_query);
           
           while($row = mysqli_fetch_assoc($prof_result)){
+              $user_id = $row['user_id'];
               $firstname = $row['user_firstname'];
               $lastname = $row['user_lastname'];
               $image = $row['user_image'];
@@ -104,23 +106,62 @@
   </div>
 </nav>
       
+      
+      <?php 
+       // CALCULATING NUMBER OF POSTS
+         $post_query = "SELECT * FROM posts WHERE post_user_id = $user_id";
+         $post_result = mysqli_query($connect, $post_query) ;
+         $post_count = mysqli_num_rows($post_result);
+    
+      
+      ?>
+      
+      
+      
+      
+      
       <!-- NAVBAR ENDS HERE -->
      
       
       <!--PAGE CONTENT STARTS -->
-      <div class="row">
+      <div class="row ">
         <!-- SIDE PANEL -->  
-       <div class="col-sm-3">
+       <div class="col-sm-3 background">
           <img src="img/<?php echo $image; ?>" class=" mx-auto d-block" height="110" width="110" style="border-radius:50%;"><br>
            <h3 class="text"><?php echo $firstname . " " . $lastname ; ?></h3>
            <h5 class="text-muted text"><?php echo $role; ?></h5>
        </div>
           
-        <hr style="transform:rotate(90deg); ">
           
         <!-- MAIN CONTENT -->  
       <div class="col-sm-9">
-      
+          <!-- WIDGETS ROW -->
+         <div class="row container" style="margin-top:0;">
+             
+             <div class="col-sm-8"></div>
+              <!-- POST CARD -->     
+              <div class="col-sm-4 ">
+                <div class="card text-white bg-primary">
+                  <div class="card-body">
+                   <div class="row" style="margin-top:0;">
+                       <div class="col-sm-4">
+                           <h1 class="display-3"><i class="fas fa-file-alt"></i></h1>
+                       </div>
+                       <div class="col-sm-8">
+                           <div><h1 class="text-right"><?php echo $post_count ; ?></h1></div>
+                           <div><h5 class="text-right">Post</h5></div>
+                       </div>
+                    </div>  
+                  </div>
+                <div class="card-header bg-light text-primary">
+                    <h6>View Your Post <a href="user_post.php" class="float-right"><i class="fas fa-arrow-circle-right"></i></a></h6>
+                </div>     
+                </div>
+              </div>
+             
+             
+           </div> <!-- WIDGETS ROW ENDS -->
+         
      </div>      
       </div>
       
