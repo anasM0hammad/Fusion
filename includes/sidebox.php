@@ -46,7 +46,13 @@
               
               ?>
               
-            
+            <!-- PHP FOR SHOWING LOGIN BOX ONLY WHEN SESSION IS UNSET -->
+              
+              <?php 
+              if(!isset($_SESSION['username'])){
+              ?>
+              
+              
             <!-- LOGIN BOXX -->
               <div class="card bg-light side_box">
               <div class="card-body">
@@ -70,6 +76,8 @@
                 </form>    
               </div>
             </div>
+              
+              <?php } ?>
               
               
              

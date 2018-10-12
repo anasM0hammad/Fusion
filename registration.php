@@ -26,6 +26,11 @@
           .reg_option:hover{
               color: blue;
           }
+          
+          .btn{
+              border-radius: 0; 
+              margin-bottom: 10px;
+          }
       
       </style>
       
@@ -290,28 +295,9 @@
       </div>
      <div class="col-sm-2"></div>      
     </div>
-      
-      
-      <!--PAGE CONTENT STARTS -->
-      
-      <div class="container">
-        <div class="row">
-         <div class="col-md-8">
-             
-
-             
-             
-             
+               
 
                 <br><br><br><br>
-             
-         </div>
-            
-            
-            
-        </div>  <!-- ROW END -->
-      </div>    <!-- CONTAINER END -->
-      
       
       <!-- EXTERNAL JS FILE -->
       <script src="js/registration.js" type="text/javascript"></script>

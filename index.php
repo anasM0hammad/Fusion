@@ -15,6 +15,28 @@
   <body>
       
       
+      <?php 
+      //QUERY TO SHOW INFO OF USER IN PROFILE BAR
+      
+      if(isset($_SESSION['username'])){
+        $username =  $_SESSION['username'] ;
+          
+          $prof_query = "SELECT * FROM users WHERE username = '$username' " ;
+          $prof_result = mysqli_query($connect, $prof_query);
+          
+          while($row = mysqli_fetch_assoc($prof_result)){
+              $firstname = $row['user_firstname'];
+              $lastname = $row['user_lastname'];
+              $image = $row['user_image'];
+              $role = $row['user_role'];
+          }
+          
+      }
+      
+      
+      ?>
+      
+      
       <!-- NAVBAR  -->  
       
 <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -25,20 +47,50 @@
   </button>
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
+    
+    <!-- PROFILE BAR -->  
+    <?php if(isset($_SESSION['username'])){ ?>  
+    <ul  class="navbar-nav container justify-content-end list" >
+     <li class="nav-item dropdown active">
+        <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"><i class="far fa-user"></i> <?php echo $firstname . " " . $lastname . " "; ?></a>
+        <div class="dropdown-menu drop-link">
+          <a class="dropdown-item" href="#"><i class="far fa-user"></i> Profile</a>
+          <a class="dropdown-item" href="#"><i class="fas fa-cog"></i> Settings</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="includes/logout.php"><i class="fas fa-power-off"></i> Log Out</a>
+        </div>
+      </li> 
+     </ul>  
+      <?php } ?>
+      
     <ul class="navbar-nav container justify-content-end list">
       <li class="nav-item active">
           <a class="nav-link" href="index.php"><i class ="fas fa-home"></i> Home<span class="sr-only">(current)</span></a>
       </li>
-      <li class="nav-item">
-        <a class="nav-link" href="admin/index.php"><i class="fas fa-globe"></i> Admin</a>
-      </li>
+        
+        
+        <?php if(isset($_SESSION['username'])){ 
+              if($role == 'Admin'){   
+          
+            echo  "<li class='nav-item'>
+                <a class='nav-link' href='admin/index.php'><i class='fas fa-globe'></i> Admin</a>
+              </li>";  } 
+        } ?>
+        
+        
+        <?php if(!isset($_SESSION['username'])){ ?>
       <li class="nav-item">
         <a class="nav-link" href="registration.php"><i class="fas fa-user-plus"></i> Register</a>
-      </li>    
+      </li>
+        <?php }?>
+        
+        
        <li class="nav-item">
         <a class="nav-link" href="#"><i class="fas fa-phone"></i> Contact</a>
-      </li>    
+      </li>
+
     </ul>
+      
   </div>
 </nav>
       
@@ -120,65 +172,6 @@
                  
             <?php } ?>    <!-- END OF WHILE LOOP -->
              
-             
-             
-             
-             
-             
-         
-             <!--FIRST POST -->
-<!--
-             <div class="blog">
-             
-                 <h2><a class="dec_link" href="">BLOG TITLE</a></h2>
-                 <h5 class="text-muted"> by    <img class="d-inline-block align-top" height="30" width="30" src="img/icon.png"><a href=""><span class="name text-muted">BLOGGER NAME</span></a></h5>
-                 
-                 <p class="text-muted"><i class="far fa-clock"></i> Posted on 10 september 2018</p>
-                 <hr>
-                 <img src="img/post.svg" class="img-fluid" alt="Responsive image">
-                 <hr>
-                 
-                 <p class="text-muted">The emergence and growth of blogs in the late 1990s coincided with the advent of web publishing tools that facilitated the posting of content by non-technical users who did not have much experience with HTML </p>
-                 
-                 <button class="button" style="vertical-align:middle"><span>Read More </span></button>
-                 
-                 <img src="img/confused.png" class="rounded float-right likes" data-toggle="tooltip" data-placement="bottom" title="Not Good">
-                 
-                 <img src="img/like.png" class="rounded float-right likes" data-toggle="tooltip" data-placement="bottom" title="Like">
-                 
-                 <img src="img/heart.png" class="rounded float-right likes" data-toggle="tooltip" data-placement="bottom" title="Love">
-                 
-                 <hr><br><br><br>
-                 
-             </div>
--->
-             
-             <!-- SECOND BLOG -->
-<!--
-              <div class="blog">
-             
-                 <h2><a class="dec_link" href="">BLOG TITLE</a></h2>
-                 <h5 class="text-muted"> by    <img class="d-inline-block align-top" height="30" width="30" src="img/icon.png"><a href=""><span class="name text-muted">BLOGGER NAME</span></a></h5>
-                 
-                 <p class="text-muted"><i class="far fa-clock"></i> Posted on 10 september 2018</p>
-                 <hr>
-                 <img src="img/post.svg" class="img-fluid" alt="Responsive image">
-                 <hr>
-                 
-                 <p class="text-muted">The emergence and growth of blogs in the late 1990s coincided with the advent of web publishing tools that facilitated the posting of content by non-technical users who did not have much experience with HTML </p>
-                 
-                 <button class="button" style="vertical-align:middle"><span>Read More </span></button>
-                 
-                 <img src="img/confused.png" class="rounded float-right likes" data-toggle="tooltip" data-placement="bottom" title="Not Good">
-                 
-                 <img src="img/like.png" class="rounded float-right likes" data-toggle="tooltip" data-placement="bottom" title="Like">
-                 
-                 <img src="img/heart.png" class="rounded float-right likes" data-toggle="tooltip" data-placement="bottom" title="Love">
-                 
-                 <hr><br><br>
-                 
-             </div>
--->
              
              
              <!-- PAGINATION -->
