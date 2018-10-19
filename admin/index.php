@@ -79,7 +79,7 @@
       
         <!--PAGE CONTENT -->
         <div class="row">
-         <div class="col-md-2 side-bar">
+         <div class="col-md-2 side-bar" style="height:600px;overflow:auto;">
             <nav class="navbar navbar-expand-lg navbar-dark bg-dark down-nav">
             
              <ul class="navbar-nav flex-column justify-content-start  navbar-dark bg-dark">
@@ -122,7 +122,7 @@
          </div>
             
         <!-- MAIN CONTENT -->
-         <div class="col-md-10">
+         <div class="col-md-10" style="height:600px;overflow:auto;">
               <h2 class="heading"><img src="../img/<?php echo $_SESSION['user_image']; ?>" class=" d-sm-none user_image" height="70" width="70"><b> <?php echo $_SESSION['firstname']." ".$_SESSION['lastname'] ; ?></b></h2>
              <hr><br>   
             

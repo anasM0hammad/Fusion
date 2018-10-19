@@ -195,32 +195,32 @@
         <!-- SUBSCRIBER REGISTRATION FORM -->
         <div class="card bg-light fadeIn animated" id="subs_form">
           <div class="card-body">
-           <form method="post" action="" enctype="multipart/form-data">
+           <form method="post" action="" enctype="multipart/form-data" onsubmit="return isEmpty()">
               
                 <div class="form-group ">
                     <label for="firstname"><b>First Name</b></label>
-                  <input type="text" class="form-control" name="firstname">
+                  <input type="text" class="form-control" name="firstname" id="firstname">
                 </div>
                 <div class="form-group ">
                   <label><b>Last Name</b></label>
-                  <input type="text" class="form-control" name="lastname">
+                  <input type="text" class="form-control" name="lastname" id="lastname">
                 </div>
                
               <div class="form-row">
                 <div class="form-group col-md-6">
                     <label for="email"><b>Email</b></label>
-                  <input type="email" class="form-control" placeholder="NoOne@example.com" name="email">
+                  <input type="email" class="form-control" placeholder="NoOne@example.com" name="email" id="email">
                 </div>
                 <div class="form-group col-md-6">
                   <label><b>Password</b></label>
-                  <input type="password" class="form-control" name="password">
+                  <input type="password" class="form-control" name="password" id="password">
                 </div>
               </div>
                
                 <div class="form-row">
                 <div class="form-group col-md-6">
                     <label for="username"><b>Username</b></label>
-                  <input type="text" class="form-control" name="username">
+                  <input type="text" class="form-control" name="username" id="username">
                 </div>
                  <div class="form-group col-md-6">
                     <label for="image"><b>Profile Image</b></label>
@@ -239,49 +239,49 @@
           <!-- ADMIN REQUEST FORM -->
           <div class="card bg-light fadeIn animated" id="admin_form" style="display:none;">
           <div class="card-body">
-           <form method="post" action="" enctype="multipart/form-data">
+           <form method="post" action="" enctype="multipart/form-data" onsubmit = "return isEmpty_req()">
     
                
               <div class="form-row">
                 <div class="form-group col-md-6">
                     <label for="email"><b>Registered Email</b></label>
-                  <input type="email" class="form-control" placeholder="NoOne@example.com" name="admin_email">
+                  <input type="email" class="form-control" placeholder="NoOne@example.com" name="admin_email" id="l_email">
                 </div>
                 <div class="form-group col-md-6">
                   <label><b>Password</b></label>
-                  <input type="password" class="form-control" name="admin_password">
+                  <input type="password" class="form-control" name="admin_password" id="l_password">
                 </div>
               </div>
                
                 <div class="form-row">
                 <div class="form-group col-md-6">
                     <label for="username"><b>Registered Username</b></label>
-                  <input type="text" class="form-control" name="admin_username">
+                  <input type="text" class="form-control" name="admin_username" id="l_username">
                 </div>
                  <div class="form-group col-md-6">
                     <label for="username"><b>Mobile Number</b></label>
-                  <input type="tel" class="form-control" name="admin_username">
+                  <input type="tel" class="form-control" name="number" id="number" >
                 </div>
                     
                </div>
                 <div class="form-row">
                 <div class="form-group col-md-6">
                   <label><b>City</b></label>
-                  <input type="text" class="form-control" name=city>
+                  <input type="text" class="form-control" name="city" id="city">
                 </div>
                 <div class="form-group col-md-4">
                   <label><b>State</b></label>
-                    <input type="text" class="form-control" name="state">
+                    <input type="text" class="form-control" name="state" id="state">
                 </div>
                 <div class="form-group col-md-2">
                   <label ><b>Country</b></label>
-                  <input type="text" class="form-control" name="country" >
+                  <input type="text" class="form-control" name="country" id="country">
                 </div>
               </div>
                
                 <div class="form-group">
                 <label ><b>Why do you want to be an Admin ?</b></label>
-                <textarea class="form-control" name="reason" rows="3"></textarea>
+                <textarea class="form-control" name="reason" rows="3" id="reason"></textarea>
               </div>
                
                <br> 
@@ -301,6 +301,16 @@
       
       <!-- EXTERNAL JS FILE -->
       <script src="js/registration.js" type="text/javascript"></script>
+      <script>
+      
+        
+
+
+
+      
+      
+      
+      </script>
       
       <!-- FOOTER GOES HERE -->
       <?php include "includes/footer.php" ?>
