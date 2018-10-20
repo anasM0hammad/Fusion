@@ -220,7 +220,7 @@
                 <div class="form-row">
                 <div class="form-group col-md-6">
                     <label for="username"><b>Username</b></label>
-                  <input type="text" class="form-control" name="username" id="username">
+                  <input type="text" class="form-control" name="username" id="username" onkeyup="checkUser()">
                 </div>
                  <div class="form-group col-md-6">
                     <label for="image"><b>Profile Image</b></label>
@@ -299,18 +299,38 @@
 
                 <br><br><br><br>
       
-      <!-- EXTERNAL JS FILE -->
-      <script src="js/registration.js" type="text/javascript"></script>
       <script>
       
+          var username = document.querySelector("#username");
+          
+         const fetchUser = async (user)=>{
+            
+            const call = await fetch(`async/reg_user.php?isUnique=${user}`) ;
+            const data = await call.json();
+            
+            return {data: data};
+            
+         }
         
+        
+        const checkUser = ()=>{
+            
+            fetchUser(username.value).then((result)=>{
+                
+                console.log(result);
+                
+                
+            }).catch(error=>error)
+            
+            
+        }
 
-
-
-      
-      
       
       </script>
+      
+      
+      <!-- EXTERNAL JS FILE -->
+      <script src="js/registration.js" type="text/javascript"></script>
       
       <!-- FOOTER GOES HERE -->
       <?php include "includes/footer.php" ?>

@@ -50,7 +50,7 @@ admin_option.onclick = function(){
         const lastname = document.querySelector("#lastname") ;
         const email = document.querySelector("#email") ;
         const password = document.querySelector("#password") ;
-        const username = document.querySelector("#username") ;
+//        const username = document.querySelector("#username") ;
 
         var isEmpty = function(){
 
@@ -214,6 +214,11 @@ admin_option.onclick = function(){
             }
 
         }
+        
+        
+        //AJAX UNIQUE USERNAME VALIDATION
+        
+       
 
 
 

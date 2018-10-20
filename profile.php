@@ -16,6 +16,17 @@
             text-align: center;
         }
         
+        .background{
+            border-right: solid #CCC4B4 1px;
+        }
+        
+        .mybtn{
+            border-top-left-radius: 30px;
+            border-top-right-radius: 30px;
+            border-bottom-left-radius: 30px;
+            border-bottom-right-radius: 30px;
+            width: 60%;
+        }
         
     </style>  
       
@@ -38,6 +49,7 @@
               $lastname = $row['user_lastname'];
               $image = $row['user_image'];
               $role = $row['user_role'];
+              $email = $row['user_email'];
           }
           
       }
@@ -61,10 +73,11 @@
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     
     <!-- PROFILE BAR -->  
-    <?php if(isset($_SESSION['username'])){ ?>  
+    <?php //if(isset($_SESSION['username'])){ ?>  
+<!--
     <ul  class="navbar-nav container justify-content-end" >
      <li class="nav-item dropdown active">
-        <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"><i class="far fa-user"></i> <?php echo $firstname . " " . $lastname . " "; ?></a>
+        <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"><i class="far fa-user"></i> <?php// echo $firstname . " " . $lastname . " "; ?></a>
         <div class="dropdown-menu drop-link">
           <a class="dropdown-item" href="#"><i class="far fa-user"></i> Profile</a>
           <a class="dropdown-item" href="#"><i class="fas fa-cog"></i> Settings</a>
@@ -73,7 +86,8 @@
         </div>
       </li> 
      </ul>  
-      <?php } ?>
+-->
+      <?php// } ?>
       
     <ul class="navbar-nav container justify-content-end list">
       <li class="nav-item">
@@ -106,6 +120,8 @@
   </div>
 </nav>
       
+       <!-- NAVBAR ENDS HERE -->
+      
       
       <?php 
        // CALCULATING NUMBER OF POSTS
@@ -120,7 +136,7 @@
       
       
       
-      <!-- NAVBAR ENDS HERE -->
+     
      
       
       <!--PAGE CONTENT STARTS -->
@@ -129,7 +145,10 @@
        <div class="col-sm-3 background">
           <img src="img/<?php echo $image; ?>" class=" mx-auto d-block" height="110" width="110" style="border-radius:50%;"><br>
            <h3 class="text"><?php echo $firstname . " " . $lastname ; ?></h3>
-           <h5 class="text-muted text"><?php echo $role; ?></h5>
+           <h5 class="text-muted text"><?php echo $username; ?></h5><br><br>
+           <h5 class="text-muted text"><i class="fas fa-briefcase"></i> <?php echo " ".$role; ?></h5>
+            <h5 class="text-muted text"><i class="fas fa-envelope"></i> <?php echo " ".$email; ?></h5><br><br><br>
+           <button type="button" class="btn btn-success btn-md mx-auto d-block mybtn"><i class="fab fa-github"></i> <b>Connect</b></button>
        </div>
           
           
