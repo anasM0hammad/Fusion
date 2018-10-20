@@ -3,20 +3,18 @@ include "../includes/connection.php";
 
 if(isset($_GET['isUnique'])){
     
-  //  $flag = "false" ;
+    $flag = "true" ;
     
     $username = $_GET['isUnique'];
     
-    // $query = "SELECT * FROM users WHERE username = '{$username}' ";
-    // $result = mysqli_query($connect, $query) ;
+     $query = "SELECT * FROM users WHERE username = '{$username}' ";
+     $result = mysqli_query($connect, $query) ;
     
-  // $flag = mysqli_num_rows($result);
+    while($row = mysqli_fetch_assoc($result)){
+    	$flag = "false";
+    }
 
-   // if($flag){
-   // 	$flag="true";
-   //  }
-
-    echo json_encode($_GET['isUnique']) ;
+    echo json_encode($flag) ;
     
     
 }

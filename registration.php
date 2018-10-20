@@ -220,7 +220,8 @@
                 <div class="form-row">
                 <div class="form-group col-md-6">
                     <label for="username"><b>Username</b></label>
-                  <input type="text" class="form-control" name="username" id="username" onkeyup="checkUser()">
+                  <input type="text" class="form-control" name="username" id="username" onkeyup="checkUser()" autocomplete="off">
+                  <p id="user_alert"></p>
                 </div>
                  <div class="form-group col-md-6">
                     <label for="image"><b>Profile Image</b></label>
@@ -302,6 +303,7 @@
       <script>
       
           var username = document.querySelector("#username");
+          var user_alert = document.querySelector("#user_alert");
           
          const fetchUser = async (user)=>{
             
@@ -316,9 +318,17 @@
         const checkUser = ()=>{
             
             fetchUser(username.value).then((result)=>{
-                
-                console.log(result);
-                
+
+              if(result.data=="false"){
+                username.style.borderColor = "#DC3545";
+                user_alert.textContent = "Username Already Taken";
+                user_alert.style.color = "#DC3545";
+              }
+              else{
+                 username.style.borderColor = "#green";
+                user_alert.textContent = "Username Available";
+                user_alert.style.color = "green";
+              }
                 
             }).catch(error=>error)
             
