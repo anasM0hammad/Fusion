@@ -75,6 +75,7 @@
                  }
                  
                 else{
+                     
                      header("Location: all_comments.php?delete=success");
                  }
              }        
