@@ -297,9 +297,49 @@
 
 
 
-
          <!-- ADD POST DIV -->
          <div class="container" style="margin-top: 40px;">
+
+         <!-- QUERY TO INSERT THE POST -->
+          <?php 
+              if(isset($_POST['publish'])){
+                  
+                  $post_title = $_POST['title'];
+                  $post_tags = $_POST['tags'];
+                  $post_author = $firstname." ".$lastname ;
+                  $post_status = $_POST['status'] ;
+                  $post_cat = $_POST['post_category'];
+                  $post_content = $_POST['content'];
+                  $post_image = $_FILES['image']['name'];
+                  $post_image_tmp = $_FILES['image']['tmp_name'] ;
+                  $post_author_image = $image ;
+                  $post_date = date('d-m-y');
+                  $post_comment_count = 0 ;
+                  
+                  move_uploaded_file($post_image_tmp , "../img/$post_image") ;
+                 
+                  
+                  if(empty($post_title)  || empty($post_content) || empty($post_cat)){
+                  echo "<div class='alert alert-danger' style='margin-bootom:20px; border-radius:0;' role='alert'><b>Enter Required Fields..!</b></div>";
+                                 
+                  }
+                  
+                  else{
+                  
+                  $publish_query = "INSERT INTO posts(post_category_id, post_title, post_author, post_date, post_image, post_comment_count, post_content,     post_tags, post_status, post_author_image) VALUES ({$post_cat}, '{$post_title}', '{$post_author}', now(), '{$post_image}', {$post_comment_count}, '{$post_content}', '{$post_tags}', '{$post_status}', '{$post_author_image}') ";
+                  
+                  $publish_result = mysqli_query($connect, $publish_query) ;
+                  
+                  echo "<div class='alert alert-success' style='margin-bootom:20px; border-radius:0;' role='alert'><b>Post Published</b></div>";
+                      
+                  }
+              }
+             
+             ?>
+
+
+
+
          <div class="card" >
           <div class="card-body">
          <h2 class="heading"><b><i class="fas fa-database"></i> Enter Post Details</b></h2><hr><br> 
@@ -316,6 +356,19 @@
             <div class="form-group col-md-6">
                 <label for="category"><b>Category</b></label>
                 <select class="form-control" name="post_category">
+                  <?php
+                  // QUERY TO SHOW ALL AVAILABLE CATEGORY
+                    
+                 $cat_query = "SELECT * FROM category";
+                 $cat_result = mysqli_query($connect, $cat_query);
+                    
+                 while($row = mysqli_fetch_assoc($cat_result)){
+                     $cat_id = $row['cat_id'];
+                     $cat_title = $row['cat_title'];
+                     
+                     echo " <option value='{$cat_id}'>{$cat_title}</option>" ;
+                 }    
+                  ?>
                 </select>
             </div> 
               
