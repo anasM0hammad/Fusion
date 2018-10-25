@@ -30,12 +30,22 @@
         }
 
         .set_bar{
-           border-top-left-radius: 40px;
+            border-top-left-radius: 40px;
             border-top-right-radius: 40px;
             border-bottom-left-radius: 40px;
             border-bottom-right-radius: 40px;
             width: 50%;
             background-color: #55B8D2;
+        }
+
+        .post_box{
+            margin-bottom: 20px;
+            line-height: 10px;
+        }
+
+        .post_box span {
+          float: right;
+          color: blue;
         }
         
     </style>  
@@ -177,24 +187,8 @@
          
         <!-- SETTING BAR ENDS -->
 
+             <div class="row text-muted container">
 
-
-         <!-- USERS ALL POST --> 
-         <!-- TABLE -->
-             <table class="table table-striped table-hover table-bordered" style="margin-top:50px;">
-              <thead>
-                 <tr>
-                   <th>Title</th>
-                   <th>Category</th>
-                   <th>Status</th> 
-                   <th>Image</th>
-                   <th>Tags</th>
-                   <th>Comments</th>     
-                   <th>Date</th>
-                   <th>Edit</th>     
-                 </tr>
-              </thead>
-              <tbody>
                   <?php
                  
                   // SHOW ALL POST OF USER
@@ -214,14 +208,11 @@
                        $post_tags = $row['post_tags'];
                        $post_comment_count = $row['post_comment_count'];
                        
-//                       // QUERY TO SHOW NUMBER OF COMMENTS
-//                       $count_query = "SELECT * FROM comments WHERE comment_post_id=$post_id";
-//                       $count_result = mysqli_query($connect, $count_query);
-//                       $count = mysqli_num_rows($count_result);
+                      //  QUERY TO SHOW NUMBER OF COMMENTS
+                         $count_query = "SELECT * FROM comments WHERE comment_post_id=$post_id";
+                         $count_result = mysqli_query($connect, $count_query);
+                         $count = mysqli_num_rows($count_result);
                        
-                       
-                        echo "<tr>" ;
-                        echo "<td><a href='../post.php?p_id=$post_id'>$post_title</a></td>" ;
                        
                         //GETTING CAT_TITLE USING CAT_ID
                        
@@ -230,25 +221,73 @@
                         while($row = mysqli_fetch_assoc($cat_result)){
                             $cat_title = $row['cat_title'];
 
-                        echo "<td>$cat_title</td>" ;
-                        }
-                        echo "<td>$post_status</td>" ;
-                        echo "<td><img src='img/$post_image' height ='50' width='100'></td>" ; 
-                        echo "<td>$post_tags</td>" ;
-                        echo "<td>$post_comment_count</td>"   ; 
-                        echo "<td>$post_date</td>"   ;  
-                        echo "<td><a href='profile.php?delete={$post_id}'><i class='far fa-times-circle'></i></a> <a class='float-right' href='update_post.php?update={$post_id}'><i class='fas fa-pen'></i></a></td>"   ;  
-                        echo"</tr>";
-                       
-                      
-                   }
+                       }
                   
                   
                   ?>
-                
-             </tbody>     
-             </table>  
-       
+
+    
+            
+           
+
+            <div class="col-sm-6"> 
+             <div class="card post_box">
+               <div class="card-header" style="text-align: center;"><b><?php echo $post_title ; ?></b></div>
+              <div class="card-body">
+                <img src="img/<?php echo $post_image; ?>" class="img-fluid mx-auto d-block" style="height: 120px; width: 100%;"><br><br>
+
+                <p><b>Category  : <span><?php echo $cat_title; ?></span></b></p>
+                <p><b>Status    : <span><?php echo $post_status; ?></span> </b></p>
+                <p><b>Comments  : <span><?php echo $count ; ?></span></b></p>
+                <p><b>Date      : <span><?php echo $post_date ; ?></span></b></p>
+                <p><b>Tags      : <span><?php echo $post_tags ?></span></b></p>
+
+               
+              </div>
+            </div>
+          </div>
+
+
+          <!-- QUERY TO FETCH ANOTHER POST DETAILS IN SINGLE LOOP-->
+
+
+         <?php $row = mysqli_fetch_assoc($show_result); ?>
+         <?php   if($row){
+
+                 $post_id = $row['post_id'];
+                 $post_cat_id = $row['post_category_id'];
+                 $post_title = $row['post_title'];
+                 $post_date = $row['post_date'];
+                 $post_image = $row['post_image'];
+                 $post_status = $row['post_status'];
+                 $post_tags = $row['post_tags'];
+                 $post_comment_count = $row['post_comment_count']; 
+
+             ?>
+          
+
+
+           <div class="col-sm-6"> 
+             <div class="card post_box">
+               <div class="card-header" style="text-align: center;"><b><?php echo $post_title ; ?></b></div>
+              <div class="card-body">
+                <img src="img/<?php echo $post_image; ?>" class="img-fluid mx-auto d-block" style="height: 120px; width: 100%;"><br><br>
+
+                <p><b>Category  : <span><?php echo $cat_title; ?></span></b></p>
+                <p><b>Status    : <span><?php echo $post_status; ?></span> </b></p>
+                <p><b>Comments  : <span><?php echo $count ; ?></span></b></p>
+                <p><b>Date      : <span><?php echo $post_date ; ?></span></b></p>
+                <p><b>Tags      : <span><?php echo $post_tags ?></span></b></p>
+
+               
+              </div>
+            </div>
+          </div>
+
+   <?php   } // IF CONDITION ENDS
+          } ?>
+
+           </div> <!-- POST BOX ROW -->
          
      </div>      
       </div> <!-- MAIN ROW ENDS -->
