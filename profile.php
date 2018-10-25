@@ -47,6 +47,10 @@
           float: right;
           color: blue;
         }
+
+        .heading{
+          text-align: center;
+        }
         
     </style>  
       
@@ -172,13 +176,13 @@
         <div class="collapse navbar-collapse" id="navbarSupportedContent"> -->
           <ul class="navbar-nav container justify-content-center">
             <li class="nav-item active">
-              <a class="nav-link" href="#"><b><i class="fas fa-paste"></i> Posts</b></a>
+              <a class="nav-link" href="#" id="all_post_link"><b><i class="fas fa-paste"></i> Posts</b></a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#"><b><i class="far fa-plus-square"></i> Add Post</b></a>
+              <a class="nav-link" href="#" id="add_post_link"><b><i class="far fa-plus-square"></i> Add Post</b></a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#"><b><i class="fas fa-cog"></i> Settings</b></a>
+              <a class="nav-link" href="#" id="settings_link"><b><i class="fas fa-cog"></i> Settings</b></a>
             </li>
           </ul>
        <!--  </div> -->
@@ -187,7 +191,7 @@
          
         <!-- SETTING BAR ENDS -->
 
-             <div class="row text-muted container">
+             <div class="row text-muted container" id="all_post" style="display: none;">
 
                   <?php
                  
@@ -232,7 +236,7 @@
 
             <div class="col-sm-6"> 
              <div class="card post_box">
-               <div class="card-header" style="text-align: center;"><b><?php echo $post_title ; ?></b></div>
+               <div class="card-header" style="text-align: center;"><b><a href="post.php?p_id=<?php echo $post_id ;?>"><?php echo $post_title ; ?></a></b></div>
               <div class="card-body">
                 <img src="img/<?php echo $post_image; ?>" class="img-fluid mx-auto d-block" style="height: 120px; width: 100%;"><br><br>
 
@@ -269,7 +273,7 @@
 
            <div class="col-sm-6"> 
              <div class="card post_box">
-               <div class="card-header" style="text-align: center;"><b><?php echo $post_title ; ?></b></div>
+               <div class="card-header" style="text-align: center;"><b><a href="post.php?p_id=<?php echo $post_id ;?>"><?php echo $post_title ; ?></a></b></div>
               <div class="card-body">
                 <img src="img/<?php echo $post_image; ?>" class="img-fluid mx-auto d-block" style="height: 120px; width: 100%;"><br><br>
 
@@ -287,9 +291,71 @@
    <?php   } // IF CONDITION ENDS
           } ?>
 
-           </div> <!-- POST BOX ROW -->
+           </div> <!-- POST BOX ROW ENDS -->
+
+
+
+
+
+
+         <!-- ADD POST DIV -->
+         <div class="container" style="margin-top: 40px;">
+         <div class="card" >
+          <div class="card-body">
+         <h2 class="heading"><b><i class="fas fa-database"></i> Enter Post Details</b></h2><hr><br> 
+            
+        <form class="container" action="" method="post" enctype="multipart/form-data">
          
-     </div>      
+            <div class="form-group">
+             <label for="title"><b>Title</b></label>
+             <input type="text" class="form-control" placeholder="Title" name="title">
+            </div>
+                 
+          <div class="form-row">
+              
+            <div class="form-group col-md-6">
+                <label for="category"><b>Category</b></label>
+                <select class="form-control" name="post_category">
+                </select>
+            </div> 
+              
+             <div class="form-group col-md-6">
+                <label for="category"><b>Status</b></label>
+                <select class="form-control" name="status">
+                 <option selected>Draft</option>
+                 <option>Published</option>   
+                </select>
+            </div>   
+
+          </div>
+              
+             <div class="form-group ">
+                <label for="category"><b>Tags</b></label>
+              <input type="text" class="form-control" name="tags">
+            </div>
+                 
+            <div class="form-group col-md-6">
+              <div class="form-group">
+               <label for="image"><b>Image</b></label>
+               <input type="file" class="form-control-file" name="image" >
+              </div>
+            </div>
+            <br>
+          <div class="form-group">
+            <label for="content"><b>Content</b></label>
+            <textarea class="form-control"  rows="4" name="content"></textarea>
+          </div>         
+          <button type="publish" class="btn btn-primary d-block mx-auto btn-block" style="border-radius:0;" name="publish">Publish</button>
+        </form>
+
+
+          </div>
+        </div>
+       </div>
+
+
+         
+     </div>  <!-- MAIN CONTENT ENDS -->  
       </div> <!-- MAIN ROW ENDS -->
       
       
@@ -300,6 +366,12 @@
       
       <!-- FOOTER GOES HERE -->
       <?php include "includes/footer.php" ?>
+
+        <!-- CKEDITOR -->
+   <script src="https://cdn.ckeditor.com/4.10.1/standard/ckeditor.js"></script>
+        
+        <script>CKEDITOR.replace( 'content' ); </script>
+      
       
       
       
