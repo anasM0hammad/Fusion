@@ -52,6 +52,11 @@
           text-align: center;
         }
         
+        .set_bar a{
+          cursor: pointer;
+        }
+
+
     </style>  
       
     <title>Fusion</title>
@@ -74,6 +79,7 @@
               $image = $row['user_image'];
               $role = $row['user_role'];
               $email = $row['user_email'];
+              $password = $row['user_password'];
           }
           
       }
@@ -96,22 +102,6 @@
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
     
-    <!-- PROFILE BAR -->  
-    <?php //if(isset($_SESSION['username'])){ ?>  
-<!--
-    <ul  class="navbar-nav container justify-content-end" >
-     <li class="nav-item dropdown active">
-        <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"><i class="far fa-user"></i> <?php// echo $firstname . " " . $lastname . " "; ?></a>
-        <div class="dropdown-menu drop-link">
-          <a class="dropdown-item" href="#"><i class="far fa-user"></i> Profile</a>
-          <a class="dropdown-item" href="#"><i class="fas fa-cog"></i> Settings</a>
-          <div class="dropdown-divider"></div>
-          <a class="dropdown-item" href="includes/logout.php"><i class="fas fa-power-off"></i> Log Out</a>
-        </div>
-      </li> 
-     </ul>  
--->
-      <?php// } ?>
       
     <ul class="navbar-nav container justify-content-end list">
       <li class="nav-item">
@@ -157,7 +147,7 @@
            <h5 class="text-muted text"><?php echo $username; ?></h5><br><br>
            <h5 class="text-muted text"><i class="fas fa-briefcase"></i> <?php echo " ".$role; ?></h5>
            <h5 class="text-muted text"><i class="fas fa-envelope"></i> <?php echo " ".$email; ?></h5><br>
-           <p class="text-muted text"><a href=""><i class="fas fa-cog"></i> <b>Edit Profile</b></a></p>
+           <p class="text-muted text"><a href="#"><i class="fas fa-cog"></i> <b>Edit Profile</b></a></p>
             <br><br>
            <button type="button" class="btn btn-success btn-md mx-auto d-block mybtn"><i class="fab fa-github"></i> <b>Connect</b></button><br>
        </div>
@@ -169,29 +159,33 @@
         <!-- SETTING BAR -->
 
         <nav class="navbar navbar-expand-lg navbar-dark bg-secondary mx-auto d-block set_bar" >
-       <!--  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-          <span class="navbar-toggler-icon"></span>
-        </button>
-
-        <div class="collapse navbar-collapse" id="navbarSupportedContent"> -->
+      
           <ul class="navbar-nav container justify-content-center">
             <li class="nav-item active">
-              <a class="nav-link" href="#" id="all_post_link"><b><i class="fas fa-paste"></i> Posts</b></a>
+              <a class="nav-link"  id="all_post_link"><b><i class="fas fa-paste"></i> Posts</b></a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#" id="add_post_link"><b><i class="far fa-plus-square"></i> Add Post</b></a>
+              <a class="nav-link"  id="add_post_link"><b><i class="far fa-plus-square"></i> Add Post</b></a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="#" id="settings_link"><b><i class="fas fa-cog"></i> Settings</b></a>
+              <a class="nav-link"  id="settings_link"><b><i class="fas fa-cog"></i> Settings</b></a>
             </li>
           </ul>
-       <!--  </div> -->
       </nav>
 
          
         <!-- SETTING BAR ENDS -->
 
-             <div class="row text-muted container" id="all_post" style="display: none;">
+
+       
+
+
+
+
+
+        <!-- ALL POST STARTS HERE -->
+
+             <div class="row text-muted container" id="all_post">
 
                   <?php
                  
@@ -234,7 +228,7 @@
             
            
 
-            <div class="col-sm-6"> 
+            <div class="col-sm-6 "> 
              <div class="card post_box">
                <div class="card-header" style="text-align: center;"><b><a href="post.php?p_id=<?php echo $post_id ;?>"><?php echo $post_title ; ?></a></b></div>
               <div class="card-body">
@@ -271,7 +265,7 @@
           
 
 
-           <div class="col-sm-6"> 
+           <div class="col-sm-6 "> 
              <div class="card post_box">
                <div class="card-header" style="text-align: center;"><b><a href="post.php?p_id=<?php echo $post_id ;?>"><?php echo $post_title ; ?></a></b></div>
               <div class="card-body">
@@ -297,8 +291,15 @@
 
 
 
+
+
+
+
+
+
+
          <!-- ADD POST DIV -->
-         <div class="container" style="margin-top: 40px;">
+         <div class="container" style="margin-top: 40px; display: none;" id="add_post">
 
          <!-- QUERY TO INSERT THE POST -->
           <?php 
@@ -407,6 +408,128 @@
        </div>
 
 
+
+
+       <!-- USER UPDATE SETTINGS  -->
+       <div class="container" style="margin-top: 40px; display: none;" id="settings">
+           
+             
+             <?php 
+             
+                 
+                 // UPDATING THE USER
+                 
+                 if(isset($_POST['upd_user'])){
+                     
+                     $upd_firstname = $_POST['firstname'] ;
+                     $upd_lastname = $_POST['lastname'] ;
+                     $upd_email = $_POST['email'] ;
+                     $upd_password = $_POST['password'] ;
+                     $upd_username = $_POST['username'] ;
+                     $upd_image = $_FILES['image']['name'] ;
+                     $upd_tmp_image = $_FILES['image']['tmp_name'];
+                
+                     move_uploaded_file($upd_tmp_image, "../img/$upd_image");
+                     
+                     
+                     // TO FILL THE IMAGE IF NOT UPDATED
+                     if(empty($upd_image)){
+                         $img_query = "SELECT * FROM users WHERE user_id = $user_id";
+                         $img_result = mysqli_query($connect, $img_query) ;
+                         
+                         while($row = mysqli_fetch_assoc($img_result)){
+                             $upd_image = $image;
+                         }
+                     }
+                     
+                     
+                 //CONDITION FOR VALIDATION OF FIELDS
+                 if(empty($upd_firstname) || empty($upd_lastname) || empty($upd_email) || empty($upd_password) || empty($upd_username)){
+                         
+                     echo "<div class='alert alert-danger' style='margin-bootom:20px; border-radius:0;' role='alert'><b>Enter The Required Fields</b></div>";
+                 }
+                     
+                else{     
+                     
+                     $upd_query = "UPDATE users SET username = '{$upd_username}', user_password = '{$upd_password}', user_email = '{$upd_email}', user_firstname = '{$upd_firstname}', user_lastname = '{$upd_lastname}', user_image = '{$upd_image}' WHERE user_id = $user_id" ;
+                     
+                     $upd_result = mysqli_query($connect , $upd_query);
+                     
+                     if(!$upd_result){
+                         die("QUERY FAILED..!!  ".mysqli_error($connect));
+                     }
+                     
+                     
+                     
+                     else{
+                        header("Location: profile.php");
+                       // echo "<div class='alert alert-success' style='margin-bootom:20px; border-radius:0;' role='alert'><b>User Updated Succesfully</b></div>";
+                     }
+                     
+                 }
+             }
+             
+             
+             ?>
+             
+             
+         <div class="card" >
+          <div class="card-body">
+            <h2 class="heading"><b><i class="fas fa-pen"></i> Update User Details</b></h2><hr><br> 
+             <!-- FORM -->
+             
+        <form class="container" action="" method="post" enctype="multipart/form-data">
+          <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="firstname"><b>First Name</b></label>
+              <input type="text" class="form-control" value="<?php echo $firstname; ?>" name="firstname">
+            </div>
+            <div class="form-group col-md-6">
+                <label for="lastname"><b>Last Name</b></label>
+              <input type="text" class="form-control" value="<?php echo $lastname ;?>" name="lastname">
+            </div>
+          </div>
+                 
+          <div class="form-row">
+              
+            <div class="form-group col-md-6">
+                <label for="username"><b>Username</b></label>
+              <input type="text" class="form-control" value="<?php echo $username; ?>" name="username">
+            </div>
+              
+            <div class="form-group col-md-6">
+            <label for="image"><b>Image</b></label>
+            <img src="img/<?php echo $image; ?>" height="40" width="50" style="margin-left: 40px; border-radius:50%;">        
+            <input type="file" class="form-control-file" name="image" >
+          </div> 
+              
+          </div> 
+                 
+          <div class="form-row">
+             <div class="form-group col-md-6">
+              <label for="Email"><b>Email</b></label>
+              <input type="email" class="form-control" value="<?php echo $email; ?>" name="email">
+            </div>
+              
+            <div class="form-group col-md-6">
+              <label for="password"><b>Password</b></label>
+              <input type="password" class="form-control" value="<?php echo $password; ?>" name="password">
+            </div>
+              
+          </div>
+             
+         <br>
+             
+          <button type="submit" class="btn btn-primary d-block mx-auto btn-block" style="border-radius:0;" name="upd_user">Update User</button>
+        </form>
+      </div>
+    </div>
+             
+         
+
+       </div>
+
+
          
      </div>  <!-- MAIN CONTENT ENDS -->  
       </div> <!-- MAIN ROW ENDS -->
@@ -423,7 +546,9 @@
         <!-- CKEDITOR -->
    <script src="https://cdn.ckeditor.com/4.10.1/standard/ckeditor.js"></script>
         
-        <script>CKEDITOR.replace( 'content' ); </script>
+   <script>CKEDITOR.replace( 'content' ); </script>
+
+   <script type="text/javascript" src="js/profile.js"></script>
       
       
       
