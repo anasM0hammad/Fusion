@@ -176,10 +176,27 @@
          
         <!-- SETTING BAR ENDS -->
 
-
        
+       <?php 
+
+          if(isset($_GET['delete'])){
+             $dlt_id = $_GET['delete'];
+
+             $dlt_query = "DELETE FROM posts WHERE post_id = $dlt_id ";
+             $dlt_result = mysqli_query($connect, $dlt_query);
+
+             if(!$dlt_result){
+              die("QUERY FAILED");
+             }
+             else{
+                  echo "<div class='alert alert-success container' style='margin-top:20px; border-radius:0;' role='alert'><b>Post Deleted Successfully</b></div>";              
+             }
+
+          }
 
 
+       ?>
+       
 
 
 
@@ -230,7 +247,9 @@
 
             <div class="col-sm-6 "> 
              <div class="card post_box">
-               <div class="card-header" style="text-align: center;"><b><a href="post.php?p_id=<?php echo $post_id ;?>"><?php echo $post_title ; ?></a></b></div>
+               <div class="card-header" style="text-align: center;"><b><a href="post.php?p_id=<?php echo $post_id ;?>"><?php echo $post_title ; ?></a>
+                <a href="profile.php?delete=<?php echo $post_id; ?>" class="float-right" style="margin-left: 10px;"><i class="far fa-times-circle"></i></a>
+                <a href="update_post_profile.php?p_id=<?php echo $post_id; ?>" class="float-right"><i class="fas fa-pen"></i></a></b></div>
               <div class="card-body">
                 <img src="img/<?php echo $post_image; ?>" class="img-fluid mx-auto d-block" style="height: 120px; width: 100%;"><br><br>
 
@@ -267,7 +286,9 @@
 
            <div class="col-sm-6 "> 
              <div class="card post_box">
-               <div class="card-header" style="text-align: center;"><b><a href="post.php?p_id=<?php echo $post_id ;?>"><?php echo $post_title ; ?></a></b></div>
+               <div class="card-header" style="text-align: center;"><b><a href="post.php?p_id=<?php echo $post_id ;?>"><?php echo $post_title ; ?></a>
+                <a href="profile.php?delete=<?php echo $post_id; ?>" class="float-right" style="margin-left: 10px;"><i class="far fa-times-circle"></i></a>
+                <a href="update_post_profile.php?p_id=<?php echo $post_id; ?>" class="float-right"><i class="fas fa-pen"></i></a></b></div>
               <div class="card-body">
                 <img src="img/<?php echo $post_image; ?>" class="img-fluid mx-auto d-block" style="height: 120px; width: 100%;"><br><br>
 
