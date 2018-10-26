@@ -169,6 +169,9 @@
             $query = "DELETE FROM users WHERE user_id = $user_id ";
             $result = mysqli_query($connect, $query);
 
+            $post_dlt_q = "DELETE FROM posts WHERE post_user_id = $user_id";
+            $post_result = mysqli_query($connect, $post_dlt_q);
+
             if(!$result){
               die("QUERY FAILED");
             }
@@ -407,7 +410,7 @@
                   $publish_result = mysqli_query($connect, $publish_query) ;
                   
                   echo "<div class='alert alert-success' style='margin-bootom:20px; border-radius:0;' role='alert'><b>Post Published</b></div>";
-                      
+                     header("Location: index.php"); 
                   }
               }
              
