@@ -191,6 +191,8 @@
       ?>
 
 
+  <!-- BACK TO PROFILE OPTION -->
+   <a href="profile.php"><p class="float-right" style="margin-top: 15px; margin-right: 20px;"><b><i class="fas fa-arrow-left"></i> BACK</b></p></a>
       
       
       <!--PAGE CONTENT STARTS -->
@@ -212,6 +214,93 @@
         <!-- MAIN CONTENT -->  
       <div class="col-sm-9">
 
+          
+        <!-- QUERY TO FETCH DATA -->
+        <?php 
+             if(isset($_GET['status'])){
+                 if($_GET['status']=='success'){
+                   echo "<div class='alert alert-success' style='margin-top:20px; border-radius:0;' role='alert'><b>Post Updated Succesfully</b></div>";
+                    
+                 }
+             }
+             
+             
+             
+             if(isset($_GET['p_id'])){
+                 
+                 $post_id = $_GET['p_id'] ;
+                 
+                 $upd_query = "SELECT * FROM posts WHERE post_id = {$post_id}" ;
+                 $upd_result = mysqli_query($connect, $upd_query);
+                 
+                 while($row = mysqli_fetch_assoc($upd_result)){
+                   $post_id = $row['post_id'];
+                   $post_cat_id = $row['post_category_id'];
+                   $post_title = $row['post_title'];
+                   $post_status = $row['post_status'];
+                   $post_tags = $row['post_tags'];   
+                   $post_content = $row['post_content'];   
+                   $post_image = $row['post_image'];    
+                 }
+                 
+                 //QUERY TO FETCH DATA FROM CATEGORY
+                 $cat_query = "SELECT * FROM category WHERE cat_id = $post_cat_id;";
+                 $cat_result = mysqli_query($connect, $cat_query);
+                 $row = mysqli_fetch_assoc($cat_result);
+                 $post_cat_title = $row['cat_title'];
+
+                 
+                 // UPDATING THE POST
+                 
+                 if(isset($_POST['upd_post'])){
+                     
+                     $post_upd_title = $_POST['title'] ;
+                     $post_upd_tags = $_POST['tags'] ;
+                     $post_upd_status = $_POST['status'] ;
+                     $post_upd_cat_id = $_POST['post_category'] ;
+                     $post_upd_content = $_POST['content'] ;
+                     $post_upd_image = $_FILES['image']['name'] ;
+                     $post_upd_tmp_image = $_FILES['image']['tmp_name'];
+                    
+                     
+                     move_uploaded_file($post_upd_tmp_image, "../img/$post_upd_image");
+                    
+                     
+                     // TO FILL THE IMAGE IF NOT UPDATED
+                     if(empty($post_upd_image)){
+                         // $img_query = "SELECT * FROM posts WHERE post_id = $post_id";
+                         // $img_result = mysqli_query($connect, $img_query) ;
+                         
+                         // while($row = mysqli_fetch_assoc($img_result)){
+                             $post_upd_image = $post_image;
+                        // }
+                     }
+                     
+                     
+                     $upd_query = "UPDATE posts SET post_title = '{$post_upd_title}', post_tags = '{$post_upd_tags}', post_status = '{$post_upd_status}', post_category_id = $post_upd_cat_id, post_content = '$post_upd_content', post_image = '{$post_upd_image}' WHERE post_id = $post_id" ;
+                     
+                     $upd_result = mysqli_query($connect , $upd_query);
+                     
+                     if(!$upd_result){
+                         die("QUERY FAILED..!!  ".mysqli_error($connect));
+                     }
+                     
+                     else{
+                         header("LOCATION: update_post_profile.php?update={$post_id}&status=success");
+                     }
+                     
+                 }
+             }
+             
+             else{
+                 header("Location: profile.php");
+             }
+             
+             
+             ?>
+
+     
+
         <div class="card" >
           <div class="card-body">
          <h2 class="heading"><b><i class="fas fa-pen"></i> Update Post Details</b></h2><hr><br> 
@@ -220,14 +309,15 @@
          
             <div class="form-group">
              <label for="title"><b>Title</b></label>
-             <input type="text" class="form-control" placeholder="Title" name="title">
+             <input type="text" class="form-control" placeholder="Title" name="title" value="<?php echo $post_title;?>">
             </div>
                  
           <div class="form-row">
               
             <div class="form-group col-md-6">
                 <label for="category"><b>Category</b></label>
-                <select class="form-control" name="post_category">
+                <select class="form-control" name="post_category" >
+                 <option value="<?php echo $post_cat_id; ?>"><?php echo $post_cat_title;?></option> 
                   <?php
                   // QUERY TO SHOW ALL AVAILABLE CATEGORY
                     
@@ -246,8 +336,9 @@
               
              <div class="form-group col-md-6">
                 <label for="category"><b>Status</b></label>
-                <select class="form-control" name="status">
-                 <option selected>Draft</option>
+                <select class="form-control" name="status" value="<?php echo $post_status;?>">
+                <option selected><?php echo $post_status;?></option>
+                 <option>Draft</option>
                  <option>Published</option>   
                 </select>
             </div>   
@@ -256,21 +347,22 @@
               
              <div class="form-group ">
                 <label for="category"><b>Tags</b></label>
-              <input type="text" class="form-control" name="tags">
+              <input type="text" class="form-control" name="tags" value="<?php echo $post_tags;?>">
             </div>
                  
             <div class="form-group col-md-6">
               <div class="form-group">
                <label for="image"><b>Image</b></label>
+                <img src="img/<?php echo $post_image ; ?>" width="80" height="40" style=" margin-left:20px; margin-bottom:10px;">
                <input type="file" class="form-control-file" name="image" >
               </div>
             </div>
             <br>
           <div class="form-group">
             <label for="content"><b>Content</b></label>
-            <textarea class="form-control"  rows="4" name="content"></textarea>
+            <textarea class="form-control"  rows="4" name="content" ><?php echo $post_content; ?></textarea>
           </div>         
-          <button type="publish" class="btn btn-primary d-block mx-auto btn-block" style="border-radius:0;" name="publish">Publish</button>
+          <button type="publish" class="btn btn-primary d-block mx-auto btn-block" style="border-radius:0;" name="upd_post">Update</button>
         </form>
 
 
