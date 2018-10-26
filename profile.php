@@ -164,7 +164,7 @@
           // CATCHING THE CONFIRM DELETE REQUEST
          if(isset($_GET['confirm'])){
 
-          if($_GET['confirm']){
+          if($_GET['confirm']==true){
 
             $query = "DELETE FROM users WHERE user_id = $user_id ";
             $result = mysqli_query($connect, $query);
