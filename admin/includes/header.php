@@ -15,6 +15,16 @@ if(!isset($_SESSION['role'])){
 }
 
 
+$query = "SELECT * FROM users WHERE username = '{$_SESSION['username']}' ";
+$result = mysqli_query($connect, $query);
+
+while($row = mysqli_fetch_assoc($result)){
+  $session_fistname = $row['user_firstname'];
+  $session_lastname = $row['user_lastname'];
+  $session_id = $row['user_id'];
+}
+
+
 ?>
 
 <!doctype html>

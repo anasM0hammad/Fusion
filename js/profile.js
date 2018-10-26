@@ -49,4 +49,8 @@ settings_link.style.color = "white" ;
 }
 
 
+//DELETE ACCOUNT CONFIRMATION
+
+
+
 

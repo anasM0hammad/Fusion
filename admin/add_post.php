@@ -80,7 +80,7 @@
                   
                   else{
                   
-                  $publish_query = "INSERT INTO posts(post_category_id, post_title, post_author, post_date, post_image, post_comment_count, post_content,     post_tags, post_status, post_author_image) VALUES ({$post_cat}, '{$post_title}', '{$post_author}', now(), '{$post_image}', {$post_comment_count}, '{$post_content}', '{$post_tags}', '{$post_status}', '{$post_author_image}') ";
+                  $publish_query = "INSERT INTO posts(post_category_id, post_title, post_author, post_date, post_image, post_comment_count, post_content, post_tags, post_status, post_author_image, post_author_id) VALUES ({$post_cat}, '{$post_title}', '{$post_author}', now(), '{$post_image}', {$post_comment_count}, '{$post_content}', '{$post_tags}', '{$post_status}', '{$post_author_image}', $session_id) ";
                   
                   $publish_result = mysqli_query($connect, $publish_query) ;
                   

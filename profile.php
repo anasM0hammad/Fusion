@@ -135,6 +135,59 @@
 </nav>
       
        <!-- NAVBAR ENDS HERE -->
+
+      
+
+      <!-- QUERY TO DELETE USER -->
+      <?php 
+       if(isset($_GET['delete_acc'])){
+
+          if($_GET['delete_acc']=='success'){
+
+            ?>
+
+            <script type="text/javascript">
+             var confirm = confirm("Are You Sure You Want to Delete your Account? All Your Posts Will be Deleted!");
+             
+             window.location.href=`profile.php?confirm=${confirm}`;
+
+            </script>
+
+            <?php
+
+          }
+         } 
+
+
+
+       
+          // CATCHING THE CONFIRM DELETE REQUEST
+         if(isset($_GET['confirm'])){
+
+          if($_GET['confirm']){
+
+            $query = "DELETE FROM users WHERE user_id = $user_id ";
+            $result = mysqli_query($connect, $query);
+
+            if(!$result){
+              die("QUERY FAILED");
+            }
+            else{
+             header("Location: includes/logout.php");  
+            }
+  
+      }
+          
+           else{
+          header("Location: profile.php");
+           }
+
+    
+    }
+
+      ?>
+
+
       
       
       <!--PAGE CONTENT STARTS -->
@@ -147,7 +200,7 @@
            <h5 class="text-muted text"><?php echo $username; ?></h5><br><br>
            <h5 class="text-muted text"><i class="fas fa-briefcase"></i> <?php echo " ".$role; ?></h5>
            <h5 class="text-muted text"><i class="fas fa-envelope"></i> <?php echo " ".$email; ?></h5><br>
-           <p class="text-muted text"><a href="#"><i class="fas fa-cog"></i> <b>Edit Profile</b></a></p>
+           <p class="text-muted text"><a href="profile.php?delete_acc=success" ><b><i class="fas fa-trash-alt"></i> Delete Account</b></a></p>
             <br><br>
            <button type="button" class="btn btn-success btn-md mx-auto d-block mybtn"><i class="fab fa-github"></i> <b>Connect</b></button><br>
        </div>
@@ -193,6 +246,7 @@
              }
 
           }
+         
 
 
        ?>
@@ -348,7 +402,7 @@
                   
                   else{
                   
-                  $publish_query = "INSERT INTO posts(post_category_id, post_title, post_author, post_date, post_image, post_comment_count, post_content,     post_tags, post_status, post_author_image) VALUES ({$post_cat}, '{$post_title}', '{$post_author}', now(), '{$post_image}', {$post_comment_count}, '{$post_content}', '{$post_tags}', '{$post_status}', '{$post_author_image}') ";
+                  $publish_query = "INSERT INTO posts(post_category_id, post_title, post_author, post_date, post_image, post_comment_count, post_content,     post_tags, post_status, post_author_image, post_user_id) VALUES ({$post_cat}, '{$post_title}', '{$post_author}', now(), '{$post_image}', {$post_comment_count}, '{$post_content}', '{$post_tags}', '{$post_status}', '{$post_author_image}', {$user_id}) ";
                   
                   $publish_result = mysqli_query($connect, $publish_query) ;
                   
