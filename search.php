@@ -144,7 +144,7 @@
                  
                  else{
                  
-                   while($row = mysqli_fetch_assoc($search_result)){
+                 while($row = mysqli_fetch_assoc($search_result)){
                  $post_id = $row['post_id'];
                  $post_title = $row['post_title'];
                  $post_author = $row['post_author'] ;
@@ -152,6 +152,13 @@
                  $post_image = $row['post_image'] ;
                  $post_content = $row['post_content'];
                  $post_author_image = $row['post_author_image'];
+                 $post_user_id = $row['post_user_id'];
+
+                  //QUERY TO FETCH USERNAME USING USER ID
+                 $username_query = "SELECT * FROM users WHERE user_id = $post_user_id ";
+                 $username_result = mysqli_query($connect, $username_query);
+                 $username_row = mysqli_fetch_assoc($username_result);
+                 $post_username = $username_row['username'] ;
                  
                  
             ?>     
@@ -160,7 +167,7 @@
               <div class="blog">
              
                  <h2><a class="dec_link" href="<?php echo "post.php?p_id={$post_id} "?>"><?php echo $post_title ; ?></a></h2>
-                 <h5 class="text-muted">  <img class="d-inline-block align-top auth_img" height="30" width="30" style="border-radius: 50%;" src="img/<?php echo $post_author_image ; ?>" ><a href=""><span class="name text-muted"><?php echo "  ".$post_author ; ?></span></a></h5>
+                 <h5 class="text-muted">  <img class="d-inline-block align-top auth_img" height="30" width="30" style="border-radius: 50%;" src="img/<?php echo $post_author_image ; ?>" ><a href="view_profile.php?username=<?php echo $post_username; ?>"><span class="name text-muted"><?php echo "  ".$post_author ; ?></span></a></h5>
                  
                  <p class="text-muted"><i class="far fa-clock"></i> Posted on <?php echo $post_date ; ?></p>
                  <hr>

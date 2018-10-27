@@ -116,6 +116,13 @@ include "includes/connection.php" ;
                 $post_author_image = $row['post_author_image'];
                 $post_date = $row['post_date'];
                 $post_content = $row['post_content'];
+                $post_user_id = $row['post_user_id'];
+
+                  //QUERY TO FETCH USERNAME USING USER ID
+                 $username_query = "SELECT * FROM users WHERE user_id = $post_user_id ";
+                 $username_result = mysqli_query($connect, $username_query);
+                 $username_row = mysqli_fetch_assoc($username_result);
+                 $post_username = $username_row['username'] ;
            
                 
             }
@@ -137,7 +144,7 @@ include "includes/connection.php" ;
      <div class="row">
       <div class="col-md-8">    
         <h1 class="title"><?php echo $post_title ; ?></h1>
-        <h4 class="text-muted"><img class="d-inline-block align-top" height="40" width="40" style="border-radius:50%;" src="img/<?php echo $post_author_image;?>"><a href=""><span class="name text-muted"><?php echo "  ".$post_author ?></span></a></h4>
+        <h4 class="text-muted"><img class="d-inline-block align-top" height="40" width="40" style="border-radius:50%;" src="img/<?php echo $post_author_image;?>"><a href="profile.php?username=<?php echo $username ; ?>"><span class="name text-muted"><?php echo "  ".$post_author ?></span></a></h4>
         <hr> 
         <img src="img/<?php echo $post_image;?>" class="img-fluid" alt="Responsive image">
         <hr><br>  
@@ -174,7 +181,7 @@ include "includes/connection.php" ;
          //      $comment_author = $_POST['comment_author'];
          //      $comment_email = $_POST['comment_email'];
                $comment = $_POST['comment'];
-               $comment_author = $firstname;
+               $comment_author = $firstname." ".$lastname;
                $comment_email = $user_email ;
                $comment_auth_img = $image ;
                 
@@ -212,7 +219,7 @@ include "includes/connection.php" ;
           
           ?>
           
-          
+          <!-- COMMENTS -->
           
           <div class="card bg-light comment_box">
            <div class="card-body">
@@ -259,15 +266,22 @@ include "includes/connection.php" ;
                     $date = $show_row['comment_date'];
                     $status = $show_row['comment_status'];
                     $auth_image = $show_row['comment_author_image'];
+                    $comment_author_id = $show_row['comment_author_id'];
+
+                    $user_query = "SELECT * FROM users WHERE user_id = $comment_author_id";
+                    $user_result = mysqli_query($connect, $user_query);
+                    $user_row = mysqli_fetch_assoc($user_result);
+
+                    $comment_username = $user_row['username'];
           
                 
                     if($status=='Approved'){
 
                  echo "<div class='comment text-muted'>";
                  echo " <img src='img/{$auth_image}' class=' float-left comment_profile'>
-                        <h5><a href='' >{$author} </a><small class='text-muted'> {$date}</small></h5>    
+                        <h5><a href='view_profile.php?username={$comment_username}' >{$author} </a><small class='text-muted'> {$date}</small></h5>    
                         <p>{$comment}</p> 
-               
+                                     
            
             
             <br>   
