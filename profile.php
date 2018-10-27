@@ -347,6 +347,20 @@
                  $post_tags = $row['post_tags'];
                  $post_comment_count = $row['post_comment_count']; 
 
+                  //  QUERY TO SHOW NUMBER OF COMMENTS
+                     $count_query = "SELECT * FROM comments WHERE comment_post_id=$post_id";
+                     $count_result = mysqli_query($connect, $count_query);
+                     $count = mysqli_num_rows($count_result);
+                       
+                       
+                    //GETTING CAT_TITLE USING CAT_ID
+                   
+                    $cat_query = "SELECT * FROM category WHERE cat_id = {$post_cat_id}" ;
+                    $cat_result = mysqli_query($connect, $cat_query);
+                    while($row = mysqli_fetch_assoc($cat_result)){
+                        $cat_title = $row['cat_title'];
+                    }
+
              ?>
           
 

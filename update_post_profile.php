@@ -230,7 +230,7 @@
                  
                  $post_id = $_GET['p_id'] ;
                  
-                 $upd_query = "SELECT * FROM posts WHERE post_id = {$post_id}" ;
+                 $upd_query = "SELECT * FROM posts WHERE post_id = {$post_id} AND post_user_id = $user_id" ;
                  $upd_result = mysqli_query($connect, $upd_query);
                  
                  while($row = mysqli_fetch_assoc($upd_result)){
