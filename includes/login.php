@@ -58,7 +58,7 @@ if(isset($_POST['login'])){
         }
         
         else{
-            header("Location: ../index.php");
+            header("Location: ../index.php?login=fail");
         }
         
     }

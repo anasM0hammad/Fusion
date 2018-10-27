@@ -66,9 +66,14 @@
                 }
                 
                 else{
-                   $del_post_id = $_GET['delete'];
+                    $del_post_id = $_GET['delete'];
                     $del_query = "DELETE FROM posts WHERE post_id = {$del_post_id}" ;
                     $del_result = mysqli_query($connect, $del_query);
+
+                    //DELETING ALL COMMENTS IN THE POST
+                    $del_com_query = "DELETE FROM comments WHERE comment_post_id = {$del_post_id}" ;
+                    $del_comm_result = mysqli_query($connect, $del_com_query); 
+
                 
                 if(!$del_result){
                     die("QUERY FAILED..!!  ").mysqli_error($connect) ;

@@ -68,7 +68,7 @@ include "includes/connection.php" ;
       <?php } ?>
       
     <ul class="navbar-nav container justify-content-end list">
-      <li class="nav-item active">
+      <li class="nav-item ">
           <a class="nav-link" href="index.php"><i class ="fas fa-home"></i> Home<span class="sr-only">(current)</span></a>
       </li>
         
@@ -266,16 +266,9 @@ include "includes/connection.php" ;
                  echo "<div class='comment text-muted'>";
                  echo " <img src='img/{$auth_image}' class=' float-left comment_profile'>
                         <h5><a href='' >{$author} </a><small class='text-muted'> {$date}</small></h5>    
-                        <p>{$comment}</p>
-     
-              
-             <img src='img/like.png' class='comment_like rounded float-right' data-toggle='tooltip' data-placement='bottom' title='Like'>
-
-             <img src='img/heart.png' class='comment_like rounded float-right' data-toggle='tooltip' data-placement='bottom' title='Love'>
-
-             <img src='img/confused.png' class='comment_like rounded float-right' data-toggle='tooltip' data-placement='bottom' title='Not Good'>  
+                        <p>{$comment}</p> 
                
-            <h6 class='float-right' style='margin-right: 20px; color:#C03A2B; margin-top:5px;'><a href=''>Reply</a></h6>
+           
             
             <br>   
                

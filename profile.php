@@ -233,13 +233,18 @@
         <!-- SETTING BAR ENDS -->
 
        
-       <?php 
 
+       <?php 
+          //QUERY TO DELETE POST
           if(isset($_GET['delete'])){
              $dlt_id = $_GET['delete'];
 
-             $dlt_query = "DELETE FROM posts WHERE post_id = $dlt_id ";
+             $dlt_query = "DELETE FROM posts WHERE post_id = $dlt_id AND post_user_id = $user_id ";
              $dlt_result = mysqli_query($connect, $dlt_query);
+
+             //DELETING COMMENTS ON THIS POST
+             $del_com_query = "DELETE FROM comments WHERE comment_post_id = $dlt_id ";
+             $del_comm_result = mysqli_query($connect, $del_com_query) ;
 
              if(!$dlt_result){
               die("QUERY FAILED");
