@@ -55,7 +55,7 @@
              
              <?php
              
-             //QUERY TO DELETE COMMENTS
+             //QUERY TO DELETE USERS
              
              if(isset($_GET['delete'])){
                  
@@ -69,6 +69,15 @@
                  $user_id = $_GET['delete'];
                  $del_query = "DELETE FROM users WHERE user_id = $user_id";
                  $del_result = mysqli_query($connect, $del_query);
+
+                 //DELETING POST OF THIS USER
+                 $del_post = "DELETE FROM posts WHERE post_user_id = $user_id";
+                 $del_post_result = mysqli_query($connect, $del_post_result);
+
+                 //DELETING COMMENTS OF THIS USER
+                  $com_dlt_q = "DELETE FROM comments WHERE comment_author_id = $user_id";
+                  $com_result = mysqli_query($connect, $com_dlt_q);
+
                  
                  if(!$del_query){
                      die("QUERY FAILED..".mysqli_error($connect));

@@ -169,8 +169,13 @@
             $query = "DELETE FROM users WHERE user_id = $user_id ";
             $result = mysqli_query($connect, $query);
 
+            //DELETING POST OF THIS USER
             $post_dlt_q = "DELETE FROM posts WHERE post_user_id = $user_id";
             $post_result = mysqli_query($connect, $post_dlt_q);
+
+            //DELETING COMMENTS OF THIS USER
+            $com_dlt_q = "DELETE FROM comments WHERE comment_author_id = $user_id";
+            $com_result = mysqli_query($connect, $com_dlt_q);
 
             if(!$result){
               die("QUERY FAILED");
