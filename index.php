@@ -165,12 +165,10 @@
                  
                   <a href="<?php echo "post.php?p_id={$post_id}"; ?>"><button class="button" style="vertical-align:middle"><span>Read More </span></button></a>
                  
-                 <img src="img/confused.png" class="rounded float-right likes" data-toggle="tooltip" data-placement="bottom" title="Not Good">
+                 <h5 class="float-right likes text-muted">100</h5>
                  
-                 <img src="img/like.png" class="rounded float-right likes" data-toggle="tooltip" data-placement="bottom" title="Like">
-                 
-                 <img src="img/heart.png" class="rounded float-right likes" data-toggle="tooltip" data-placement="bottom" title="Love">
-                 
+                 <h4 class="float-right likes text-muted" data-toggle="tooltip" data-placement="bottom" title="Like"><i class="fas fa-thumbs-up"></i></h4>
+
                  <hr><br><br><br>
                  
              </div>
@@ -209,6 +207,11 @@
       
       <!-- FOOTER GOES HERE -->
       <?php include "includes/footer.php" ?>
+
+      <!--EXTERNAL JS FILE -->
+      <script type="text/javascript" scr="js/index.js"></script>
+      
+      
       
       
       

@@ -90,16 +90,10 @@ a:hover{
 .likes{
     margin-right:10px;
     margin-top: 5px;
-    height: 25px;
-    width: 25px;
     transition: 0.2s;
     cursor: pointer;
 }
 
-.likes:hover{
-    height: 30px;
-    width: 30px;
-}
 
 .page-link{
      border-top-right-radius: 20px;

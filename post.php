@@ -153,11 +153,11 @@ include "includes/connection.php" ;
         <p class="text-muted"><?php echo $post_content; ?></p>
         
                  
-         <img src="img/like.png" class="rounded likes" data-toggle="tooltip" data-placement="bottom" title="Like">
-                 
-         <img src="img/heart.png" class="rounded likes" data-toggle="tooltip" data-placement="bottom" title="Love">
-          
-         <img src="img/confused.png" class="rounded likes" data-toggle="tooltip" data-placement="bottom" title="Not Good">  
+       <!--  <h5 class=" likes text-muted text-left">100</h5> -->
+        <h4 class=" text-muted text-left likes" id="like" data-toggle="tooltip" data-placement="bottom" title="Like"><i class="fas fa-thumbs-up"></i> 100</h4> 
+
+        <!-- IF USER LIKE WITHOUR REGISTRATION-->
+         <div class='alert alert-danger' id="like-alert" style='margin-top:50px; display: none;' role='alert'><b>Please Register <span style="color:blue;"><a href='registration.php'>Here</a></span>.</b></div>
           
          <!--COMMENT BOX -->
           
@@ -168,7 +168,7 @@ include "includes/connection.php" ;
               // IF NOT REGISTERED FIRST GO TO REGISTER PAGE
               if(!isset($_SESSION['username'])){
              
-               echo "<div class='alert alert-danger' style='margin-top:30px;' role='alert'><b>Please Register <a href='registration.php'>Here</a>.</b></div>";
+               echo "<div class='alert alert-danger' style='margin-top:30px;' role='alert'><b>Please Register  <span style='color:blue;'><a href='registration.php'>Here</a></span>.</b></div>";
 
              }
 
@@ -313,6 +313,52 @@ include "includes/connection.php" ;
       
    <!-- FOOTER GOES HERE -->
       <?php include "includes/footer.php" ; ?>
+
+
+      <script type="text/javascript">
+        
+      const like = document.querySelector("#like") ;
+      const alert = document.queryselector("like-alert");
+
+       const sendLike = async (id)=>{
+       
+           const call = await fetch(`async/like.php?p_id=${id}`);
+
+           const data = await call.json();
+
+           return {data};
+
+       }
+
+       const liked = ()=>{
+        sendLike(<?php echo $post_id;?>).then((result)=>{
+         
+         if(result.data=="true"){
+          like.style.color = "blue" ;
+          alert.style.display = "none";
+         }
+
+         else if(result.data == "false"){
+          like.style.color = "#6C757D";
+          alert.style.display = "none";
+         }
+         else{
+          alert.style.display = "inherit";
+         }
+
+
+
+        }).catch(error=>error)
+       }
+
+
+
+      like.onclick = ()=>{
+          liked();
+      }
+
+
+      </script>
       
   </body>
 </html>

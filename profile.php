@@ -128,6 +128,9 @@
        <li class="nav-item">
         <a class="nav-link" href="#"><i class="fas fa-phone"></i> Contact</a>
       </li>
+       <li class="nav-item active">
+        <a class="nav-link" href="#"><i class="fas fa-envelope"></i> Messages <span class="badge badge-secondary">1</span></a>
+      </li>
 
     </ul>
       
