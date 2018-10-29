@@ -347,7 +347,7 @@ include "includes/connection.php" ;
           like_alert.style.display = "block";
          }
 
-
+        console.log(result);
 
         }).catch(error=>error)
        }
