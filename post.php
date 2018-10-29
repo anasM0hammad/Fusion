@@ -152,12 +152,12 @@ include "includes/connection.php" ;
        
         <p class="text-muted"><?php echo $post_content; ?></p>
         
-                 
-       <!--  <h5 class=" likes text-muted text-left">100</h5> -->
-        <h4 class=" text-muted text-left likes" id="like" data-toggle="tooltip" data-placement="bottom" title="Like"><i class="fas fa-thumbs-up"></i> 100</h4> 
+          <!-- IF USER LIKE WITHOUR REGISTRATION-->
+         <div class='alert alert-danger' id="like_alert" style='margin-top:50px; display: none;' role='alert'><b>Please Register <span style="color:blue;"><a href='registration.php'>Here</a></span>.</b></div>
 
-        <!-- IF USER LIKE WITHOUR REGISTRATION-->
-         <div class='alert alert-danger' id="like-alert" style='margin-top:50px; display: none;' role='alert'><b>Please Register <span style="color:blue;"><a href='registration.php'>Here</a></span>.</b></div>
+       <!--  <h5 class=" likes text-muted text-left">100</h5> -->
+        <h4 class=" text-muted text-left likes" data-toggle="tooltip" data-placement="bottom" title="Like"><i class="fas fa-thumbs-up" id="like"></i> 100</h4> 
+
           
          <!--COMMENT BOX -->
           
@@ -318,32 +318,33 @@ include "includes/connection.php" ;
       <script type="text/javascript">
         
       const like = document.querySelector("#like") ;
-      const alert = document.queryselector("like-alert");
+      const like_alert = document.querySelector("#like_alert");
+      const p_id = <?php echo $post_id; ?> ;
 
        const sendLike = async (id)=>{
        
            const call = await fetch(`async/like.php?p_id=${id}`);
-
            const data = await call.json();
 
-           return {data};
+           return {data: data};
 
        }
 
        const liked = ()=>{
-        sendLike(<?php echo $post_id;?>).then((result)=>{
+
+        sendLike(p_id).then((result)=>{
          
-         if(result.data=="true"){
+         if(result.data==="true"){
           like.style.color = "blue" ;
-          alert.style.display = "none";
+          like_alert.style.display = "none";
          }
 
-         else if(result.data == "false"){
+         else if(result.data === "false"){
           like.style.color = "#6C757D";
-          alert.style.display = "none";
+          like_alert.style.display = "none";
          }
          else{
-          alert.style.display = "inherit";
+          like_alert.style.display = "block";
          }
 
 
@@ -354,7 +355,7 @@ include "includes/connection.php" ;
 
 
       like.onclick = ()=>{
-          liked();
+           liked();
       }
 
 
