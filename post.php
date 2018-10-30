@@ -135,8 +135,11 @@ include "includes/connection.php" ;
       
       
       ?>
-      
-    
+
+
+
+
+
       
       
 <!-- BLOG CONTENT -->      
@@ -156,7 +159,7 @@ include "includes/connection.php" ;
          <div class='alert alert-danger' id="like_alert" style='margin-top:50px; display: none;' role='alert'><b>Please Register <span style="color:blue;"><a href='registration.php'>Here</a></span>.</b></div>
 
        <!--  <h5 class=" likes text-muted text-left">100</h5> -->
-        <h4 class=" text-muted text-left likes" data-toggle="tooltip" data-placement="bottom" title="Like"><i class="fas fa-thumbs-up" id="like"></i> 100</h4> 
+        <h4 class=" text-muted text-left likes" data-toggle="tooltip" data-placement="bottom" title="Like"><i class="fas fa-thumbs-up" id="like"></i> <span id="noOfLike"></span></h4> 
 
           
          <!--COMMENT BOX -->
@@ -320,6 +323,7 @@ include "includes/connection.php" ;
       const like = document.querySelector("#like") ;
       const like_alert = document.querySelector("#like_alert");
       const p_id = <?php echo $post_id; ?> ;
+      const noOfLike = document.querySelector("#noOfLike");
 
        const sendLike = async (id)=>{
        
@@ -334,20 +338,23 @@ include "includes/connection.php" ;
 
         sendLike(p_id).then((result)=>{
          
-         if(result.data==="true"){
+         if(result.data.flag==="true"){
           like.style.color = "blue" ;
           like_alert.style.display = "none";
+          noOfLike.textContent = result.data.noOfLike ;
          }
 
-         else if(result.data === "false"){
+         else if(result.data.flag === "false"){
           like.style.color = "#6C757D";
           like_alert.style.display = "none";
+           noOfLike.textContent = result.data.noOfLike ;
          }
          else{
           like_alert.style.display = "block";
+           noOfLike.textContent = result.data.noOfLike ;
          }
 
-        console.log(result);
+       
 
         }).catch(error=>error)
        }

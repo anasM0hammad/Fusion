@@ -3,11 +3,12 @@ include "../includes/connection.php";
 
 session_start() ;
 
-$flag = "empty";
+$like_obj['flag'] = "empty";
+
 
 if(isset($_SESSION['username'])){
 	$username = $_SESSION['username'];
-	$flag = "true";
+	$like_obj['flag'] = "true";
 
 
 	if(isset($_GET['p_id'])){
@@ -16,24 +17,35 @@ if(isset($_SESSION['username'])){
 	  $show_query = "SELECT * FROM likes WHERE like_post_id = $p_id AND like_username = '$username' ";
 	  $show_result = mysqli_query($connect, $show_query);
 	  while($row=mysqli_fetch_assoc($show_result)){
-	       $flag = "false";
+	  	   $liked = $row['liked'];
+	       $like_obj['flag'] = "false";
 	  }
 
-		  if($flag=="false"){
-            $dlt_query="DELETE FROM likes WHERE like_post_id = $p_id AND like_username = '$username' ";
-            $dlt_result = mysqli_query($connect, $dlt_query);
+		  if($like_obj['flag']=="false" && $liked==1){
+            $upd_query="UPDATE likes SET liked = 0 WHERE like_post_id = $p_id AND like_username = '$username' ";
+            $upd_result = mysqli_query($connect, $upd_query);
 
+		  }
+		  else if($like_obj['flag']=="false" && $liked == 0){
+            $upd_query="UPDATE likes SET liked = 1 WHERE like_post_id = $p_id AND like_username = '$username' ";
+            $upd_result = mysqli_query($connect, $upd_query);
+            $like_obj['flag']="true";
 		  }
 		  else{
-            $insert_query = "INSERT INTO likes (like_post_id , like_username, like_date) VALUES ($p_id , '$username', now())";
+            $insert_query = "INSERT INTO likes (like_post_id , like_username, like_date, liked) VALUES ($p_id , '$username', now() , 1)";
             $insert_result = mysqli_query($connect , $insert_query);
 		  }
+        
+        $like_obj['noOfLike'] = 0;
+        $like_query = "SELECT * FROM likes WHERE like_post_id = $p_id AND liked = 1 ";
+        $like_result = mysqli_query($connect , $like_query);
+        while($row=mysqli_fetch_assoc($like_result)){
+        	$like_obj['noOfLike'] = $like_obj['noOfLike']+1 ;
+        }      
  
- 
-
    }
 
 }
-   echo json_encode($flag) ;
+   echo json_encode($like_obj) ;
 
 ?>
