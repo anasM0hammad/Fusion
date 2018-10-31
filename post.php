@@ -11,7 +11,7 @@ include "includes/connection.php" ;
     <link rel="stylesheet" href="css/post.css" type="text/css">  
       
       
-    <title>Fusion | Blog Name</title>
+    <title>Fusion</title>
   </head>
     
   <body>
@@ -136,7 +136,32 @@ include "includes/connection.php" ;
       
       ?>
 
+    <!-- CALCULATING NUMBER OF LIKES --->
+    <?php
+        $like_query = "SELECT * FROM likes WHERE like_post_id = $post_id AND liked = 1 ";
+        $like_result = mysqli_query($connect , $like_query);
+        $noOfLike = mysqli_num_rows($like_result);   
 
+       // TO FIND WHETHER USER LIKED THIS POST OR NOT
+        if(isset($_SESSION['username'])){
+          $like_username = $_SESSION['username'];
+          $query = "SELECT * FROM likes WHERE like_post_id = $post_id AND like_username = '$like_username' AND liked = 1 ";
+          $result = mysqli_query($connect , $query);
+          $isLike = mysqli_num_rows($result);
+        } 
+
+
+    ?>
+
+    <style type="text/css">
+      
+     <?php if($isLike>0){ ?>
+      #like{
+        color: blue ;
+      }
+     <?php }?> 
+
+    </style>
 
 
 
@@ -147,7 +172,7 @@ include "includes/connection.php" ;
      <div class="row">
       <div class="col-md-8">    
         <h1 class="title"><?php echo $post_title ; ?></h1>
-        <h4 class="text-muted"><img class="d-inline-block align-top" height="40" width="40" style="border-radius:50%;" src="img/<?php echo $post_author_image;?>"><a href="profile.php?username=<?php echo $username ; ?>"><span class="name text-muted"><?php echo "  ".$post_author ?></span></a></h4>
+        <h4 class="text-muted"><img class="d-inline-block align-top" height="40" width="40" style="border-radius:50%;" src="img/<?php echo $post_author_image;?>"><a href="profile.php?username=<?php echo $post_username ; ?>"><span class="name text-muted"><?php echo "  ".$post_author ?></span></a></h4>
         <hr> 
         <img src="img/<?php echo $post_image;?>" class="img-fluid" alt="Responsive image">
         <hr><br>  
@@ -159,7 +184,7 @@ include "includes/connection.php" ;
          <div class='alert alert-danger' id="like_alert" style='margin-top:50px; display: none;' role='alert'><b>Please Register <span style="color:blue;"><a href='registration.php'>Here</a></span>.</b></div>
 
        <!--  <h5 class=" likes text-muted text-left">100</h5> -->
-        <h4 class=" text-muted text-left likes" data-toggle="tooltip" data-placement="bottom" title="Like"><i class="fas fa-thumbs-up" id="like"></i> <span id="noOfLike"></span></h4> 
+        <h4 class=" text-muted text-left likes" data-toggle="tooltip" data-placement="bottom" title="Like"><i class="fas fa-thumbs-up" id="like"></i> <span id="noOfLike"><?php echo $noOfLike;?></span></h4> 
 
           
          <!--COMMENT BOX -->
@@ -316,57 +341,12 @@ include "includes/connection.php" ;
       
    <!-- FOOTER GOES HERE -->
       <?php include "includes/footer.php" ; ?>
-
-
       <script type="text/javascript">
-        
-      const like = document.querySelector("#like") ;
-      const like_alert = document.querySelector("#like_alert");
-      const p_id = <?php echo $post_id; ?> ;
-      const noOfLike = document.querySelector("#noOfLike");
-
-       const sendLike = async (id)=>{
-       
-           const call = await fetch(`async/like.php?p_id=${id}`);
-           const data = await call.json();
-
-           return {data: data};
-
-       }
-
-       const liked = ()=>{
-
-        sendLike(p_id).then((result)=>{
-         
-         if(result.data.flag==="true"){
-          like.style.color = "blue" ;
-          like_alert.style.display = "none";
-          noOfLike.textContent = result.data.noOfLike ;
-         }
-
-         else if(result.data.flag === "false"){
-          like.style.color = "#6C757D";
-          like_alert.style.display = "none";
-           noOfLike.textContent = result.data.noOfLike ;
-         }
-         else{
-          like_alert.style.display = "block";
-           noOfLike.textContent = result.data.noOfLike ;
-         }
-
-       
-
-        }).catch(error=>error)
-       }
-
-
-
-      like.onclick = ()=>{
-           liked();
-      }
-
-
+           
+        const p_id = <?php echo $post_id; ?> ;
       </script>
+
+      <script src=js/post.js type="text/javascript" ></script>
       
   </body>
 </html>

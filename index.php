@@ -146,6 +146,11 @@
                  $username_result = mysqli_query($connect, $username_query);
                  $username_row = mysqli_fetch_assoc($username_result);
                  $post_username = $username_row['username'] ;
+
+                 //QUERY TO FETCH NUMBER OF LIKES
+                 $likes_query = "SELECT * FROM likes WHERE like_post_id = $post_id AND liked = 1";
+                 $likes_result = mysqli_query($connect, $likes_query);
+                 $noOfLike = mysqli_num_rows($likes_result);
                  
                  
             ?>     
@@ -165,9 +170,9 @@
                  
                   <a href="<?php echo "post.php?p_id={$post_id}"; ?>"><button class="button" style="vertical-align:middle"><span>Read More </span></button></a>
                  
-                 <h5 class="float-right likes text-muted">100</h5>
+                 <h5 class="float-right likes text-muted" id="<?php echo 'noOfLike'.$post_id; ?>"><?php echo $noOfLike ;?></h5>
                  
-                 <h4 class="float-right likes text-muted" data-toggle="tooltip" data-placement="bottom" title="Like"><i class="fas fa-thumbs-up"></i></h4>
+                 <h4 class="float-right likes text-muted" onclick="liked(<?php echo $post_id ;?>)" data-toggle="tooltip" data-placement="bottom" title="Like"><i class="fas fa-thumbs-up" id="<?php echo 'like'.$post_id ;?>" ></i></h4>
 
                  <hr><br><br><br>
                  
@@ -210,6 +215,46 @@
 
       <!--EXTERNAL JS FILE -->
       <script type="text/javascript" scr="js/index.js"></script>
+      <script type="text/javascript">
+        
+          
+     
+    //  const like_alert = document.querySelector("#like_alert");
+     
+      
+
+       const sendLike = async (id)=>{
+       
+           const call = await fetch(`async/like.php?p_id=${id}`);
+           const data = await call.json();
+
+           return {data: data};
+
+       }
+
+       const liked = (id)=>{
+
+        sendLike(id).then((result)=>{
+         
+         if(result.data.flag==="true"){
+          document.getElementById(`like${id}`).style.color = "blue" ;
+        //  like_alert.style.display = "none";
+           document.querySelector(`#noOfLike${id}`).textContent = result.data.noOfLike ;
+         }
+
+         else if(result.data.flag === "false"){
+         document.getElementById(`like${id}`).style.color = "#6C757D";
+       //   like_alert.style.display = "none";
+           document.querySelector(`#noOfLike${id}`).textContent = result.data.noOfLike ;
+         }
+        
+          console.log("Alright");
+        }).catch(error=>error)
+       }
+
+   
+
+      </script>
       
       
       
