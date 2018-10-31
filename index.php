@@ -11,6 +11,8 @@
      <link rel="stylesheet" type="text/css" href="css/home.css">    
       
     <title>Fusion</title>
+
+
   </head>
   <body>
       
@@ -151,9 +153,30 @@
                  $likes_query = "SELECT * FROM likes WHERE like_post_id = $post_id AND liked = 1";
                  $likes_result = mysqli_query($connect, $likes_query);
                  $noOfLike = mysqli_num_rows($likes_result);
-                 
+
+             //   TO FIND WHETHER USER LIKED THIS POST OR NOT
+                if(isset($_SESSION['username'])){
+                  $like_username = $_SESSION['username'];
+                  $find_islike_query = "SELECT * FROM likes WHERE like_post_id = $post_id AND like_username = '$like_username' AND liked = 1 ";
+                  $islike_result = mysqli_query($connect , $find_islike_query);
+                  $isLike = mysqli_num_rows($islike_result);
+                } 
+               
                  
             ?>     
+
+
+           <!-- STYLING THE COLOR OF LIKE -->
+             <style type="text/css">
+      
+               <?php if($isLike>0){ ?>
+                #like<?php echo $post_id ?>{
+                  color: blue ;
+                }
+               <?php }?> 
+
+             </style>
+
              
              
               <div class="blog">
@@ -167,6 +190,9 @@
                  <hr>
                  
                  <p class="text-muted"><?php echo $post_content ; ?> </p>
+
+                  <div class='alert alert-danger' id="<?php echo 'like_alert'.$post_id; ?>" style='margin-top:50px; display: none;' role='alert'><b>Please Register <span style="color:blue;"><a href='registration.php'>Here</a></span>.</b></div>
+
                  
                   <a href="<?php echo "post.php?p_id={$post_id}"; ?>"><button class="button" style="vertical-align:middle"><span>Read More </span></button></a>
                  
@@ -217,10 +243,7 @@
       <script type="text/javascript" scr="js/index.js"></script>
       <script type="text/javascript">
         
-          
-     
-    //  const like_alert = document.querySelector("#like_alert");
-     
+        
       
 
        const sendLike = async (id)=>{
@@ -238,17 +261,21 @@
          
          if(result.data.flag==="true"){
           document.getElementById(`like${id}`).style.color = "blue" ;
-        //  like_alert.style.display = "none";
+          document.querySelector(`#like_alert${id}`).style.display = "none";
            document.querySelector(`#noOfLike${id}`).textContent = result.data.noOfLike ;
          }
 
          else if(result.data.flag === "false"){
          document.getElementById(`like${id}`).style.color = "#6C757D";
-       //   like_alert.style.display = "none";
+           document.querySelector(`#like_alert${id}`).style.display = "none";
            document.querySelector(`#noOfLike${id}`).textContent = result.data.noOfLike ;
          }
+          else{
+            document.querySelector(`#like_alert${id}`).style.display = "block";
+          
+         }
         
-          console.log("Alright");
+        //  console.log("Alright");
         }).catch(error=>error)
        }
 
