@@ -190,19 +190,59 @@
         }?>
              
        </div>
-          
+
+      <?php if(isset($_GET['sender'])){
+        $sender = $_GET['sender'];
+      } ?>
+
           
         <!-- MESSAGE -->  
       <div class="col-sm-8" > 
       <div class="container">
        <div class="card message_card">
-        <div class="card-header"><b>Zainul Abedin</b></div>
+        <div class="card-header"><b><?php if(isset($_GET['sender'])){ echo $sender; }?></b></div>
         <div class="card-body message_box">
-          <p><img src="img/aru.jpg" style="border-radius:50%;" width="30" height="30"> Hello Bro</p>
-          <p><img src="img/aru.jpg" style="border-radius:50%;" width="30" height="30"> Wassup</p>
 
-          <p class="text-right"><img src="img/icon.png" style="border-radius:50%;" width="30" height="30"> Nothing Much</p>
-           <p class="text-right"><img src="img/icon.png" style="border-radius:50%;" width="30" height="30"> You tell</p>
+          <?php 
+
+         if(isset($_GET['sender'])){
+        
+          $sender = $_GET['sender']; 
+
+          //QUERY TO FETCH SENDER IMAGE
+          $img_query = "SELECT * FROM users WHERE username = '$sender'" ;
+          $img_result = mysqli_query($connect , $img_query);
+          $img_row = mysqli_fetch_assoc($img_result);
+          $sender_image = $img_row['user_image'];
+
+           // QUERY TO SHOW MESSAGE
+          $show_message = "SELECT * FROM message WHERE (message_sender = '$sender' AND message_receiver = '$username') OR (message_receiver = '$sender' AND message_sender='$username') AND message_read = 1" ;
+
+          $show_result = mysqli_query($connect , $show_message) ;
+
+           while($row = mysqli_fetch_assoc($show_result)){
+            $message_content = $row['message_content'];
+            $message_sender = $row['message_sender'];
+            $message_receiver = $row['message_receiver'];
+          
+
+
+       ?>
+          
+
+
+         <?php if($message_sender == $sender) { ?>
+          <p><img src="img/<?php echo $sender_image; ?>" style="border-radius:50%;" width="30" height="30"> <?php echo $message_content ;?></p>
+          <?php }?>
+
+          <?php if($message_sender == $username){ ?>
+          <p class="text-right"><img src="img/<?php echo $image; ?>" style="border-radius:50%;" width="30" height="30"> <?php echo $message_content ;?></p>
+         <?php }?>
+
+
+       <?php }
+            } ?>
+
         </div>
       </div>
 
@@ -255,11 +295,14 @@
        
         for(var i=0 ; i<result.data.length ; i++){
         
-         document.querySelector("#sender_div"+i).style.display = "inherit";
-         document.querySelector("#sender_name"+i).innerHTML = "<h5 id="+`sender_name${i}`+">"+result.data[i].sender+"</h5>";
-         document.querySelector("#sender_date"+i).innerHTML = "<span id="+`sender_date+${i}`+">"+result.data[i].date+"</span>" ;
-          
+         var sender = result.data[i].sender ;
 
+         document.querySelector("#sender_div"+i).style.display = "inherit";
+         document.querySelector("#sender_name"+i).innerHTML = '<h5 id='+`sender_name${i}><a href='message.php?sender=${sender}'>${sender}</a></h5>`;
+         document.querySelector("#sender_date"+i).innerHTML = "<span id="+`sender_date+${i}`+">"+result.data[i].date+"</span>" ;
+       
+
+       
          }
 
        
