@@ -175,13 +175,13 @@
         <?php 
          // LOOP TO SHOW ALL SENDERS
         $count = 0;
-        while($count<3){
+        while($count<20){
  
         ?>
         
-        <div class="sender container">
-          <h5 id="<?php echo 'sender_name'.$count;?>"></h5>
-          <p><i>Sends you a Message on <span id="<?php echo 'sender_date'.$count; ?>"></span></i></p>
+        <div class="sender container" id="<?php echo 'sender_div'.$count ; ?>" style="display: none;">
+          <h5 id="<?php echo 'sender_name'.$count;?>"><span style="display: none;"></span></h5>
+          <p><i><span>Sends you a Message on</span> <span id="<?php echo 'sender_date'.$count; ?>"></span></i></p>
           <hr>
         </div>
          
@@ -251,19 +251,20 @@
        const showSenders = ()=>{
 
         fetchSenders(receiver_id).then((result)=>{
+        
        
         for(var i=0 ; i<result.data.length ; i++){
-
-         document.querySelector("#sender_name"+i).textContent =  result.data[i].sender;
-         document.querySelector("#sender_date"+i).textContent = result.data[i].date ;
+        
+         document.querySelector("#sender_div"+i).style.display = "inherit";
+         document.querySelector("#sender_name"+i).innerHTML = "<h5 id="+`sender_name${i}`+">"+result.data[i].sender+"</h5>";
+         document.querySelector("#sender_date"+i).innerHTML = "<span id="+`sender_date+${i}`+">"+result.data[i].date+"</span>" ;
           
 
          }
 
-         
-
+       
           
-        console.log(result.data.length);
+        console.log(result);
         //  console.log("Alright");
         }).catch(error=>error)
        }
