@@ -171,34 +171,24 @@
 
         <!-- ALL MESSAGE PANEL -->  
        <div class="col-sm-4 background">
+
+        <?php 
+         // LOOP TO SHOW ALL SENDERS
+        $count = 0;
+        while($count<3){
+ 
+        ?>
         
         <div class="sender container">
-          <h5>Zainul Abedin</h5>
-          <p><i>Zain Sends you a Message on 23 /10/2018 </i></p>
+          <h5 id="<?php echo 'sender_name'.$count;?>"></h5>
+          <p><i>Sends you a Message on <span id="<?php echo 'sender_date'.$count; ?>"></span></i></p>
           <hr>
-          
         </div>
-        <div class="sender container">
-          <h5>Zainul Abedin</h5>
-          <p><i>Zain Sends you a Message on 23 /10/2018 </i></p>
-          <hr>
-          
-        </div>
-        <div class="sender container">
-          <h5>Zainul Abedin</h5>
-          <p><i>Zain Sends you a Message on 23 /10/2018 </i></p>
-          <hr>
-          
-        </div>
-        <div class="sender container">
-          <h5>Zainul Abedin</h5>
-          <p><i>Zain Sends you a Message on 23 /10/2018 </i></p>
-          <hr>
-          
-        </div>
-        
-
-
+         
+        <?php 
+         $count++ ;
+        }?>
+             
        </div>
           
           
@@ -215,8 +205,7 @@
            <p class="text-right"><img src="img/icon.png" style="border-radius:50%;" width="30" height="30"> You tell</p>
         </div>
       </div>
-       
-       <form>
+
          <div class="row message_row">
           <div class="col-11 message_area">
              <div class="form-group">
@@ -225,10 +214,10 @@
          </div>
 
          <div class="col-1 message_area">
-           <h1 class="text-center" type="submit"><i class="fas fa-arrow-circle-right"></i></h1>
+           <h1 class="text-center"><i class="fas fa-arrow-circle-right"></i></h1>
          </div>
         </div>
-       </form>
+       
 
       </div>
     </div>
@@ -246,7 +235,45 @@
       <?php include "includes/footer.php" ?>
 
       
-      
+      <script type="text/javascript">
+        
+          var receiver_id = <?php echo $user_id ; ?> ;
+
+           const fetchSenders = async (user)=>{
+       
+           const call = await fetch(`async/show_senders.php?user_id=${user}`);
+           const data = await call.json();
+
+           return {data: data};
+
+       }
+
+       const showSenders = ()=>{
+
+        fetchSenders(receiver_id).then((result)=>{
+       
+        for(var i=0 ; i<result.data.length ; i++){
+
+         document.querySelector("#sender_name"+i).textContent =  result.data[i].sender;
+         document.querySelector("#sender_date"+i).textContent = result.data[i].date ;
+          
+
+         }
+
+         
+
+          
+        console.log(result.data.length);
+        //  console.log("Alright");
+        }).catch(error=>error)
+       }
+
+    showSenders(); 
+   
+
+
+
+      </script>
       
       
   </body>
