@@ -22,20 +22,16 @@ $sender = $s_row['username'];
 
 
 //FETCHING MESSAGE
+$flag = "false" ;
 
- $m_query = "SELECT * FROM message WHERE ( message_sender = '$sender' AND message_receiver = '$receiver') OR ( message_sender = '$receiver' AND message_receiver = '$sender') AND message_read = 0 ";
+ $m_query = "SELECT * FROM message WHERE ( message_sender = '$receiver' AND message_receiver = '$sender') AND message_read = 0 ";
  $m_result = mysqli_query($connect , $m_query);
 
  while($m_row = mysqli_fetch_assoc($m_result)){
-
-   if($m_row['message_sender'] == $sender){
-       $message_list['message']['user'] ;
-     }
-
-
+   $flag = "true" ;    
  }
 
-
+ echo json_encode($flag);
 
 }
 

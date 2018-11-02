@@ -203,7 +203,7 @@
         
         <div class="sender container" id="<?php echo 'sender_div'.$count ; ?>" style="display: none;">
           <h5 id="<?php echo 'sender_name'.$count;?>"><span style="display: none;"></span></h5>
-          <p><i><span id="<?php echo 'sender_date'.$count; ?>"></span><span id="unread_mes"> Messages Unread</span></i></p>
+          <p><i><span id="<?php echo 'sender_date'.$count; ?>"></span><span id="<?php echo 'unread_mes'.$count; ?>"> Messages Unread</span></i></p>
           <hr>
         </div>
          
@@ -219,7 +219,7 @@
 
           
         <!-- MESSAGE -->  
-      <div class="col-sm-8" > 
+      <div class="col-sm-8"  > 
       <div class="container">
        <div class="card message_card">
         <div class="card-header"><b><?php if(isset($_GET['sender'])){ echo $sender; }?></b></div>
@@ -269,34 +269,24 @@
 
 
          <?php if($message_sender == $sender) { ?>
-          <p><img src="img/<?php echo $sender_image; ?>" style="border-radius:50%;" width="30" height="30"> <?php echo $message_content ;?></p>
+          <p><img src="img/<?php echo $sender_image; ?>" style="border-radius:50%;" width="25" height="25"> <?php echo $message_content ;?></p>
           <?php }?>
 
           <?php if($message_sender == $username){ ?>
-          <p class="text-right"><img src="img/<?php echo $image; ?>" style="border-radius:50%;" width="30" height="30"> <?php echo $message_content ;?></p>
+          <p class="text-right"><img src="img/<?php echo $image; ?>" style="border-radius:50%;" width="25" height="25"> <?php echo $message_content ;?></p>
+
+
          <?php }?>
 
           
 
        <?php } ?>
 
-
-
-            
-          
-
-
-            <div id="current_message">
-
-               
-              
-            </div>
            <?php } ?>
-
-        </div>
+          </div>
+    
       </div>
-
-     
+      
        
          <div class="row message_row">
           <div class="col-11 message_area">
@@ -367,7 +357,7 @@
 
          if(result.data[i].date > 0){
            document.querySelector("#sender_date"+i).style.fontWeight = "bold" ;
-            document.querySelector("#unread_mes").style.fontWeight = "bold" ;
+            document.querySelector("#unread_mes"+i).style.fontWeight = "bold" ;
 
             count++ ;
          }
@@ -429,15 +419,29 @@
 
          } 
 
-           const showUpdMessage = ()=>{
+           const updMessage = ()=>{
 
             updateMessage(sender_id , receiver_id).then((result)=>{
-              console.log(result);
+              if(result.data == "true"){
+               // document.location.reload(true);
+              }
           
+            console.log(result);
+
             }).catch(error=>error)
            }
+         
+           setInterval(updMessage , 1000);
+              
+       
 
+           function moveDiv(){
+           var div = document.getElementById("here");
+           div.scrollTop = div.scrollHeight - div.clientHeight;
+        }
+  
 
+         moveDiv();
 
 
 
