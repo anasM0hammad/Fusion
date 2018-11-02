@@ -79,6 +79,10 @@
         }
 
 
+       #button{
+        cursor: pointer;
+       }
+
     </style>  
       
     <title>Fusion</title>
@@ -209,14 +213,28 @@
         
           $sender = $_GET['sender']; 
 
+          if($sender == $username){
+            header("Location: message.php");
+          }
+
           //QUERY TO FETCH SENDER IMAGE
           $img_query = "SELECT * FROM users WHERE username = '$sender'" ;
           $img_result = mysqli_query($connect , $img_query);
           $img_row = mysqli_fetch_assoc($img_result);
           $sender_image = $img_row['user_image'];
+          $sender_id = $img_row['user_id'];
 
-           // QUERY TO SHOW MESSAGE
-          $show_message = "SELECT * FROM message WHERE (message_sender = '$sender' AND message_receiver = '$username') OR (message_receiver = '$sender' AND message_sender='$username') AND message_read = 1" ;
+          //QUERY TO MAKE ALL MESSAGE READ 
+           $read_query = "UPDATE message SET message_read = 1 WHERE message_sender = '$sender' AND message_receiver = '$username'" ;
+           $read_result = mysqli_query($connect , $read_query);
+           if(!$read_result){
+            die("ERROR ".mysqli_error($connect));
+           }
+
+      
+
+          // QUERY TO SHOW MESSAGE
+          $show_message = "SELECT * FROM message WHERE (message_sender = '$sender' AND message_receiver = '$username') OR (message_receiver = '$sender' AND message_sender='$username')" ;
 
           $show_result = mysqli_query($connect , $show_message) ;
 
@@ -224,6 +242,7 @@
             $message_content = $row['message_content'];
             $message_sender = $row['message_sender'];
             $message_receiver = $row['message_receiver'];
+            $message_read = $row['message_read'];
           
 
 
@@ -241,20 +260,24 @@
 
 
        <?php }
+            
             } ?>
+
 
         </div>
       </div>
 
+     
+       
          <div class="row message_row">
           <div class="col-11 message_area">
              <div class="form-group">
-              <textarea class="form-control " style="border-radius: 0; border-top: none;" placeholder="Enter Text" rows="2"></textarea>
+              <textarea class="form-control " style="border-radius: 0; border-top: none;" placeholder="Enter Text" rows="2" id="content" name="message"></textarea>
              </div>
          </div>
 
-         <div class="col-1 message_area">
-           <h1 class="text-center"><i class="fas fa-arrow-circle-right"></i></h1>
+         <div class=" col-1 message_area">
+         <h1 class="text-center" id="button" type="submit" onclick="showMessage()"><i class="fas fa-arrow-circle-right"></i></h1>
          </div>
         </div>
        
@@ -273,6 +296,17 @@
       
       <!-- FOOTER GOES HERE -->
       <?php include "includes/footer.php" ?>
+
+
+      <?php 
+
+        if(isset($_GET['sender'])){
+
+          echo "<script> var sender_id = $sender_id ;</script>" ;
+        }
+
+
+      ?>
 
       
       <script type="text/javascript">
@@ -301,19 +335,43 @@
          document.querySelector("#sender_name"+i).innerHTML = '<h5 id='+`sender_name${i}><a href='message.php?sender=${sender}'>${sender}</a></h5>`;
          document.querySelector("#sender_date"+i).innerHTML = "<span id="+`sender_date+${i}`+">"+result.data[i].date+"</span>" ;
        
-
-       
          }
 
-       
-          
-        console.log(result);
+       // console.log(result);
         //  console.log("Alright");
         }).catch(error=>error)
        }
 
-    showSenders(); 
-   
+    setInterval(showSenders, 500); 
+
+
+
+  //  INPUT THE MESSAGE INTO DB
+     const content = document.querySelector("#content");
+     const button = document.querySelector("#button");
+
+     const sendMessage = async (sender , receiver , message)=>{
+     
+       const call_message = await fetch(`async/input_message.php?sender=${sender}&receiver=${receiver}&message=${message}`) ;
+       const data = await call_message.json();
+
+       return {data:data};
+
+     } 
+
+       const showMessage = ()=>{
+
+        sendMessage(receiver_id , sender_id , content.value).then((result)=>{
+           // if(result.data == "true"){
+           //   content.value = " ";
+           // }
+
+           console.log("hello");
+      
+        }).catch(error=>error)
+       }
+
+      
 
 
 
