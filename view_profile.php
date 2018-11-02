@@ -209,7 +209,8 @@
            <h5 class="text-muted text"><i class="fas fa-envelope"></i> <?php echo " ".$pro_email; ?></h5><br>
            
             <br><br>
-           <button type="button" class="btn btn-success btn-md mx-auto d-block mybtn"><i class="fab fa-github"></i> <b>Connect</b></button><br>
+           <a href="message.php?sender=<?php echo $pro_username; ?>"><button type="button" class="btn btn-primary btn-md mx-auto d-block mybtn" > <b>Message</b></button></a>
+           <br>
        </div>
           
           

@@ -130,6 +130,21 @@
   </button>
 
   <div class="collapse navbar-collapse" id="navbarSupportedContent">
+
+      <!-- PROFILE BAR -->
+     <?php if(isset($_SESSION['username'])){ ?>  
+    <ul  class="navbar-nav container justify-content-end " >
+     <li class="nav-item dropdown active">
+        <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"><i class="far fa-user"></i> <?php echo $firstname . " " . $lastname . " "; ?></a>
+        <div class="dropdown-menu drop-link">
+          <a class="dropdown-item" href="profile.php"><i class="far fa-user"></i> Profile</a>
+          <a class="dropdown-item" href="profile.php?settings=1"><i class="fas fa-cog"></i> Settings</a>
+          <div class="dropdown-divider"></div>
+          <a class="dropdown-item" href="includes/logout.php"><i class="fas fa-power-off"></i> Log Out</a>
+        </div>
+      </li> 
+     </ul>  
+      <?php } ?>
     
       
     <ul class="navbar-nav container justify-content-end list">
@@ -263,10 +278,20 @@
 
           
 
-       <?php }
-            
-            } ?>
+       <?php } ?>
 
+
+
+            
+          
+
+
+            <div id="current_message">
+
+               
+              
+            </div>
+           <?php } ?>
 
         </div>
       </div>
@@ -392,8 +417,27 @@
 
 
 
+
+
        //RELOADING THE MESSAGE BOX
+          const updateMessage = async (sender, receiver)=>{
      
+           const upd_message = await fetch(`async/update_message.php?sender=${sender}&receiver=${receiver}`) ;
+           const data = await upd_message.json();
+
+           return {data:data};
+
+         } 
+
+           const showUpdMessage = ()=>{
+
+            updateMessage(sender_id , receiver_id).then((result)=>{
+              console.log(result);
+          
+            }).catch(error=>error)
+           }
+
+
 
 
 

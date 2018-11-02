@@ -56,6 +56,10 @@
           cursor: pointer;
         }
 
+        #settings{
+            display: none;
+        }
+
 
     </style>  
       
@@ -122,6 +126,51 @@
           }
         </style>
       <?php }?>
+
+
+
+      <?php
+       // SETTINGS PROFILE GET REQUEST 
+
+           if(isset($_GET['settings'])){
+
+              if($_GET['settings']==1){
+
+           ?>
+           <style type="text/css">
+             
+             #settings{
+              display: inherit;
+             }
+             #all_post{
+              display: none;
+             }
+             #add_post{
+              display: none;
+             }
+
+             #settings_link{
+              color: white;
+             }
+             #all_post_link{
+              color: #DADCDE;
+             }
+
+
+           </style>
+           
+
+           <?php
+
+              }
+              else{
+                header("Location: profile.php");
+              }
+
+           }
+
+
+       ?>
       
       
       <!-- NAVBAR  -->  
@@ -555,7 +604,7 @@
 
 
        <!-- USER UPDATE SETTINGS  -->
-       <div class="container" style="margin-top: 40px; display: none;" id="settings">
+       <div class="container" style="margin-top: 40px;" id="settings">
            
              
              <?php 
