@@ -16,15 +16,29 @@ include "../includes/connection.php" ;
    // QUERY TO SEND ALL THE SENDERS LISTS
    $sender = 0;
 
-   $sender_query = "SELECT DISTINCT message_sender, message_date  FROM message WHERE  message_receiver = '$username' ORDER BY message_date DESC ";
+   $sender_query = "SELECT DISTINCT message_sender  FROM message WHERE  message_receiver = '$username' ORDER BY message_sender DESC ";
    $sender_result = mysqli_query($connect, $sender_query);
    while($row=mysqli_fetch_assoc($sender_result)){
+   	 $message_sender = $row['message_sender'];
+     $sender_list[$sender]['sender'] = $row['message_sender'];
 
-    $sender_list[$sender]['sender'] = $row['message_sender'];
-    $sender_list[$sender]['date'] = $row['message_date'];
+       $sender_list[$sender]['date'] = 0;
+
+       $message_sender = $row['message_sender'];
+
+   	//CALCULATING NUMBER OF UNREAD MESSAGES
+   	$unread = "SELECT * FROM message WHERE message_read = 0 AND message_sender = '$message_sender'  ";
+   	$unread_res = mysqli_query($connect , $unread);
+   	while($unread_row = mysqli_fetch_assoc($unread_res)){
+      $sender_list[$sender]['date'] =  $sender_list[$sender]['date'] + 1 ;
+   	}
+
+   
     $sender++ ;
 
    }
+
+
 
   echo json_encode($sender_list);
 

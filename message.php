@@ -185,7 +185,7 @@
         
         <div class="sender container" id="<?php echo 'sender_div'.$count ; ?>" style="display: none;">
           <h5 id="<?php echo 'sender_name'.$count;?>"><span style="display: none;"></span></h5>
-          <p><i><span>Sends you a Message on</span> <span id="<?php echo 'sender_date'.$count; ?>"></span></i></p>
+          <p><i><span id="<?php echo 'sender_date'.$count; ?>"></span><span id="unread_mes"> Messages Unread</span></i></p>
           <hr>
         </div>
          
@@ -277,7 +277,7 @@
          </div>
 
          <div class=" col-1 message_area">
-         <h1 class="text-center" id="button" type="submit" onclick="showMessage()"><i class="fas fa-arrow-circle-right"></i></h1>
+         <h1 class="text-center" id="button" onclick="showMessage()"><i class="fas fa-arrow-circle-right"></i></h1>
          </div>
         </div>
        
@@ -334,6 +334,11 @@
          document.querySelector("#sender_div"+i).style.display = "inherit";
          document.querySelector("#sender_name"+i).innerHTML = '<h5 id='+`sender_name${i}><a href='message.php?sender=${sender}'>${sender}</a></h5>`;
          document.querySelector("#sender_date"+i).innerHTML = "<span id="+`sender_date+${i}`+">"+result.data[i].date+"</span>" ;
+
+         if(result.data[i].date > 0){
+           document.querySelector("#sender_date"+i).style.fontWeight = "bold" ;
+            document.querySelector("#unread_mes").style.fontWeight = "bold" ;
+         }
        
          }
 
@@ -362,16 +367,17 @@
        const showMessage = ()=>{
 
         sendMessage(receiver_id , sender_id , content.value).then((result)=>{
-           // if(result.data == "true"){
-           //   content.value = " ";
-           // }
-
-           console.log("hello");
+           if(result.data == "true"){
+             content.value = " ";
+           }
       
         }).catch(error=>error)
        }
 
-      
+
+
+       //RELOADING THE MESSAGE BOX
+     
 
 
 
