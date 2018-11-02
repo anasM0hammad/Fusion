@@ -26,8 +26,8 @@ include "../includes/connection.php" ;
 
        $message_sender = $row['message_sender'];
 
-   	//CALCULATING NUMBER OF UNREAD MESSAGES
-   	$unread = "SELECT * FROM message WHERE message_read = 0 AND message_sender = '$message_sender'  ";
+   	//CALCULATING NUMBER OF UNREAD MESSAGES FOR PARTICULAR USER
+   	$unread = "SELECT * FROM message WHERE message_read = 0 AND message_sender = '$message_sender' ";
    	$unread_res = mysqli_query($connect , $unread);
    	while($unread_row = mysqli_fetch_assoc($unread_res)){
       $sender_list[$sender]['date'] =  $sender_list[$sender]['date'] + 1 ;

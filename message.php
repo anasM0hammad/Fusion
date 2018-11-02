@@ -154,8 +154,8 @@
        <li class="nav-item">
         <a class="nav-link" href="#"><i class="fas fa-phone"></i> Contact</a>
       </li>
-       <li class="nav-item active">
-        <a class="nav-link" href="message.php"><i class="fas fa-envelope"></i> Messages <span class="badge badge-secondary">1</span></a>
+       <li class="nav-item ">
+        <a class="nav-link" href="message.php" id="mes_alert"><i class="fas fa-envelope"></i> Messages <span class="badge badge-secondary" id="mes_count">1</span></a>
       </li>
 
     </ul>
@@ -326,6 +326,7 @@
 
         fetchSenders(receiver_id).then((result)=>{
         
+        var count =0 ; 
        
         for(var i=0 ; i<result.data.length ; i++){
         
@@ -338,9 +339,20 @@
          if(result.data[i].date > 0){
            document.querySelector("#sender_date"+i).style.fontWeight = "bold" ;
             document.querySelector("#unread_mes").style.fontWeight = "bold" ;
+
+            count++ ;
          }
        
-         }
+        }
+
+        if(count>0){
+           document.querySelector("#mes_alert").style.color = "white" ;
+            document.querySelector("#mes_count").textContent = count ;
+        }
+        else{
+          document.querySelector("#mes_alert").style.color = "#CCCECF" ;
+            document.querySelector("#mes_count").textContent = " " ;
+        }
 
        // console.log(result);
         //  console.log("Alright");
