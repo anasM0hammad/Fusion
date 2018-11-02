@@ -22,14 +22,49 @@
               </li>
                 
                 <!-- MESSAGE DROPDOWN -->
-             <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false"><i class="far fa-envelope"></i></a>
-                <div class="dropdown-menu drop-link">
-                  <a class="dropdown-item" href="#">Message 1</a>
-                  <div class="dropdown-divider"></div>
-                  <a class="dropdown-item" href="#">Read More</a>
-                </div>
-              </li>    
+
+                <?php
+
+                //COUNTING NUMBER OF UNREAD MESSAGES
+                $username = $_SESSION['username'];
+                $unread = "SELECT * FROM message WHERE message_receiver = '$username' AND message_read = 0 " ;
+                $unread_result = mysqli_query($connect, $unread) ;
+                $count = mysqli_num_rows($unread_result);
+
+
+                ?>
+
+
+                <?php if($count>0){ ?>
+                  <style type="text/css">
+                    #mes_alert{
+                      color: white;
+                    }
+                    #mes_count{
+                      color: white;
+                    }
+                  </style>
+                <?php } else{ ?>
+                  <style type="text/css">
+                    #mes_alert{
+                      color: #CCCECF;
+                    }
+                    #mes_count{
+                      color: #CCCECF ;
+                    }
+                  </style>
+                <?php }?>
+
+                 <?php if(isset($_SESSION['username'])){
+
+                  echo " <li class='nav-item ''>
+                <a class='nav-link' href='../message.php' id='mes_alert'><span class='badge badge-secondary' id='mes_count'><i class='fas fa-envelope'></i> {$count}</span></a>
+                  </li>" ;
+
+                } ?>
+ 
+
+              
                 
                 <!-- USER DROPDOWN -->
                <li class="nav-item dropdown">

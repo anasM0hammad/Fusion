@@ -7,6 +7,9 @@
     
     <?php include "includes/links.php" ; ?>  
     
+    <!-- JQUERY -->
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
     <!-- EXTERNAL CSS FILE -->
      <link rel="stylesheet" type="text/css" href="css/home.css">   
       
@@ -155,7 +158,7 @@
         <a class="nav-link" href="#"><i class="fas fa-phone"></i> Contact</a>
       </li>
        <li class="nav-item ">
-        <a class="nav-link" href="message.php" id="mes_alert"><i class="fas fa-envelope"></i> Messages <span class="badge badge-secondary" id="mes_count">1</span></a>
+        <a class="nav-link" href="message.php" id="mes_alert"><i class="fas fa-envelope"></i> Messages <span class="badge badge-secondary" id="mes_count"></span></a>
       </li>
 
     </ul>
@@ -205,7 +208,7 @@
       <div class="container">
        <div class="card message_card">
         <div class="card-header"><b><?php if(isset($_GET['sender'])){ echo $sender; }?></b></div>
-        <div class="card-body message_box">
+        <div class="card-body message_box" id="here">
 
           <?php 
 
@@ -258,6 +261,7 @@
           <p class="text-right"><img src="img/<?php echo $image; ?>" style="border-radius:50%;" width="30" height="30"> <?php echo $message_content ;?></p>
          <?php }?>
 
+          
 
        <?php }
             
@@ -326,7 +330,7 @@
 
         fetchSenders(receiver_id).then((result)=>{
         
-        var count =0 ; 
+        var count = 0 ; 
        
         for(var i=0 ; i<result.data.length ; i++){
         
@@ -351,7 +355,7 @@
         }
         else{
           document.querySelector("#mes_alert").style.color = "#CCCECF" ;
-            document.querySelector("#mes_count").textContent = " " ;
+            document.querySelector("#mes_count").textContent = "0" ;
         }
 
        // console.log(result);

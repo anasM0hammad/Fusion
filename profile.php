@@ -89,6 +89,39 @@
       
       
       ?>
+
+
+
+       <?php
+
+      //COUNTING NUMBER OF UNREAD MESSAGES
+      $unread = "SELECT * FROM message WHERE message_receiver = '$username' AND message_read = 0 " ;
+      $unread_result = mysqli_query($connect, $unread) ;
+      $count = mysqli_num_rows($unread_result);
+
+
+      ?>
+
+
+      <?php if($count>0){ ?>
+        <style type="text/css">
+          #mes_alert{
+            color: white;
+          }
+          #mes_count{
+            color: white;
+          }
+        </style>
+      <?php } else{ ?>
+        <style type="text/css">
+          #mes_alert{
+            color: #CCCECF;
+          }
+          #mes_count{
+            color: #CCCECF ;
+          }
+        </style>
+      <?php }?>
       
       
       <!-- NAVBAR  -->  
@@ -123,14 +156,20 @@
         <a class="nav-link" href="registration.php"><i class="fas fa-user-plus"></i> Register</a>
       </li>
         <?php }?>
+
+         <?php if(isset($_SESSION['username'])){
+
+          echo " <li class='nav-item ''>
+        <a class='nav-link' href='message.php' id='mes_alert'><i class='fas fa-envelope'></i> Messages <span class='badge badge-secondary' id='mes_count'>{$count}</span></a>
+          </li>" ;
+
+        } ?>
         
         
        <li class="nav-item">
         <a class="nav-link" href="#"><i class="fas fa-phone"></i> Contact</a>
       </li>
-       <li class="nav-item active">
-        <a class="nav-link" href="message.php"><i class="fas fa-envelope"></i> Messages <span class="badge badge-secondary">1</span></a>
-      </li>
+      
 
     </ul>
       
