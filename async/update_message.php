@@ -40,6 +40,18 @@ $flag = "false" ;
 	}
  }
 
+
+ $rec_upd_query = "SELECT * FROM message WHERE message_receiver = '$receiver' AND message_sender = '$sender' AND message_read = 0 " ;
+ $rec_upd_result = mysqli_query($connect , $rec_upd_query);
+
+if(!$rec_upd_result){
+	$flag = mysqli_error($connect);
+}
+
+ while($row = mysqli_fetch_assoc($rec_upd_result)){
+ 	$flag = "true";
+ }
+
  echo json_encode($flag);
 
 }
