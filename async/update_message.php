@@ -24,11 +24,20 @@ $sender = $s_row['username'];
 //FETCHING MESSAGE
 $flag = "false" ;
 
- $m_query = "SELECT * FROM message WHERE ( message_sender = '$receiver' AND message_receiver = '$sender') AND message_read = 0 ";
+ $m_query = "SELECT * FROM message WHERE ( message_sender = '$receiver' AND message_receiver = '$sender') AND message_sent = 0 ";
  $m_result = mysqli_query($connect , $m_query);
 
  while($m_row = mysqli_fetch_assoc($m_result)){
-   $flag = "true" ;    
+   $flag = "true" ;   
+ }
+
+ if($flag === "true"){
+ 	$upd_query = "UPDATE message SET message_sent = 1 WHERE (message_sender = '$receiver' AND message_receiver = '$sender') AND message_sent = 0 ";
+	$upd_result = mysqli_query($connect , $upd_query);
+
+	if(!$upd_result){
+		$flag = mysqli_error($connect);
+	}
  }
 
  echo json_encode($flag);

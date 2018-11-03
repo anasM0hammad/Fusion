@@ -296,7 +296,7 @@
          </div>
 
          <div class=" col-1 message_area">
-         <h1 class="text-center" id="button" onclick="showMessage()"><i class="fas fa-arrow-circle-right"></i></h1>
+         <h1 class="text-center" id="button"><i class="fas fa-arrow-circle-right"></i></h1>
          </div>
         </div>
        
@@ -322,6 +322,9 @@
         if(isset($_GET['sender'])){
 
           echo "<script> var sender_id = $sender_id ;</script>" ;
+        }
+        else{
+          echo "<script> var sender_id = 0 ; </script>" ;
         }
 
 
@@ -383,6 +386,8 @@
 
 
   //  INPUT THE MESSAGE INTO DB
+
+   if(sender_id !== 0){
      const content = document.querySelector("#content");
      const button = document.querySelector("#button");
 
@@ -405,9 +410,15 @@
         }).catch(error=>error)
        }
 
+       document.getElementById("button").onclick = function(){
+          showMessage();
+       }
+
+}
 
 
 
+if(sender_id!== 0){
 
        //RELOADING THE MESSAGE BOX
           const updateMessage = async (sender, receiver)=>{
@@ -423,7 +434,7 @@
 
             updateMessage(sender_id , receiver_id).then((result)=>{
               if(result.data == "true"){
-               // document.location.reload(true);
+                document.location.reload(true);
               }
           
             console.log(result);
@@ -443,7 +454,7 @@
 
          moveDiv();
 
-
+}
 
       </script>
       
