@@ -27,6 +27,9 @@ while($row = mysqli_fetch_assoc($result)){
 
 ?>
 
+
+
+
 <!doctype html>
 <html lang="en">
   <head>
@@ -43,16 +46,59 @@ while($row = mysqli_fetch_assoc($result)){
    <link href="img/icon.png" rel="icon" type="image/gif">
 
     <!-- EXTERNAL CSS FILE -->  
-   <link href="admin.css" type="text/css" rel="stylesheet">      
+   <link href="admin.css" type="text/css" rel="stylesheet"> 
+
+
+   <!-- STYLE TO LOADING PAGE -->
+      <style type="text/css">
+        
+        #load-screen{
+          background-image: url('img/header-back.png');
+          position: fixed;
+          z-index: 10000 ;
+          width: 100%;
+          height: 1500px;
+        }
+
+        #loading{
+          width: 400px;
+          height: 400px;
+          margin: 10% auto ;
+          background-image :url('img/loader.gif') ;
+          background-size: 40% ;
+          background-repeat: no-repeat;
+          background-position: center;
+        }
+
+      </style>     
       
    <title>Fusion | Admin</title> 
       
     <!-- GOOGLE CHARTS -->
    <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
+
+   <!-- JQUERY -->
+   <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
       
     <!-- CKEDITOR -->
    <script src="https://cdn.ckeditor.com/4.10.1/standard/ckeditor.js"></script>
 
+   <script type="text/javascript">
+     
+  //   var div_box = "<div id='load-screen'><div id='loading'></div></div>" ;
+
+     $("body").prepend("hellooooooooooooooooooooooooooooooooooooooooooooooooooooo") ;
+
+     // $("#load-screen").delay(5000).fadeOut(4000, function(){
+     //   $(this).remove();
+
+     // });
+
+    
+
+
+   </script>
+   
     
   </head>
   <body>

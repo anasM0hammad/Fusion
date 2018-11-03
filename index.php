@@ -170,8 +170,29 @@
              <!-- PHP QUERY -->
              
              <?php 
+
+             //QUERY TO COUNT NUMBER OF POST
+             $page_query = "SELECT * FROM posts" ;
+             $page_result = mysqli_query($connect , $page_query);
+             $page_count = mysqli_num_rows($page_result);
+
+             $no_of_post = 1 ;
+
+             $page_count = ceil($page_count/$no_of_post);
+
+             if(isset($_GET['page'])){
+              $page_no = $_GET['page'];
+              $page = ($page_no-1)*$no_of_post;
+             }
+             else if($_GET['page'] > $page_count){
+              $page_no=0 ;
+             }
+             else{
+              $page = 0 ;
+             }
+
              
-             $query = "SELECT * FROM posts" ;
+             $query = "SELECT * FROM posts LIMIT $page , $no_of_post" ;
              $post_result = mysqli_query($connect , $query) ;
              
              while($row = mysqli_fetch_assoc($post_result)){
@@ -220,10 +241,12 @@
 
              </style>
 
+
              
              
               <div class="blog">
-             
+                 
+            
                  <h2><a class="dec_link" href="<?php echo "post.php?p_id={$post_id}"; ?>"><?php echo $post_title ; ?></a></h2>
                  <h5 class="text-muted">  <img class="d-inline-block align-top auth_img" height="30" width="30" style="border-radius: 50%;" src="img/<?php echo $post_author_image ; ?>" ><a href="view_profile.php?username=<?php echo $post_username ; ?>"><span class="name text-muted"><?php echo "  ".$post_author ; ?></span></a></h5>
                  
@@ -256,9 +279,28 @@
              
              <!-- PAGINATION -->
             
-                <button type="button" class="btn btn-outline-info page-link float-left" tabindex="-1">&larr; Previous</button>
-                  
-                <button type="button" class="btn btn-outline-info page-link float-right">Next &rarr;</button>  
+              <nav aria-label="Page navigation example container" >
+                <ul class="pagination justify-content-center" >
+                  <li class="page-item">
+                    <a class="page-link" href="index.php?page=<?php echo $page_no-1; ?>" aria-label="Previous">
+                      <span aria-hidden="true">&laquo;</span>
+                      <span class="sr-only">Previous</span>
+                    </a>
+                  </li>
+                  <?php for($i=1; $i<=$page_count; $i++){ ?>
+
+               <li class="page-item"><a class="page-link" href="index.php?page=<?php echo $i; ?>" style="margin-left: 3px; margin-right: 3px;"><?php echo $i ?></a></li>
+                 
+                  <?php }?>
+
+                  <li class="page-item">
+                      <a class="page-link" href="index.php?page=<?php echo $page_no+1; ?>" aria-label="Next">
+                      <span aria-hidden="true">&raquo;</span>
+                      <span class="sr-only">Next</span>
+                    </a>
+                  </li>
+                </ul>
+              </nav>
                 
                 <br><br><br><br>
                 

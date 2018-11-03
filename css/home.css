@@ -95,13 +95,6 @@ a:hover{
 }
 
 
-.page-link{
-     border-top-right-radius: 20px;
-     border-bottom-right-radius: 20px;
-      border-top-left-radius: 20px;
-     border-bottom-left-radius: 20px;
-}
-
 .search_icon{
     border-radius: 0;
 }

@@ -9,6 +9,10 @@ if(isset($_GET['sender'])){
   $receiver_id = $_GET['receiver'];
   $message = $_GET['message'];
 
+  if(empty($message)){
+  	echo json_encode("false");
+  }else{
+
   //QUERY TO FETCH USERNAME OF SENDER
 
   $sender_query = "SELECT * FROM users WHERE user_id = $sender_id";
@@ -31,10 +35,10 @@ if(isset($_GET['sender'])){
   if(!$message_result){
   	echo json_encode("false");
   }else{
-
-
     echo json_encode("true");
   }
+
+   }
 }
 
 
