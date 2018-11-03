@@ -126,14 +126,57 @@
          <div class="col-md-8">
              
              <!-- PHP QUERY -->
+
+           <?php if(isset($_GET['cat_id'])){
+               $cat_id_p = $_GET['cat_id'];
+           } ?>
+
              
              <?php 
-             
+              
+              //QUERY FOR PAGINATION
+
+                
+             $page_query = "SELECT * FROM posts WHERE post_category_id = $cat_id_p" ;
+             $page_result = mysqli_query($connect , $page_query);
+             $page_count = mysqli_num_rows($page_result);
+
+             $no_of_post = 1 ;
+
+             $page_count = ceil($page_count/$no_of_post);
+
+             if(isset($_GET['page'])){
+              $page_no = $_GET['page'];
+              $page = ($page_no-1)*$no_of_post;
+             }
+              else{
+              $page = 0 ;
+             }
+
+
+               if(isset($_GET['page'])){
+
+                $page_no = $_GET['page'];
+                if($page_no < 1 || $page_no > $page_count){
+                   header("Location: category_link.php?cat_id=$cat_id_p");
+                }
+
+
+             }else{
+              $page=0;
+              $page_no =1;
+             }
+
+
+
+
+              //QUERY TO COUNT NUMBER OF POST
+
              if(isset($_GET['cat_id'])){
                  
                  $cat_id = $_GET['cat_id'];
                  
-                 $query = "SELECT * FROM posts WHERE post_category_id = $cat_id" ;
+                 $query = "SELECT * FROM posts WHERE post_category_id = $cat_id LIMIT $page , $no_of_post" ;
                  $post_result = mysqli_query($connect , $query) ;
                  
                   if(mysqli_num_rows($post_result) == 0){
@@ -153,15 +196,41 @@
                  $post_author_image = $row['post_author_image'];
                  $post_user_id = $row['post_user_id'];
 
-                  //QUERY TO FETCH USERNAME USING USER ID
+                   //QUERY TO FETCH USERNAME USING USER ID
                  $username_query = "SELECT * FROM users WHERE user_id = $post_user_id ";
                  $username_result = mysqli_query($connect, $username_query);
                  $username_row = mysqli_fetch_assoc($username_result);
                  $post_username = $username_row['username'] ;
+
+                 //QUERY TO FETCH NUMBER OF LIKES
+                 $likes_query = "SELECT * FROM likes WHERE like_post_id = $post_id AND liked = 1";
+                 $likes_result = mysqli_query($connect, $likes_query);
+                 $noOfLike = mysqli_num_rows($likes_result);
+
+                 //   TO FIND WHETHER USER LIKED THIS POST OR NOT
+                if(isset($_SESSION['username'])){
+                  $like_username = $_SESSION['username'];
+                  $find_islike_query = "SELECT * FROM likes WHERE like_post_id = $post_id AND like_username = '$like_username' AND liked = 1 ";
+                  $islike_result = mysqli_query($connect , $find_islike_query);
+                  $isLike = mysqli_num_rows($islike_result);
+                }
                   
              
              
-            ?>     
+            ?>   
+
+
+             <!-- STYLING THE COLOR OF LIKE -->
+             <style type="text/css">
+      
+               <?php if($isLike>0){ ?>
+                #like<?php echo $post_id ?>{
+                  color: blue ;
+                }
+               <?php }?> 
+
+             </style>
+  
              
              
               <div class="blog">
@@ -175,11 +244,14 @@
                  <hr>
                  
                  <p class="text-muted"><?php echo $post_content ; ?> </p>
+
+                  <div class='alert alert-danger' id="<?php echo 'like_alert'.$post_id; ?>" style='margin-top:50px; display: none;' role='alert'><b>Please Register <span style="color:blue;"><a href='registration.php'>Here</a></span>.</b></div>
+
+                     <a href="<?php echo "post.php?p_id={$post_id}"; ?>"><button class="button" style="vertical-align:middle"><span>Read More </span></button></a>
                  
-                  <a href="<?php echo "post.php?p_id={$post_id}"; ?>"><button class="button" style="vertical-align:middle"><span>Read More </span></button></a>
+                  <h5 class="float-right likes text-muted" id="<?php echo 'noOfLike'.$post_id; ?>"><?php echo $noOfLike ;?></h5>
                  
-                  <h5 class="float-right likes text-muted">100</h5>
-                 <h4 class="float-right likes text-muted" data-toggle="tooltip" data-placement="bottom" title="Like"><i class="fas fa-thumbs-up"></i></h4>
+                 <h4 class="float-right likes text-muted" onclick="liked(<?php echo $post_id ;?>)" data-toggle="tooltip" data-placement="bottom" title="Like"><i class="fas fa-thumbs-up" id="<?php echo 'like'.$post_id ;?>" ></i></h4>
                  
                  <hr><br><br><br>
                  
@@ -264,9 +336,28 @@
              
              <!-- PAGINATION -->
             
-                <button type="button" class="btn btn-outline-info page-link float-left" tabindex="-1">&larr; Previous</button>
-                  
-                <button type="button" class="btn btn-outline-info page-link float-right">Next &rarr;</button>  
+                  <nav aria-label="Page navigation example container" >
+                <ul class="pagination justify-content-center" >
+                  <li class="page-item">
+                    <a class="page-link" href="category_link.php?cat_id=<?php echo $cat_id; ?>&page=<?php echo ($page_no-1); ?>" aria-label="Previous">
+                      <span aria-hidden="true">&laquo;</span>
+                      <span class="sr-only">Previous</span>
+                    </a>
+                  </li>
+                  <?php for($i=1; $i<=$page_count; $i++){ ?>
+
+               <li class="page-item"><a class="page-link" href="category_link.php?cat_id=<?php echo $cat_id; ?>&page=<?php echo $i; ?>" style="margin-left: 3px; margin-right: 3px;"><?php echo $i ?></a></li>
+                 
+                  <?php }?>
+
+                  <li class="page-item">
+                      <a class="page-link" href="category_link.php?cat_id=<?php echo $cat_id; ?>&page=<?php echo ($page_no+1); ?>" aria-label="Next">
+                      <span aria-hidden="true">&raquo;</span>
+                      <span class="sr-only">Next</span>
+                    </a>
+                  </li>
+                </ul>
+              </nav>
                 
                 <br><br><br><br>
                 

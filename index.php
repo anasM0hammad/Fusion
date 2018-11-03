@@ -171,6 +171,8 @@
              
              <?php 
 
+
+
              //QUERY TO COUNT NUMBER OF POST
              $page_query = "SELECT * FROM posts" ;
              $page_result = mysqli_query($connect , $page_query);
@@ -184,12 +186,27 @@
               $page_no = $_GET['page'];
               $page = ($page_no-1)*$no_of_post;
              }
-             else if($_GET['page'] > $page_count){
-              $page_no=0 ;
-             }
-             else{
+              else{
               $page = 0 ;
              }
+
+
+               if(isset($_GET['page'])){
+
+                $page_no = $_GET['page'];
+                if($page_no < 1 || $page_no > $page_count){
+                   header("Location: index.php");
+                }
+
+
+             }else{
+              $page=0;
+              $page_no =1;
+             }
+
+
+
+            
 
              
              $query = "SELECT * FROM posts LIMIT $page , $no_of_post" ;
@@ -282,7 +299,7 @@
               <nav aria-label="Page navigation example container" >
                 <ul class="pagination justify-content-center" >
                   <li class="page-item">
-                    <a class="page-link" href="index.php?page=<?php echo $page_no-1; ?>" aria-label="Previous">
+                    <a class="page-link" href="index.php?page=<?php echo ($page_no-1); ?>" aria-label="Previous">
                       <span aria-hidden="true">&laquo;</span>
                       <span class="sr-only">Previous</span>
                     </a>
@@ -294,7 +311,7 @@
                   <?php }?>
 
                   <li class="page-item">
-                      <a class="page-link" href="index.php?page=<?php echo $page_no+1; ?>" aria-label="Next">
+                      <a class="page-link" href="index.php?page=<?php echo ($page_no+1); ?>" aria-label="Next">
                       <span aria-hidden="true">&raquo;</span>
                       <span class="sr-only">Next</span>
                     </a>

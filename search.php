@@ -122,6 +122,9 @@
              
              <!-- PHP QUERY -->
              
+
+
+             
              <?php 
              
              if(isset($_POST['submit'])){
@@ -159,9 +162,34 @@
                  $username_result = mysqli_query($connect, $username_query);
                  $username_row = mysqli_fetch_assoc($username_result);
                  $post_username = $username_row['username'] ;
+
+                   //QUERY TO FETCH NUMBER OF LIKES
+                 $likes_query = "SELECT * FROM likes WHERE like_post_id = $post_id AND liked = 1";
+                 $likes_result = mysqli_query($connect, $likes_query);
+                 $noOfLike = mysqli_num_rows($likes_result);
+
+                 //   TO FIND WHETHER USER LIKED THIS POST OR NOT
+                if(isset($_SESSION['username'])){
+                  $like_username = $_SESSION['username'];
+                  $find_islike_query = "SELECT * FROM likes WHERE like_post_id = $post_id AND like_username = '$like_username' AND liked = 1 ";
+                  $islike_result = mysqli_query($connect , $find_islike_query);
+                  $isLike = mysqli_num_rows($islike_result);
+                }
                  
                  
-            ?>     
+            ?>    
+
+
+              <!-- STYLING THE COLOR OF LIKE -->
+             <style type="text/css">
+      
+               <?php if($isLike>0){ ?>
+                #like<?php echo $post_id ?>{
+                  color: blue ;
+                }
+               <?php }?> 
+
+             </style> 
              
              
               <div class="blog">
@@ -176,10 +204,14 @@
                  
                  <p class="text-muted"><?php echo $post_content ; ?> </p>
                  
-                <a href="<?php echo "post.php?p_id={$post_id}"; ?>"><button class="button" style="vertical-align:middle"><span>Read More </span></button></a>
+               
+                  <div class='alert alert-danger' id="<?php echo 'like_alert'.$post_id; ?>" style='margin-top:50px; display: none;' role='alert'><b>Please Register <span style="color:blue;"><a href='registration.php'>Here</a></span>.</b></div>
+
+                     <a href="<?php echo "post.php?p_id={$post_id}"; ?>"><button class="button" style="vertical-align:middle"><span>Read More </span></button></a>
                  
-                 <h5 class="float-right likes text-muted">100</h5>
-                 <h4 class="float-right likes text-muted" data-toggle="tooltip" data-placement="bottom" title="Like"><i class="fas fa-thumbs-up"></i></h4>
+                  <h5 class="float-right likes text-muted" id="<?php echo 'noOfLike'.$post_id; ?>"><?php echo $noOfLike ;?></h5>
+                 
+                 <h4 class="float-right likes text-muted" onclick="liked(<?php echo $post_id ;?>)" data-toggle="tooltip" data-placement="bottom" title="Like"><i class="fas fa-thumbs-up" id="<?php echo 'like'.$post_id ;?>" ></i></h4>
                  
                  <hr><br><br><br>
                  
@@ -190,10 +222,7 @@
                  
             <?php } ?>
              
-                   <!-- PAGINATION -->
-                <button type="button" class="btn btn-outline-info page-link float-left" tabindex="-1">&larr; Previous</button>
-                  
-                <button type="button" class="btn btn-outline-info page-link float-right">Next &rarr;</button> 
+            
                  
             <?php } 
              
@@ -263,9 +292,9 @@
                  
                  <hr><br><br>
                  
-             </div>
--->
-             
+             </div> -->
+
+               
              
                 
                 <br><br><br><br>
