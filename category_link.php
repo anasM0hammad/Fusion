@@ -35,6 +35,42 @@
       
       
       ?>
+
+
+
+
+       <?php
+     if(isset($_SESSION['username'])){
+      //COUNTING NUMBER OF UNREAD MESSAGES
+      $unread = "SELECT * FROM message WHERE message_receiver = '$username' AND message_read = 0 " ;
+      $unread_result = mysqli_query($connect, $unread) ;
+      $count = mysqli_num_rows($unread_result);
+
+
+      ?>
+
+
+      <?php if($count>0){ ?>
+        <style type="text/css">
+          #mes_alert{
+            color: white;
+          }
+          #mes_count{
+            color: white;
+          }
+        </style>
+      <?php } else{ ?>
+        <style type="text/css">
+          #mes_alert{
+            color: #CCCECF;
+          }
+          #mes_count{
+            color: #CCCECF ;
+          }
+        </style>
+      <?php }
+       }
+      ?>
       
       
       
@@ -84,6 +120,14 @@
         <a class="nav-link" href="registration.php"><i class="fas fa-user-plus"></i> Register</a>
       </li>
         <?php }?>
+
+          <?php if(isset($_SESSION['username'])){
+
+          echo " <li class='nav-item ''>
+        <a class='nav-link' href='message.php' id='mes_alert'><i class='fas fa-envelope'></i> Messages <span class='badge badge-secondary' id='mes_count'>{$count}</span></a>
+          </li>" ;
+
+        } ?>
         
         
        <li class="nav-item">
@@ -141,7 +185,7 @@
              $page_result = mysqli_query($connect , $page_query);
              $page_count = mysqli_num_rows($page_result);
 
-             $no_of_post = 1 ;
+             $no_of_post = 5 ;
 
              $page_count = ceil($page_count/$no_of_post);
 

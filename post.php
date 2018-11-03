@@ -40,6 +40,44 @@ include "includes/connection.php" ;
       
       ?>
       
+
+     
+      <?php
+     if(isset($_SESSION['username'])){
+      //COUNTING NUMBER OF UNREAD MESSAGES
+      $unread = "SELECT * FROM message WHERE message_receiver = '$username' AND message_read = 0 " ;
+      $unread_result = mysqli_query($connect, $unread) ;
+      $count = mysqli_num_rows($unread_result);
+
+
+      ?>
+
+
+      <?php if($count>0){ ?>
+        <style type="text/css">
+          #mes_alert{
+            color: white;
+          }
+          #mes_count{
+            color: white;
+          }
+        </style>
+      <?php } else{ ?>
+        <style type="text/css">
+          #mes_alert{
+            color: #CCCECF;
+          }
+          #mes_count{
+            color: #CCCECF ;
+          }
+        </style>
+      <?php }
+       }
+      ?>
+
+
+
+
       
       <!-- NAVBAR  -->  
       
@@ -87,6 +125,15 @@ include "includes/connection.php" ;
         <a class="nav-link" href="registration.php"><i class="fas fa-user-plus"></i> Register</a>
       </li>
         <?php }?>
+
+
+         <?php if(isset($_SESSION['username'])){
+
+          echo " <li class='nav-item ''>
+        <a class='nav-link' href='message.php' id='mes_alert'><i class='fas fa-envelope'></i> Messages <span class='badge badge-secondary' id='mes_count'>{$count}</span></a>
+          </li>" ;
+
+        } ?>
         
         
        <li class="nav-item">
@@ -172,7 +219,7 @@ include "includes/connection.php" ;
      <div class="row">
       <div class="col-md-8">    
         <h1 class="title"><?php echo $post_title ; ?></h1>
-        <h4 class="text-muted"><img class="d-inline-block align-top" height="40" width="40" style="border-radius:50%;" src="img/<?php echo $post_author_image;?>"><a href="profile.php?username=<?php echo $post_username ; ?>"><span class="name text-muted"><?php echo "  ".$post_author ?></span></a></h4>
+        <h4 class="text-muted"><img class="d-inline-block align-top" height="40" width="40" style="border-radius:50%;" src="img/<?php echo $post_author_image;?>"><a href="view_profile.php?username=<?php echo $post_username ; ?>"><span class="name text-muted"><?php echo "  ".$post_author ?></span></a></h4>
         <hr> 
         <img src="img/<?php echo $post_image;?>" class="img-fluid" alt="Responsive image">
         <hr><br>  

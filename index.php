@@ -178,7 +178,7 @@
              $page_result = mysqli_query($connect , $page_query);
              $page_count = mysqli_num_rows($page_result);
 
-             $no_of_post = 1 ;
+             $no_of_post = 5 ;
 
              $page_count = ceil($page_count/$no_of_post);
 
