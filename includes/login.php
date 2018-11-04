@@ -53,6 +53,10 @@ if(isset($_POST['login'])){
              $_SESSION['role'] = $db_role ;
              $_SESSION['email'] = $db_email ;
              $_SESSION['user_image'] = $db_image ;
+
+             //QUERY TO MAKE USER ONLINE
+             $online = "UPDATE users SET user_online =1 WHERE username = '$username' " ;
+             $result = mysqli_query($connect,$online);
             
             header("Location: ../admin");
         }
