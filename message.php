@@ -170,7 +170,7 @@
         
         
        <li class="nav-item">
-        <a class="nav-link" href="#"><i class="fas fa-phone"></i> Contact</a>
+        <a class="nav-link" href="#"><i class="fas fa-users" id="online"></i> Online <span class='badge badge-secondary' id='online_count'></span></a>
       </li>
        <li class="nav-item ">
         <a class="nav-link" href="message.php" id="mes_alert"><i class="fas fa-envelope"></i> Messages <span class="badge badge-secondary" id="mes_count"></span></a>
@@ -457,6 +457,7 @@ if(sender_id!== 0){
 }
 
       </script>
+       <script type="text/javascript" src="js/online.js"></script>
       
       
   </body>

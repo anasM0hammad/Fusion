@@ -136,8 +136,8 @@ include "includes/connection.php" ;
         } ?>
         
         
-       <li class="nav-item">
-        <a class="nav-link" href="#"><i class="fas fa-phone"></i> Contact</a>
+      <li class="nav-item">
+        <a class="nav-link" href="#"><i class="fas fa-users" id="online"></i> Online <span class='badge badge-secondary' id='online_count'></span></a>
       </li>
 
     </ul>
@@ -394,6 +394,7 @@ include "includes/connection.php" ;
       </script>
 
       <script src=js/post.js type="text/javascript" ></script>
+       <script type="text/javascript" src="js/online.js"></script>
       
   </body>
 </html>

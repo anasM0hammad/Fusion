@@ -130,8 +130,8 @@
         } ?>
         
         
-       <li class="nav-item">
-        <a class="nav-link" href="#"><i class="fas fa-phone"></i> Contact</a>
+      <li class="nav-item">
+        <a class="nav-link" href="#"><i class="fas fa-users" id="online"></i> Online <span class='badge badge-secondary' id='online_count'></span></a>
       </li>
 
     </ul>
@@ -386,7 +386,7 @@
       </script>
       
       
-      
+       <script type="text/javascript" src="js/online.js"></script>
       
       
   </body>

@@ -56,9 +56,7 @@
       <li class="nav-item active">
         <a class="nav-link" href="registration.php"><i class="fas fa-user-plus"></i> Register</a>
       </li>
-       <li class="nav-item">
-        <a class="nav-link" href="#"><i class="fas fa-phone"></i> Contact</a>
-      </li>    
+           
     </ul>
   </div>
 </nav>
