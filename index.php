@@ -15,6 +15,19 @@
 
   </head>
   <body>
+
+
+    <?php   
+
+       //SETTING SESSION FOR USER FOR FIRST VISIT
+       if(!isset($_SESSION['visit'])){
+           
+          header("Location:landing.php");
+
+       }
+
+
+     ?>
       
       
       <?php 
