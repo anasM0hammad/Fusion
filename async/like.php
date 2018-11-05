@@ -10,8 +10,16 @@ if(isset($_SESSION['username'])){
 	$username = $_SESSION['username'];
 	$like_obj['flag'] = "true";
 
+	//CHECKING THE VERIFIED USER
+	$verify_query = "SELECT * FROM users WHERE username = '$username' " ;
+	$verify_result = mysqli_query($connect , $verify_query) ;
+	$row = mysqli_fetch_assoc($verify_result);
+	$verified = $row['user_verified'] ;
 
-	if(isset($_GET['p_id'])){
+
+
+
+	if(isset($_GET['p_id']) && $verified == 1){
 	  $p_id = $_GET['p_id'];
 	  
 	  $show_query = "SELECT * FROM likes WHERE like_post_id = $p_id AND like_username = '$username' ";
@@ -21,7 +29,7 @@ if(isset($_SESSION['username'])){
 	       $like_obj['flag'] = "false";
 	  }
 
-		  if($like_obj['flag']=="false" && $liked==1){
+		  if($like_obj['flag']=="false" && $liked==1 ){
             $upd_query="UPDATE likes SET liked = 0 WHERE like_post_id = $p_id AND like_username = '$username' ";
             $upd_result = mysqli_query($connect, $upd_query);
 
@@ -41,8 +49,13 @@ if(isset($_SESSION['username'])){
         $like_result = mysqli_query($connect , $like_query);
         while($row=mysqli_fetch_assoc($like_result)){
         	$like_obj['noOfLike'] = $like_obj['noOfLike']+1 ;
-        }      
+        }    
+
  
+   }
+
+   if($verified == 0){
+   	$like_obj['flag']="not_verified";
    }
 
 }

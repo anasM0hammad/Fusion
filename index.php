@@ -31,6 +31,7 @@
               $lastname = $row['user_lastname'];
               $image = $row['user_image'];
               $role = $row['user_role'];
+              $user_verified = $row['user_verified'];
           }
           
       }
@@ -174,6 +175,9 @@
 
 
        ?>
+
+
+       <div class='alert alert-danger container text-center' id='verify_alert' style='margin-top:30px; display: none;' role='alert'><b>Please Verify Your Email Account First</b></div>
       
       
       <!--PAGE CONTENT STARTS -->
@@ -380,19 +384,29 @@
           document.getElementById(`like${id}`).style.color = "blue" ;
           document.querySelector(`#like_alert${id}`).style.display = "none";
            document.querySelector(`#noOfLike${id}`).textContent = result.data.noOfLike ;
+            document.querySelector(`#verify_alert`).style.display = "none";
+          
          }
 
          else if(result.data.flag === "false"){
          document.getElementById(`like${id}`).style.color = "#6C757D";
            document.querySelector(`#like_alert${id}`).style.display = "none";
            document.querySelector(`#noOfLike${id}`).textContent = result.data.noOfLike ;
+            document.querySelector(`#verify_alert`).style.display = "none";
+          
          }
-          else{
+         
+         else if(result.data.flag === "not_verified"){
+           document.querySelector(`#verify_alert`).style.display = "block";
+         }
+
+          else {
             document.querySelector(`#like_alert${id}`).style.display = "block";
+            document.querySelector(`#verify_alert`).style.display = "none";
           
          }
         
-        //  console.log("Alright");
+         // console.log(result);
         }).catch(error=>error)
        }
 
