@@ -21,16 +21,25 @@
           like.style.color = "blue" ;
           like_alert.style.display = "none";
           noOfLike.textContent = result.data.noOfLike ;
+           document.querySelector(`#verify_alert`).style.display = "none";
          }
 
          else if(result.data.flag === "false"){
           like.style.color = "#6C757D";
           like_alert.style.display = "none";
            noOfLike.textContent = result.data.noOfLike ;
+            document.querySelector(`#verify_alert`).style.display = "none";
          }
+         else if(result.data.flag==="not_verified"){
+       
+           document.querySelector(`#verify_alert`).style.display = "block";
+
+         }
+
+
          else{
           like_alert.style.display = "block";
-          
+           document.querySelector(`#verify_alert`).style.display = "none";
          }
 
        

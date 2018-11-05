@@ -109,11 +109,18 @@
               $role = $row['user_role'];
               $email = $row['user_email'];
               $password = $row['user_password'];
+              $verified = $row['user_verified'];
           }
           
       }
       else{
           header("Location: index.php");
+      }
+
+
+
+      if($verified == 0){
+        header("Location: index.php?verify=no");
       }
       
       

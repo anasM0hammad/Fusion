@@ -33,6 +33,7 @@ include "includes/connection.php" ;
               $role = $row['user_role'];
               $user_id = $row['user_id'];
               $user_email = $row['user_email'];
+              $verified = $row['user_verified'];
           }
           
       }
@@ -145,6 +146,10 @@ include "includes/connection.php" ;
   </div>
 </nav>
   <!-- NAVBAR ENDS HERE -->
+
+
+
+   <div class='alert alert-danger container text-center' id='verify_alert' style='margin-top:30px; display: none;' role='alert'><b>Please Verify Your Email Account First</b></div>
       
       <?php 
       
@@ -248,7 +253,7 @@ include "includes/connection.php" ;
              }
 
 
-            // IF USER IS REGISTERED IN DATABASE THEN ONLY CAN COMMENT
+            // IF USER IS REGISTERED AND VERIFIED IN DATABASE THEN ONLY CAN COMMENT
              else{
 
                $comment_auth_id = $user_id ;
@@ -262,6 +267,10 @@ include "includes/connection.php" ;
                 
                 if(empty($comment) || empty($comment_author) || empty($comment_email)){
                     echo "<div class='alert alert-danger' style='margin-top:30px;' role='alert'><b>Please Enter Required Fields.</b></div>" ;
+                }
+
+                else if($verified == 0){
+                   echo "<div class='alert alert-danger' style='margin-top:30px;' role='alert'><b>Please Verifiy your Account first</b></div>" ;
                 }
                 
                 //QUERY TO INSERT COMMENT
