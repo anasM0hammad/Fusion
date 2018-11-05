@@ -161,6 +161,8 @@
       
       <?php
 
+
+         // ALERT FOR NON VERIFIED USER GOES TO RESTRICTED PAGE
          if(isset($_GET['verify'])){
 
             if($_GET['verify']=='no'){
@@ -169,6 +171,24 @@
             else{
               header("Location: index.php");
             }
+
+         }
+
+
+         if(isset($_GET['verified'])){
+
+              if($_GET['verified'] == "yes"){
+                 echo "<div class='alert alert-success container text-center' style='margin-top:30px;' role='alert'><b>Your Account Has Been Verified</b></div>" ;
+              }
+
+              else if($_GET['verified'] == "no"){
+                echo "<div class='alert alert-danger container text-center' style='margin-top:30px;' role='alert'><b>Invalid Email</b></div>" ;
+              }
+
+              else{
+                header("Location: index.php") ;
+              }
+
 
          }
 
