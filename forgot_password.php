@@ -9,30 +9,7 @@
 
     <style type="text/css">
        
-       body {
-        background-color: #46B3CE;
-       }
-
-       .steps{
-        color: white;
-       }
-
-     .row{
-      margin-top: 60px;
-     }
-
-     .myslide img{
-        height: 300px;
-     }
-
-    
-
-     a{
-      margin-left: 10px;
-      color: white;
-     }
-
-    </style>
+     </style>
 
 
   </head>
@@ -42,14 +19,11 @@
 
     <?php 
 
-      $_SESSION['visit'] = 1 ;
+     if(isset($_SESSION['username'])){
+      header("Location: index.php");
+     }
 
-      if(isset($_SESSION['username'])){
-        header("Location: index.php");
-      }
-   
-
-  ?>
+   ?>
 
 <!-- NAVBAR STARTS HERE -->
 
@@ -67,14 +41,6 @@
           <a class="nav-link" href="index.php"><i class ="fas fa-home"></i> Home<span class="sr-only">(current)</span></a>
       </li>
         
-        
-        <?php if(!isset($_SESSION['username'])){ ?>
-      <li class="nav-item">
-        <a class="nav-link" href="registration.php"><i class="fas fa-user-plus"></i> Register</a>
-      </li>
-        <?php }?>
-        
-
     </ul>
       
   </div>
@@ -83,30 +49,16 @@
 <!-- PAGE CONTENT STARTS -->
 <div class="container">
 <div class="row">
-  <div class="col-sm-6 steps" >
-   <!-- MESSAGE AND COROUSAL CONTENT -->
+  <div class="col-sm-3 steps" ></div>
 
-   <h1><img src='img/icon2.png' width="70" height="70" > Fusion</h1><br>
-
-   <h5>A combination of blog and a social networking Site<br>With Blog Posting and online chatting Features and<br> much more with easy User Interface.</h5>
-   <br><br>
-   <h5><u>How To start</u></h5><br>
-   <h6>1. Register to Become a Member for Free.</h6>
-   <h6>2. Click on the link Send to your mail for Verification</h6>
-   <h6>3. Start Blogging and Posting </h6>
-   <br>
-   <h5><a href="index.php"><u>Home</u></a><a href="registration.php"><u>Signup</u></a></h5>
-    
-  </div>
-
- <div class="col-sm-2"></div>
-
-  <div class="col-sm-4">
+  <div class="col-sm-6">
     <!-- LOGIN FORM -->
 
+  <br><br>
+   <h3 class="text-center">Reset Password Form</h3>
 
 
-    <div class="card" style="margin-top: 40px; margin-bottom: 20px;">
+    <div class="card" style="margin-top: 50px; margin-bottom: 20px;">
        <div class="card-body">
           <form method="post" action="includes/login.php">
               
@@ -115,22 +67,23 @@
                   <input type="text" class="form-control" name="username" id="username">
                 </div>
                 <div class="form-group ">
-                  <label><b>Password</b></label>
+                  <label><b>Email</b></label>
+                  <input type="email" class="form-control" name="email" id="email">
+                </div>
+                 <div class="form-group ">
+                  <label><b>New Password</b></label>
                   <input type="password" class="form-control" name="password" id="password">
                 </div>
-                <br>
-                <div class="form-group form-check">
-                    <input type="checkbox" class="form-check-input">
-                    <label class="form-check-label" for="check" name="remember"><b>Remember Me</b></label>
-                    <a href="forgot_password.php" style="float: right; color: blue;">Forgot Password ?</a>
-                 </div>
-
-               <br> 
+               
+                <br><br> 
               
-              <button type="submit" class="btn btn-primary btn-sm btn-block" name="login">Login</button>
+              <button type="submit" class="btn btn-primary btn-sm btn-block" name="Reset">Reset</button>
             </form>
         </div>
     </div>
+
+    <div class="col-sm-3"></div>
+
 
 
   </div>
