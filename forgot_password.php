@@ -52,32 +52,104 @@
   <div class="col-sm-3 steps" ></div>
 
   <div class="col-sm-6">
+
+
+<?php 
+
+ if(isset($_POST['reset'])){
+
+  $username = $_POST['username'];
+  $username = mysqli_real_escape_string($connect , $username);
+
+  if(empty($username)){
+    echo"<div class='alert alert-danger' role='alert'  style='margin-top:20px;'><b>Enter Username</b></div>" ;
+  }
+ 
+  else{
+
+
+  //CHECKING DETAILS OF USER
+      $user_query = "SELECT * FROM users WHERE username = '$username' " ;
+      $user_result = mysqli_query($connect, $user_query);
+      $user = mysqli_num_rows($user_result);
+
+      if($user == 0){
+        echo "<div class='alert alert-danger' role='alert'  style='margin-top:20px;'><b>Invalid Username</b></div>" ;
+      }
+
+      else{
+         
+         $row = mysqli_fetch_assoc($user_result) ;
+         $email = $row['user_email'];
+
+          $number = rand(0,1000000);
+          $new_password = $username.$number ;
+
+         // SETTING DEFAULT PASSWORD
+          $reset_query = "UPDATE users SET user_password = '$new_password' WHERE username = '$username' ";
+          $reset_result = mysqli_query($connect , $reset_query);
+
+            if(!$reset_result){
+              die("FAILED");
+            }
+            else{
+               //mail 
+              $to = $email ;
+              $subject = "Reset Password of your Fusion Account";
+              $msg = "           Greetings From Fusion
+
+                                          Your Password has been Reset, you can login with Your Default credentials given Below.
+                                          Thank You.
+
+                                          New Password = {$new_password} 
+
+                                          We Strongly Recommend You to Change your default password after Login Successfully  " ;
+                                        
+                                        $header = "From: noreply@fusion.in";
+
+                mail($to , $subject, $msg , $header);
+
+                echo "<div class='alert alert-success' role='alert' style='margin-top:20px;'><b>Your Password has been Reset Please Check Your Email.</b></div>" ;
+
+
+              }
+          }
+
+      }
+
+  }
+      
+
+ 
+
+
+?>
+
+
+
+
+
+
+
+
+  
     <!-- LOGIN FORM -->
 
   <br><br>
    <h3 class="text-center">Reset Password Form</h3>
 
-
+   
     <div class="card" style="margin-top: 50px; margin-bottom: 20px;">
        <div class="card-body">
-          <form method="post" action="includes/login.php">
+          <form method="post" action="forgot_password.php">
               
                 <div class="form-group ">
-                    <label for="username"><b>Username</b></label>
+                    <label for="username"><b>Enter Username</b></label>
                   <input type="text" class="form-control" name="username" id="username">
                 </div>
-                <div class="form-group ">
-                  <label><b>Email</b></label>
-                  <input type="email" class="form-control" name="email" id="email">
-                </div>
-                 <div class="form-group ">
-                  <label><b>New Password</b></label>
-                  <input type="password" class="form-control" name="password" id="password">
-                </div>
-               
                 <br><br> 
               
-              <button type="submit" class="btn btn-primary btn-sm btn-block" name="Reset">Reset</button>
+              <button type="submit" class="btn btn-primary btn-sm btn-block" name="reset">Reset Password</button>
             </form>
         </div>
     </div>
