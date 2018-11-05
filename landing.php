@@ -88,8 +88,7 @@
 
    <h1><img src='img/icon2.png' width="70" height="70" > Fusion</h1><br>
 
-   <h5>A combination of blog and a social networking Site<br>With Blog Posting and online chatting Features and</h5>
-   <h5>much more with easy User Interface.</h5>
+   <h5>A combination of blog and a social networking Site<br>With Blog Posting and online chatting Features and<br> much more with easy User Interface.</h5>
    <br><br>
    <h5><u>How To start</u></h5><br>
    <h6>1. Register to Become a Member for Free.</h6>
@@ -105,23 +104,25 @@
   <div class="col-sm-4">
     <!-- LOGIN FORM -->
 
-    <div class="card">
+
+
+    <div class="card" style="margin-top: 40px; margin-bottom: 20px;">
        <div class="card-body">
-          <form method="post" action="common/login.php" onsubmit="return valid_login()">
+          <form method="post" action="includes/login.php">
               
                 <div class="form-group ">
                     <label for="username"><b>Username</b></label>
-                  <input type="text" class="form-control" name="login_username" id="username_l">
+                  <input type="text" class="form-control" name="username" id="username">
                 </div>
                 <div class="form-group ">
                   <label><b>Password</b></label>
-                  <input type="password" class="form-control" name="login_password" id="password_l">
+                  <input type="password" class="form-control" name="password" id="password">
                 </div>
                 <br>
                 <div class="form-group form-check">
                     <input type="checkbox" class="form-check-input">
                     <label class="form-check-label" for="check" name="remember"><b>Remember Me</b></label>
-                         <a href="" style="float: right;">Forgot Password ?</a>
+                    <a href="" style="float: right; color: blue;">Forgot Password ?</a>
                  </div>
 
                <br> 
