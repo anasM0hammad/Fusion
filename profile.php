@@ -84,8 +84,9 @@
               $role = $row['user_role'];
               $email = $row['user_email'];
               $password = $row['user_password'];
+              $user_verified = $row['user_verified'];
           }
-          
+
       }
       else{
           header("Location: index.php");
@@ -93,6 +94,17 @@
       
       
       ?>
+
+
+
+
+      <?php    //CHECKING A VERIFIED USER
+
+          if($user_verified == 0){
+            header("Location: index.php?verify=no");
+          }
+
+       ?>
 
 
 

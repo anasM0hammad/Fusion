@@ -158,7 +158,22 @@
       <!--HEADER ENDS HERE -->
       
       
-      
+      <?php
+
+         if(isset($_GET['verify'])){
+
+            if($_GET['verify']=='no'){
+              echo "<div class='alert alert-danger container text-center' style='margin-top:30px;' role='alert'><b>Please Verify Your Email Account First</b></div>" ;
+            }
+            else{
+              header("Location: index.php");
+            }
+
+         }
+
+
+
+       ?>
       
       
       <!--PAGE CONTENT STARTS -->
