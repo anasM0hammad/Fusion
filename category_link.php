@@ -220,7 +220,7 @@
                  
                  $cat_id = $_GET['cat_id'];
                  
-                 $query = "SELECT * FROM posts WHERE post_category_id = $cat_id LIMIT $page , $no_of_post" ;
+                 $query = "SELECT * FROM posts WHERE post_category_id = $cat_id AND post_status='published' LIMIT $page , $no_of_post" ;
                  $post_result = mysqli_query($connect , $query) ;
                  
                   if(mysqli_num_rows($post_result) == 0){

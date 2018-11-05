@@ -209,7 +209,7 @@
             
 
              
-             $query = "SELECT * FROM posts LIMIT $page , $no_of_post" ;
+             $query = "SELECT * FROM posts WHERE post_status = 'published' LIMIT $page , $no_of_post" ;
              $post_result = mysqli_query($connect , $query) ;
              
              while($row = mysqli_fetch_assoc($post_result)){

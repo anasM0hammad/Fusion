@@ -148,7 +148,29 @@
                           
                           //QUERY SEND SUCCESSFULLY
                           else{
-                              echo "<div class='alert alert-success container' style='margin-top: 40px; border-radius:0; text-align:center;' role='alert'><b>Registration Successful.</b></div>";
+
+                              //EMAIL VERIFICATION PHP CODE
+                              $hash = md5(rand(0,1000));
+                              $to = $email ;
+                              $subject = "Signup || Verification of Account";
+                              $msg = "           Welcome to Fusion
+
+                                      Thanks for signing up!
+                                      Your account has been created, you can login with Your submitted credentials after you have activated your account by pressing the url below.
+
+                                      Please click this link to activate your account:
+                                      http://www.fusion.in/verify.php?email={$email}&hash={$hash}" ;
+                                    
+                                    $header = "From: noreply@fusion.in";
+
+                                    mail($to , $subject, $msg , $header);
+
+                                    //INSERTING THE HASH INTO THE USERS DATABASE
+                                    $hash_query = "UPDATE users SET user_hash = '{$hash}' WHERE username = '$username' ";
+                                    $hash_result = mysqli_query($connect , $hash_query);
+
+
+                              echo "<div class='alert alert-success container' style='margin-top: 40px; border-radius:0; text-align:center;' role='alert'><b>Registration Successful. Go to your Email to verify your Account</b></div>";
                           }
                           
                       }
