@@ -73,6 +73,13 @@
      
      $subs_count = $user_count - $admin_count ;
 
+     //CALCULATING VERIFIED USERS
+     $verified_query = "SELECT * FROM users WHERE user_verified = 1 ";
+     $verified_result = mysqli_query($connect , $verified_query) ;
+     $verified_count = mysqli_num_rows($verified_result);
+
+     $not_verfied_count = $user_count - $verified_count ;
+
     ?>
  
   
@@ -235,7 +242,7 @@
                     
                       echo "['Post', {$post_count}, {$pub_post_count}, {$draft_count}, 0, 0]," ;
                       echo "['Comments', {$com_count}, {$ap_com_count}, {$unap_com_count}, 0 , 0]," ;
-                      echo "['Users', {$user_count},  0 , 0 , {$admin_count} , {$subs_count}]," ;
+                      echo "['Users', {$user_count},  {$verified_count} , {$not_verfied_count} , {$admin_count} , {$subs_count}]," ;
                     //  echo "['Categories', {$cat_count} , 0 , 0 , 0 , 0]" ;
                     
                     ?>

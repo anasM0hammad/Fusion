@@ -313,7 +313,7 @@
            <p class="text-muted text"><a href="profile.php?delete_acc=success" ><b><i class="fas fa-trash-alt"></i> Delete Account</b></a></p>
            <p class="text-muted text"><a href="change_password.php" ><b><i class="fas fa-key"></i> Change Password</b></a></p>
             <br>
-           <button type="button" class="btn btn-success btn-md mx-auto d-block mybtn"><i class="fab fa-github"></i> <b>Connect</b></button><br>
+          <!--  <button type="button" class="btn btn-success btn-md mx-auto d-block mybtn"><i class="fab fa-github"></i> <b>Connect</b></button> --><br>
        </div>
           
           
@@ -418,7 +418,7 @@
             <div class="col-sm-6 "> 
              <div class="card post_box">
                <div class="card-header" style="text-align: center;"><b><a href="post.php?p_id=<?php echo $post_id ;?>"><?php echo $post_title ; ?></a>
-                <a href="profile.php?delete=<?php echo $post_id; ?>" class="float-right" style="margin-left: 10px;"><i class="far fa-times-circle"></i></a>
+                <a href="profile.php?delete=<?php echo $post_id; ?>" class="float-right" style="margin-left: 10px;"><i class="fas fa-trash-alt"></i></a>
                 <a href="update_post_profile.php?p_id=<?php echo $post_id; ?>" class="float-right"><i class="fas fa-pen"></i></a></b></div>
               <div class="card-body">
                 <img src="img/<?php echo $post_image; ?>" class="img-fluid mx-auto d-block" style="height: 120px; width: 100%;"><br><br>
@@ -471,7 +471,7 @@
            <div class="col-sm-6 "> 
              <div class="card post_box">
                <div class="card-header" style="text-align: center;"><b><a href="post.php?p_id=<?php echo $post_id ;?>"><?php echo $post_title ; ?></a>
-                <a href="profile.php?delete=<?php echo $post_id; ?>" class="float-right" style="margin-left: 10px;"><i class="far fa-times-circle"></i></a>
+                <a href="profile.php?delete=<?php echo $post_id; ?>" class="float-right" style="margin-left: 10px;"><i class="fas fa-trash-alt"></i></a>
                 <a href="update_post_profile.php?p_id=<?php echo $post_id; ?>" class="float-right"><i class="fas fa-pen"></i></a></b></div>
               <div class="card-body">
                 <img src="img/<?php echo $post_image; ?>" class="img-fluid mx-auto d-block" style="height: 120px; width: 100%;"><br><br>

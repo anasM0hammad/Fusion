@@ -82,7 +82,7 @@
                   
                   else{
                   
-                  $add_query = "INSERT INTO users(username, user_password, user_firstname, user_lastname, user_email, user_role, user_image) VALUES ('{$username}', '{$password}', '{$firstname}', '{$lastname}', '{$email}', '{$role}', '{$user_image}') ";
+                  $add_query = "INSERT INTO users(username, user_password, user_firstname, user_lastname, user_email, user_role, user_image , user_verified) VALUES ('{$username}', '{$password}', '{$firstname}', '{$lastname}', '{$email}', '{$role}', '{$user_image}', 1) ";
                   
                   $add_result = mysqli_query($connect, $add_query) ;
                       

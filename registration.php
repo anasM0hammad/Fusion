@@ -192,6 +192,23 @@
           
           
           ?>    
+
+
+
+
+           <!-- CATCHING REQUEST TO BE ADMIN -->
+
+        <?php 
+
+          if(isset($_POST['request'])){
+
+            echo "<div class='alert alert-success container' style='margin-top: 40px; border-radius:0; text-align:center;' role='alert'><b>Admin Request Will Be open Soon. Stay Tuned for more Updates</b></div>" ;
+
+          } //  ./ISSET POST OF ADMIN REQUEST
+
+
+
+        ?>
                 
      
       

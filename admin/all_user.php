@@ -114,11 +114,11 @@
               <thead>
                  <tr>
                    <th>Id</th>
+                   <th>Verified</th>
                    <th>Image</th>      
                    <th>Username</th>     
                    <th>Email</th>
-                   <th>First Name</th>
-                   <th>Last Name</th>
+                   <th>Name</th>
                    <th>Role</th> 
                    <th>Edit Role</th>
                    <th>Edit</th>     
@@ -141,15 +141,23 @@
                        $last_name = $row['user_lastname'];
                        $role = $row['user_role'];
                        $user_image = $row['user_image'];
+                       $user_verified = $row['user_verified'];
+
+                       if($user_verified == 1){
+                        $verified = 'Yes';
+                       }
+                       else{
+                        $verified = 'No';
+                       }
                        
                        
                         echo "<tr>" ;
                         echo "<td>$user_id</td>" ;
+                        echo "<td>$verified</td>" ;
                         echo "<td><img src='../img/$user_image' height ='50' width='50' style='border-radius:50%;'></td>" ;
                         echo "<td>$username</td>" ;
                         echo "<td>$user_email</td>" ;
-                        echo "<td>$first_name</td>" ;
-                        echo "<td>$last_name</td>" ;
+                        echo "<td>$first_name $last_name</td>" ;
                         echo "<td>$role</td>"   ;
                        
                         if($role!=='Admin')
