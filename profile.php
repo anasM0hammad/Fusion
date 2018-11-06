@@ -311,7 +311,7 @@
            <h5 class="text-muted text"><i class="fas fa-briefcase"></i> <?php echo " ".$role; ?></h5>
            <h5 class="text-muted text"><i class="fas fa-envelope"></i> <?php echo " ".$email; ?></h5><br>
            <p class="text-muted text"><a href="profile.php?delete_acc=success" ><b><i class="fas fa-trash-alt"></i> Delete Account</b></a></p>
-           <p class="text-muted text"><a href="profile.php?delete_acc=success" ><b><i class="fas fa-key"></i> Change Password</b></a></p>
+           <p class="text-muted text"><a href="change_password.php" ><b><i class="fas fa-key"></i> Change Password</b></a></p>
             <br>
            <button type="button" class="btn btn-success btn-md mx-auto d-block mybtn"><i class="fab fa-github"></i> <b>Connect</b></button><br>
        </div>
