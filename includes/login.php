@@ -17,6 +17,13 @@ if(isset($_POST['login'])){
         
         $username = mysqli_real_escape_string($connect, $username);
         $password = mysqli_real_escape_string($connect, $password);
+
+        //ENCRYPTING THE PASSWORD
+         $hash = "$2y$10$" ;
+         $salt="Sde4Fg67Yhnaf2dhr5jQv5" ;
+         $hash_salt = $hash.$salt ;
+
+         $password = crypt($password , $hash_salt);
         
         $comp_query = "SELECT * FROM users WHERE username = '$username'" ;
         $comp_result = mysqli_query($connect , $comp_query);

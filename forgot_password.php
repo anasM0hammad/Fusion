@@ -84,9 +84,17 @@
 
           $number = rand(0,1000000);
           $new_password = $username.$number ;
+          $en_password = $username.$number ;
+
+          //ENCRYPTING NEW GENERATED PASSWORD ;
+           $hash = "$2y$10$" ;
+           $salt="Sde4Fg67Yhnaf2dhr5jQv5" ;
+           $hash_salt = $hash.$salt ;
+
+           $en_password = crypt($en_password , $hash_salt);
 
          // SETTING DEFAULT PASSWORD
-          $reset_query = "UPDATE users SET user_password = '$new_password' WHERE username = '$username' ";
+          $reset_query = "UPDATE users SET user_password = '$en_password' WHERE username = '$username' ";
           $reset_result = mysqli_query($connect , $reset_query);
 
             if(!$reset_result){

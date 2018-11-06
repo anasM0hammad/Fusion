@@ -81,6 +81,13 @@
 
     	 else{
 
+    	 	//ENCRYTING OLD PASSWORD ENTERED BY USER
+    	   $hash = "$2y$10$" ;
+           $salt="Sde4Fg67Yhnaf2dhr5jQv5" ;
+           $hash_salt = $hash.$salt ;
+
+           $old_password = crypt($old_password , $hash_salt);
+
 
             //IF PASSWORD IS INCORRECT
     		if($db_password !== $old_password){
@@ -94,6 +101,16 @@
                 	echo "<div class='alert alert-danger' role='alert' style='margin-top:20px;'><b>Enter Same Password in Comfirm Field</b></div>" ;
                 }
                 else{
+
+                	$password2 = mysqli_real_escape_string($connect , $password2);
+
+                   //ENCRYPTING NEW PASSWORD
+                   $hash = "$2y$10$" ;
+                   $salt="Sde4Fg67Yhnaf2dhr5jQv5" ;
+                   $hash_salt = $hash.$salt ;
+
+                   $password2 = crypt($password2 , $hash_salt);
+
 
                     //CHANGING THE USERS PASSWORD
                     $change_query = "UPDATE users SET user_password = '{$password2}' WHERE username = '$username' " ;

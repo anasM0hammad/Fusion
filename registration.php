@@ -135,6 +135,13 @@
                           $username = mysqli_real_escape_string($connect , $username);
                           $email = mysqli_real_escape_string($connect , $email);
                           $password = mysqli_real_escape_string($connect , $password);
+
+                          //PASSWORD ENCRYPTION
+                           $hash = "$2y$10$" ;
+                           $salt="Sde4Fg67Yhnaf2dhr5jQv5" ;
+                           $hash_salt = $hash.$salt ;
+
+                           $password = crypt($password , $hash_salt);
                           
                           //QUERY TO SEND THE DATA IN DATABSE
                           $reg_query = "INSERT INTO users(username , user_password, user_firstname, user_lastname, user_email, user_role , user_image) VALUES ('{$username}' , '{$password}' , '{$firstname}' , '{$lastname}' , '$email' , 'Subscriber', '$image')";

@@ -63,6 +63,14 @@
                   $role = $_POST['role'];
                   $user_image = $_FILES['image']['name'];
                   $user_image_tmp = $_FILES['image']['tmp_name'] ;
+
+
+                  //PASSWORD ENCRYPTION
+                  $hash = "$2y$10$" ;
+                  $salt="Sde4Fg67Yhnaf2dhr5jQv5" ;
+                  $hash_salt = $hash.$salt ;
+
+                  $password = crypt($password , $hash_salt);
                  
                   
                   move_uploaded_file($user_image_tmp , "../img/$user_image") ;
