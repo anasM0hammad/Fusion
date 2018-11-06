@@ -71,6 +71,7 @@
                   </div>
                   <input type="password" class="form-control" placeholder="Password" name="password">
                 </div> 
+                <a href="forgot_password.php" style="float: right; color: blue; margin-bottom: 5px;">Forgot Password ?</a>
                 
                 <button type="submit" class="btn btn-primary btn-md btn-block" style="border-radius: 0" name="login">Login</button>    
                 </form>    
