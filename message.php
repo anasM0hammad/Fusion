@@ -110,6 +110,7 @@
               $email = $row['user_email'];
               $password = $row['user_password'];
               $verified = $row['user_verified'];
+             
           }
           
       }
@@ -229,7 +230,7 @@
       <div class="col-sm-8"  > 
       <div class="container">
        <div class="card message_card">
-        <div class="card-header"><b><?php if(isset($_GET['sender'])){ echo $sender; }?></b></div>
+        <div class="card-header"><b><?php if(isset($_GET['sender'])){ echo "<i class='fas fa-circle dot'></i> ".$sender; }?></b></div>
         <div class="card-body message_box" id="here">
 
           <?php 
@@ -248,6 +249,7 @@
           $img_row = mysqli_fetch_assoc($img_result);
           $sender_image = $img_row['user_image'];
           $sender_id = $img_row['user_id'];
+          $sender_online = $img_row['user_online'];
 
           //QUERY TO MAKE ALL MESSAGE READ 
            $read_query = "UPDATE message SET message_read = 1 WHERE message_sender = '$sender' AND message_receiver = '$username'" ;
@@ -314,6 +316,23 @@
      </div>  <!-- MESSAGE ENDS -->  
       </div> <!-- MAIN ROW ENDS -->
       
+
+      <style type="text/css">
+         
+         <?php if($sender_online == 1) { ?>
+            .dot{
+              color: green;
+            }
+         <?php }  else{?>
+             
+             .dot{
+              color: grey;
+             }
+
+         <?php }?>
+
+
+      </style>
       
       
      

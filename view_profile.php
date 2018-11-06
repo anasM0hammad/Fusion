@@ -151,6 +151,7 @@
             $pro_image = $row['user_image'];
             $pro_email = $row['user_email'];
             $pro_user_id = $row['user_id'];
+            $pro_user_online = $row['user_online'];
           }
          }
 
@@ -233,8 +234,33 @@
 </nav>
       
        <!-- NAVBAR ENDS HERE -->
+        
 
-      
+
+
+
+          <style type="text/css">
+
+            <?php if($pro_user_online == 1) { ?>
+              .dot{
+                color: green;
+                font-size: 12px;
+                margin: 3px;
+              }
+            <?php }  else{?>
+
+              .dot{
+                color: grey;
+                font-size: 12px;
+                  margin: 3px;
+                  text-align: center;
+              }
+
+            <?php }?>
+
+
+          </style>
+
 
     
        
@@ -247,7 +273,7 @@
        <div class="col-sm-3 background">
           <img src="img/<?php echo $pro_image; ?>" class=" mx-auto d-block" height="110" width="110" style="border-radius:50%;"><br>
            <h3 class="text"><?php echo $pro_firstname . " " . $pro_lastname ; ?></h3>
-           <h5 class="text-muted text"><?php echo $pro_username; ?></h5><br><br>
+           <h5 class="text-muted text"><i class="fas fa-circle dot"></i> <?php echo $pro_username; ?></h5><br><br>
            <h5 class="text-muted text"><i class="fas fa-briefcase"></i> <?php echo " ".$pro_role; ?></h5>
            <h5 class="text-muted text"><i class="fas fa-envelope"></i> <?php echo " ".$pro_email; ?></h5><br>
            
