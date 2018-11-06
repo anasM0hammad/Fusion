@@ -83,7 +83,6 @@
               $image = $row['user_image'];
               $role = $row['user_role'];
               $email = $row['user_email'];
-              $password = $row['user_password'];
               $user_verified = $row['user_verified'];
           }
 
@@ -312,7 +311,8 @@
            <h5 class="text-muted text"><i class="fas fa-briefcase"></i> <?php echo " ".$role; ?></h5>
            <h5 class="text-muted text"><i class="fas fa-envelope"></i> <?php echo " ".$email; ?></h5><br>
            <p class="text-muted text"><a href="profile.php?delete_acc=success" ><b><i class="fas fa-trash-alt"></i> Delete Account</b></a></p>
-            <br><br>
+           <p class="text-muted text"><a href="profile.php?delete_acc=success" ><b><i class="fas fa-key"></i> Change Password</b></a></p>
+            <br>
            <button type="button" class="btn btn-success btn-md mx-auto d-block mybtn"><i class="fab fa-github"></i> <b>Connect</b></button><br>
        </div>
           
@@ -522,7 +522,7 @@
                   $post_date = date('d-m-y');
                   $post_comment_count = 0 ;
                   
-                  move_uploaded_file($post_image_tmp , "../img/$post_image") ;
+                  move_uploaded_file($post_image_tmp , "img/$post_image") ;
                  
                   
                   if(empty($post_title)  || empty($post_content) || empty($post_cat)){
@@ -629,12 +629,12 @@
                      $upd_firstname = $_POST['firstname'] ;
                      $upd_lastname = $_POST['lastname'] ;
                      $upd_email = $_POST['email'] ;
-                     $upd_password = $_POST['password'] ;
+                    
                      $upd_username = $_POST['username'] ;
                      $upd_image = $_FILES['image']['name'] ;
                      $upd_tmp_image = $_FILES['image']['tmp_name'];
                 
-                     move_uploaded_file($upd_tmp_image, "../img/$upd_image");
+                     move_uploaded_file($upd_tmp_image, "img/$upd_image");
                      
                      
                      // TO FILL THE IMAGE IF NOT UPDATED
@@ -649,14 +649,14 @@
                      
                      
                  //CONDITION FOR VALIDATION OF FIELDS
-                 if(empty($upd_firstname) || empty($upd_lastname) || empty($upd_email) || empty($upd_password) || empty($upd_username)){
+                 if(empty($upd_firstname) || empty($upd_lastname) || empty($upd_email) || empty($upd_username)){
                          
                      echo "<div class='alert alert-danger' style='margin-bootom:20px; border-radius:0;' role='alert'><b>Enter The Required Fields</b></div>";
                  }
                      
                 else{     
                      
-                     $upd_query = "UPDATE users SET username = '{$upd_username}', user_password = '{$upd_password}', user_email = '{$upd_email}', user_firstname = '{$upd_firstname}', user_lastname = '{$upd_lastname}', user_image = '{$upd_image}' WHERE user_id = $user_id" ;
+                     $upd_query = "UPDATE users SET username = '{$upd_username}', user_email = '{$upd_email}', user_firstname = '{$upd_firstname}', user_lastname = '{$upd_lastname}', user_image = '{$upd_image}' WHERE user_id = $user_id" ;
                      
                      $upd_result = mysqli_query($connect , $upd_query);
                      
@@ -701,27 +701,20 @@
                 <label for="username"><b>Username</b></label>
               <input type="text" class="form-control" value="<?php echo $username; ?>" name="username">
             </div>
+             <div class="form-group col-md-6">
+              <label for="Email"><b>Email</b></label>
+              <input type="email" class="form-control" value="<?php echo $email; ?>" name="email">
+            </div>
+                
+          </div> 
+                 
               
-            <div class="form-group col-md-6">
+          <div class="form-group col-md-6">
             <label for="image"><b>Image</b></label>
             <img src="img/<?php echo $image; ?>" height="40" width="50" style="margin-left: 40px; border-radius:50%;">        
             <input type="file" class="form-control-file" name="image" >
           </div> 
               
-          </div> 
-                 
-          <div class="form-row">
-             <div class="form-group col-md-6">
-              <label for="Email"><b>Email</b></label>
-              <input type="email" class="form-control" value="<?php echo $email; ?>" name="email">
-            </div>
-              
-            <div class="form-group col-md-6">
-              <label for="password"><b>Password</b></label>
-              <input type="password" class="form-control" value="<?php echo $password; ?>" name="password">
-            </div>
-              
-          </div>
              
          <br>
              

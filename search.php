@@ -173,7 +173,7 @@
              if(isset($_POST['submit'])){
                  
                   $search = $_POST['search'] ;
-                  $query = "SELECT * FROM posts WHERE post_tags LIKE '%$search%' AND post_status = 'published' " ;
+                  $query = "SELECT * FROM posts WHERE (post_tags LIKE '%$search%' OR post_author LIKE '%$search%') AND post_status = 'published' " ;
                  
                   $search_result = mysqli_query($connect , $query);
                  

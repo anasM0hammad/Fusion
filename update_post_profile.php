@@ -306,7 +306,7 @@
                      $post_upd_tmp_image = $_FILES['image']['tmp_name'];
                     
                      
-                     move_uploaded_file($post_upd_tmp_image, "../img/$post_upd_image");
+                     move_uploaded_file($post_upd_tmp_image, "img/$post_upd_image");
                     
                      
                      // TO FILL THE IMAGE IF NOT UPDATED
