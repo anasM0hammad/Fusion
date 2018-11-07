@@ -153,6 +153,8 @@
       </div>
       <!--HEADER ENDS HERE -->
       
+
+
       
       
       
@@ -163,10 +165,71 @@
         <div class="row">
          <div class="col-md-8">
              
-             <!-- PHP QUERY -->
+          <div class="searched_user">
+           
+           <h3 class="text-muted">  Users</h3>
+
+            <hr>
+            <div class="row" style="margin:0;">
+
+                <!-- PHP QUERY TO SEARCH USERS -->
+
+            <?php 
+
+                if(isset($_POST['submit'])){
+
+                  $search_user = $_POST['search'];
+                  $user_search = "SELECT * FROM users WHERE username LIKE '%$search_user%' OR user_firstname LIKE '%$search_user%' OR user_lastname LIKE '%$search_user%' " ;
+                  $user_result = mysqli_query($connect , $user_search);
+                  $count = mysqli_num_rows($user_result) ;
+                  
+                  if($count > 3){
+                    $count = 3 ;
+                  }
+
+                  $i=0;
+
+                  while($i < $count){
+
+                     $row = mysqli_fetch_assoc($user_result) ;
+                     $search_img = $row['user_image'];
+                     $search_name = $row['user_firstname'] ;
+                     $search_username = $row['username'] ;
+
+
+            ?>
              
+              <div class="col-sm-3">
+                <img src="img/<?php echo $search_img ; ?>" class="mx-auto d-block" height="70" width="70" style="border-radius: 50%;">
+                <a href="view_profile.php?username=<?php echo $search_username; ?>"><h5 class="text-muted text-center"><?php echo $search_name ; ?></h5></a>
+              </div>
+
+            <?php 
+            
+             $i++ ;
+            }
+            
+               if($count>1){ ?>
+               <div class="col-sm-3">
+                <img src="img/arrow2.jpg" class="mx-auto d-block" height="60" width="60" style="border-radius: 50%; margin-top: 10px;">
+              </div>
+
+          <?php }
+                  }
+                    ?>
+             
+            </div>
+            <hr><br><br>
+
+            <h2 class="text-muted">Blogs</h2><br>
+          </div>
 
 
+
+
+
+             <!-- PHP QUERY FOR SEARCH BLOGS -->
+             
              
              <?php 
              
