@@ -164,18 +164,51 @@
       <div class="container">
         <div class="row">
          <div class="col-md-8">
+
+
+          <!-- PHP QUERY -->
+          <?php 
+
+           if(isset($_GET['search'])){
+        
+            $search = $_GET['search'] ;
+
+            $search_query = "SELECT * FROM users WHERE user_firstname LIKE '%$search%' OR user_lastname LIKE '%$search%' OR username LIKE '%$search%' ";
+            $search_result = mysqli_query($connect , $search_query);
+          
+            $count = mysqli_num_rows($search_result) ;
+
+              if($count == 0){
+               
+               echo "<div class='alert alert-danger' role='alert' style = 'margin : 10px;'><b>No Results Found. </b></div>" ;
+
+              }
+
+              else{
+                 
+                  while($row = mysqli_fetch_assoc($search_result)){
+                    $search_username = $row['username'] ;
+                    $search_firstname = $row['user_firstname'];
+                    $search_lastname = $row['user_lastname'];
+                    $search_image = $row['user_image'];
+
+             ?>
+
+
+
+
              
          <div class="user_box">
           <hr>
            <div class="row" style="margin: 0;">
             <div class="col-sm-2"> 
-             <img src="img/aru.jpg" style="border-radius: 50% ;" width="80" height="80" class="mx-auto d-block">
+             <img src="img/<?php echo $search_image ; ?>" style="border-radius: 50% ;" width="80" height="80" class="mx-auto d-block">
             </div>
             
 
             <div class="col-sm-4" style="text-align: center;">
-              <a href="view_profile.php?username="><h4 class="text-muted"> Areesha Fatima</h4></a>
-              <h5 class="text-muted"> aruu123</h5>
+              <a href="view_profile.php?username=<?php echo $search_username; ?>"><h4 class="text-muted"><?php echo $search_firstname." ".$search_lastname ;?></h4></a>
+              <h5 class="text-muted"><?php echo $search_username; ?></h5>
             </div>
            
            <div class="col-sm-6"></div>
@@ -183,8 +216,18 @@
          </div><br>
          </div>
 
-         
-          
+
+           <?php
+
+                  }  //.WHILE
+                      
+
+              }    //.ELSE
+
+
+           }    // .GET
+
+          ?>
              
              
                 
