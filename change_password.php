@@ -102,7 +102,7 @@
                 }
                 else{
 
-                	$password2 = mysqli_real_escape_string($connect , $password2);
+                
 
                    //ENCRYPTING NEW PASSWORD
                    $hash = "$2y$10$" ;

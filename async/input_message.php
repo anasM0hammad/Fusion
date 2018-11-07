@@ -9,6 +9,8 @@ if(isset($_GET['sender'])){
   $receiver_id = $_GET['receiver'];
   $message = $_GET['message'];
 
+  $message = mysqli_real_escape_string($connect , $message);
+
   if(empty($message)){
   	echo json_encode("false");
   }else{

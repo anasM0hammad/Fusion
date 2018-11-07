@@ -16,7 +16,7 @@ if(isset($_POST['login'])){
     else{
         
         $username = mysqli_real_escape_string($connect, $username);
-        $password = mysqli_real_escape_string($connect, $password);
+        
 
         //ENCRYPTING THE PASSWORD
          $hash = "$2y$10$" ;

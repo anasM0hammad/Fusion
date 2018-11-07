@@ -134,7 +134,7 @@
                           $lastname = mysqli_real_escape_string($connect , $lastname);
                           $username = mysqli_real_escape_string($connect , $username);
                           $email = mysqli_real_escape_string($connect , $email);
-                          $password = mysqli_real_escape_string($connect , $password);
+                         
 
                           //PASSWORD ENCRYPTION
                            $hash = "$2y$10$" ;

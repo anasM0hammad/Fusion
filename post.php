@@ -157,8 +157,7 @@ include "includes/connection.php" ;
             
             $post_id = $_GET['p_id'];
 
-            //SQL PROTECTION
-             $post_id = mysqli_real_escape_string($connect , $post_id);
+        
             
             $post_query = "SELECT * FROM posts WHERE post_id = {$post_id}" ;
             $post_result = mysqli_query($connect , $post_query) ;
@@ -280,8 +279,7 @@ include "includes/connection.php" ;
                 else{
 
                    //SQL PROTECTION
-                    $comment_post_id = mysqli_real_escape_string($connect , $comment_post_id);
-                    $comment_author_id = mysqli_real_escape_string($connect , $comment_author_id);
+                   
                     $comment = mysqli_real_escape_string($connect , $comment);
                      
 

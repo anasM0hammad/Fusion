@@ -1,9 +1,55 @@
       <div class="footer">
        <div class = "container">
-          <h4><img src="img/icon2.png" height="50" width="50"> Fusion</h4>
-          <p>All Rights Reserved <i class="far fa-copyright"></i> 2018</p>   
+        <div class="row" style="margin: 0;">
+          <div class="col-sm-2">
+            <h4><img src="img/icon2.png" height="50" width="50"> Fusion</h4>
+            <p>All Rights Reserved <i class="far fa-copyright"></i> 2018</p>
+          </div>
+
+        <div class="col-sm-8">
+
+          <ul class="nav justify-content-center footer_nav">
+            <li class="nav-item">
+              <h3><a class="nav-link active" href="https://github.com/anasM0hammad"><i class="fab fa-github"></i></a></h3>
+            </li>
+            <li class="nav-item">
+              <h3><a class="nav-link" href=""><i class="fab fa-facebook"></i></a></h3>
+            </li>
+            <li class="nav-item">
+              <h3><a class="nav-link" href=""><i class="fab fa-instagram"></i></a></h3>
+            </li>
+          </ul>
+          
+        </div>
+
+
+          <div class="col-sm-2">
+            <ul class="nav flex-column footer_nav">
+              <li class="nav-item">
+                <a class="nav-link active" href="index.php">Home</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="contact.php">Contact</a>
+              </li>
+               <li class="nav-item">
+                <a class="nav-link" href="http://anas16-me.stackstaging.com/">About</a>
+              </li>
+            </ul>
+            
+          </div>
+        </div>   
        </div>     
       </div>
+
+      <style type="text/css">
+        .footer_nav a {
+          color: white;
+        }
+
+        .footer_nav a:hover{
+          text-decoration: underline;
+        }
+      </style>
       
    
 
