@@ -211,7 +211,7 @@
             
                if($count>1){ ?>
                <div class="col-sm-3">
-                <img src="img/arrow2.jpg" class="mx-auto d-block" height="60" width="60" style="border-radius: 50%; margin-top: 10px;">
+                <a href='user_list.php?search=<?php echo $search_user; ?>'><img src="img/arrow2.jpg" class="mx-auto d-block" height="60" width="60" style="border-radius: 50%; margin-top: 10px;"></a>
               </div>
 
           <?php }
