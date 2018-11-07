@@ -251,6 +251,10 @@
           $sender_id = $img_row['user_id'];
           $sender_online = $img_row['user_online'];
 
+          //SQL PROTECTION
+          $sender = mysqli_real_escape_string($connect , $sender);
+          $username = mysqli_real_escape_string($connect , $username);
+
           //QUERY TO MAKE ALL MESSAGE READ 
            $read_query = "UPDATE message SET message_read = 1 WHERE message_sender = '$sender' AND message_receiver = '$username'" ;
            $read_result = mysqli_query($connect , $read_query);

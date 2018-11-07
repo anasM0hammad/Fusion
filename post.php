@@ -156,6 +156,9 @@ include "includes/connection.php" ;
         if(isset($_GET['p_id'])){
             
             $post_id = $_GET['p_id'];
+
+            //SQL PROTECTION
+             $post_id = mysqli_real_escape_string($connect , $post_id);
             
             $post_query = "SELECT * FROM posts WHERE post_id = {$post_id}" ;
             $post_result = mysqli_query($connect , $post_query) ;
@@ -275,6 +278,13 @@ include "includes/connection.php" ;
                 
                 //QUERY TO INSERT COMMENT
                 else{
+
+                   //SQL PROTECTION
+                    $comment_post_id = mysqli_real_escape_string($connect , $comment_post_id);
+                    $comment_author_id = mysqli_real_escape_string($connect , $comment_author_id);
+                    $comment = mysqli_real_escape_string($connect , $comment);
+                     
+
                     
                     $comment_query = "INSERT INTO comments(comment_post_id, comment_author_id, comment_author, comment_author_image, comment_email, comment_content, comment_status, comment_date) VALUES($comment_post_id, $comment_auth_id , '{$comment_author}','{$comment_auth_img}' , '{$comment_email}', '{$comment}', 'Approved', now())";
                     

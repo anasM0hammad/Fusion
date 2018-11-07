@@ -531,6 +531,15 @@
                   }
                   
                   else{
+                       
+                       //SQL PROTECTION
+                        $post_title = mysqli_real_escape_string($connect , $post_title);
+                        $post_tags = mysqli_real_escape_string($connect , $post_tags);
+                        $post_content = mysqli_real_escape_string($connect , $post_content);
+                       
+
+
+
                   
                   $publish_query = "INSERT INTO posts(post_category_id, post_title, post_author, post_date, post_image, post_comment_count, post_content,     post_tags, post_status, post_author_image, post_user_id) VALUES ({$post_cat}, '{$post_title}', '{$post_author}', now(), '{$post_image}', {$post_comment_count}, '{$post_content}', '{$post_tags}', '{$post_status}', '{$post_author_image}', {$user_id}) ";
                   
@@ -655,6 +664,13 @@
                  }
                      
                 else{     
+
+                      //SQL PROTECTION
+                        $upd_firstname = mysqli_real_escape_string($connect , $upd_firstname);
+                        $upd_lastname = mysqli_real_escape_string($connect , $upd_lastname);
+                        $upd_email = mysqli_real_escape_string($connect , $upd_email);
+                        $upd_username = mysqli_real_escape_string($connect , $upd_username);   
+
                      
                      $upd_query = "UPDATE users SET username = '{$upd_username}', user_email = '{$upd_email}', user_firstname = '{$upd_firstname}', user_lastname = '{$upd_lastname}', user_image = '{$upd_image}' WHERE user_id = $user_id" ;
                      

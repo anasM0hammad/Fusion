@@ -7,6 +7,9 @@ if(isset($_GET['email']) && isset($_GET['hash'])){
   $email = $_GET['email'];
   $hash = $_GET['hash'];
 
+   $email = mysqli_real_escape_string($connect , $email);
+
+
   $query = "SELECT * FROM users WHERE user_email = '$email' ";
   $result = mysqli_query($connect, $query) ;
   while($row = mysqli_fetch_assoc($result)){

@@ -272,6 +272,7 @@
              if(isset($_GET['p_id'])){
                  
                  $post_id = $_GET['p_id'] ;
+                 $post_id = mysqli_real_escape_string($connect , $post_id);
                  
                  $upd_query = "SELECT * FROM posts WHERE post_id = {$post_id} AND post_user_id = $user_id" ;
                  $upd_result = mysqli_query($connect, $upd_query);
@@ -319,6 +320,13 @@
                         // }
                      }
                      
+
+                     // SQL PROTECTION
+                      $post_upd_title = mysqli_real_escape_string($connect , $post_upd_title);
+                      $post_upd_tags = mysqli_real_escape_string($connect , $post_upd_tags);
+                      $post_upd_content = mysqli_real_escape_string($connect , $post_upd_content);
+                     
+
                      
                      $upd_query = "UPDATE posts SET post_title = '{$post_upd_title}', post_tags = '{$post_upd_tags}', post_status = '{$post_upd_status}', post_category_id = $post_upd_cat_id, post_content = '$post_upd_content', post_image = '{$post_upd_image}' WHERE post_id = $post_id" ;
                      

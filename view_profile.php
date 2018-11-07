@@ -134,6 +134,7 @@
          if(isset($_GET['username'])){
 
           $pro_username = $_GET['username'];
+          $pro_username = mysqli_real_escape_string($connect , $pro_username);
           
           //IF VISITOR AND PROFILE PERSON IS SAME GO TO PROFILE PAGE 
           if($session_set==1 && $pro_username === $username){

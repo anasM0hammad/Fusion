@@ -179,6 +179,7 @@
                 if(isset($_POST['submit'])){
 
                   $search_user = $_POST['search'];
+                  $search_user = mysqli_real_escape_string($connect , $search_user);
                   $user_search = "SELECT * FROM users WHERE username LIKE '%$search_user%' OR user_firstname LIKE '%$search_user%' OR user_lastname LIKE '%$search_user%' " ;
                   $user_result = mysqli_query($connect , $user_search);
                   $count = mysqli_num_rows($user_result) ;
@@ -236,6 +237,8 @@
              if(isset($_POST['submit'])){
                  
                   $search = $_POST['search'] ;
+                  $search = mysqli_real_escape_string($connect , $search);
+                  
                   $query = "SELECT * FROM posts WHERE (post_tags LIKE '%$search%' OR post_author LIKE '%$search%') AND post_status = 'published' " ;
                  
                   $search_result = mysqli_query($connect , $query);
@@ -426,6 +429,48 @@
       <?php include "includes/footer.php" ?>
       
        <script type="text/javascript" src="js/online.js"></script>
+       <script type="text/javascript"> const sendLike = async (id)=>{
+       
+           const call = await fetch(`async/like.php?p_id=${id}`);
+           const data = await call.json();
+
+           return {data: data};
+
+       }
+
+       const liked = (id)=>{
+
+        sendLike(id).then((result)=>{
+         
+         if(result.data.flag==="true"){
+          document.getElementById(`like${id}`).style.color = "blue" ;
+          document.querySelector(`#like_alert${id}`).style.display = "none";
+           document.querySelector(`#noOfLike${id}`).textContent = result.data.noOfLike ;
+            document.querySelector(`#verify_alert`).style.display = "none";
+          
+         }
+
+         else if(result.data.flag === "false"){
+         document.getElementById(`like${id}`).style.color = "#6C757D";
+           document.querySelector(`#like_alert${id}`).style.display = "none";
+           document.querySelector(`#noOfLike${id}`).textContent = result.data.noOfLike ;
+            document.querySelector(`#verify_alert`).style.display = "none";
+          
+         }
+         
+         else if(result.data.flag === "not_verified"){
+           document.querySelector(`#verify_alert`).style.display = "block";
+         }
+
+          else {
+            document.querySelector(`#like_alert${id}`).style.display = "block";
+            document.querySelector(`#verify_alert`).style.display = "none";
+          
+         }
+        
+         // console.log(result);
+        }).catch(error=>error)
+       }</script>
       
       
   </body>

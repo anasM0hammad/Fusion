@@ -172,6 +172,7 @@
            if(isset($_GET['search'])){
         
             $search = $_GET['search'] ;
+            $search = mysqli_real_escape_string($connect , $search);
 
             $search_query = "SELECT * FROM users WHERE user_firstname LIKE '%$search%' OR user_lastname LIKE '%$search%' OR username LIKE '%$search%' ";
             $search_result = mysqli_query($connect , $search_query);
